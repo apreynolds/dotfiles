@@ -1,0 +1,20 @@
+#Start by ignoring all files:
+*.* 
+#Then, don't ignore the following extensions:
+!*.wiki
+!*.tex
+!*.sty
+!*.cls
+!*.md
+!*.txt
+!*.song
+!*.csv
+
+#Ignore everything in the following:
+Applications/*
+Pictures/
+
+#Start by ignoring everything in Library:
+Library/*
+#Then, don't ignore texmf and subdirectories:
+!Library/texmf

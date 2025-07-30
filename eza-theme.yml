@@ -1,0 +1,809 @@
+#DEFAULT:
+colourful: true
+
+filekinds:
+  normal: {foreground: DarkGray}
+  #directory: {foreground: Blue, is_bold: true}
+  #symlink: {foreground: Cyan} # 2025-07-30 Tried changing this but it didn't seem to take effect?
+  #pipe: {foreground: Yellow}
+  #block_device: {foreground: Yellow, is_bold: true}
+  #char_device: {foreground: Yellow, is_bold: true}
+  #socket: {foreground: Red, is_bold: true}
+  #special: {foreground: Yellow}
+  #executable: {foreground: Yellow}
+  #mount_point: {foreground: Blue, is_bold: true, is_underline: true}
+
+perms:
+  user_read: {foreground: Yellow, is_bold: true}
+  user_write: {foreground: Red, is_bold: true}
+  user_execute_file: {foreground: Green, is_bold: true, is_underline: true}
+  user_execute_other: {foreground: Green, is_bold: true}
+  group_read: {foreground: Yellow}
+  group_write: {foreground: Red}
+  group_execute: {foreground: Green}
+  other_read: {foreground: Yellow}
+  other_write: {foreground: Red}
+  other_execute: {foreground: Green}
+  special_user_file: {foreground: Purple}
+  special_other: {foreground: Purple}
+  attribute: {foreground: Default}
+
+size:
+  major: {foreground: Cyan, is_bold: false}
+  minor: {foreground: Cyan}
+  number_byte: {foreground: Cyan, is_bold: false}
+  number_kilo: {foreground: Cyan, is_bold: false}
+  number_mega: {foreground: Cyan, is_bold: false}
+  number_giga: {foreground: Cyan, is_bold: false}
+  number_huge: {foreground: Cyan, is_bold: false}
+  unit_byte: {foreground: Cyan}
+  unit_kilo: {foreground: Cyan}
+  unit_mega: {foreground: Cyan}
+  unit_giga: {foreground: Cyan}
+  unit_huge: {foreground: Cyan}
+
+users:
+  user_you: {foreground: Default, is_bold: false}
+  user_root: {foreground: LightRed, is_bold: false}
+  user_other: {foreground: LightRed, is_bold: false}
+  group_yours: {foreground: Default, is_bold: false}
+  group_other: {foreground: LightRed, is_bold: false}
+  group_root: {foreground: LightRed, is_bold: false}
+
+#links:
+  #normal: {foreground: Red, is_bold: true}
+  #multi_link_file: {foreground: Red, background: Yellow}
+
+#git:
+  #new: {foreground: Green}
+  #modified: {foreground: Blue}
+  #deleted: {foreground: Red}
+  #renamed: {foreground: Yellow}
+  #typechange: {foreground: Purple}
+  #ignored: {foreground: Default, is_dimmed: true}
+  #conflicted: {foreground: Red}
+
+#git_repo:
+  #branch_main: {foreground: Green}
+  #branch_other: {foreground: Yellow}
+  #git_clean: {foreground: Green}
+  #git_dirty: {foreground: Yellow}
+
+#security_context:
+  #colon: {foreground: Default, is_dimmed: true}
+  #user: {foreground: Blue}
+  #role: {foreground: Green}
+  #typ: {foreground: Default}
+  #range: {foreground: Cyan}
+
+file_type:
+  #image: {foreground: Purple}
+  #video: {foreground: Purple, is_bold: true}
+  #music: {foreground: Cyan}
+  #lossless: {foreground: Cyan, is_bold: true}
+  #crypto: {foreground: Green, is_bold: true}
+  #document: {foreground: Green}
+  #compressed: {foreground: Red}
+  #temp: {foreground: White}
+  compiled: {foreground: LightYellow}
+  build: {foreground: LightYellow, is_bold: false, is_underline: false}
+  source: {foreground: LightYellow, is_bold: false}
+
+punctuation: {foreground: DarkGray, is_bold: true}
+date: {foreground: DarkGray}
+inode: {foreground: Purple}
+blocks: {foreground: Cyan}
+header: {foreground: Default, is_underline: true}
+octal: {foreground: Purple}
+flags: {foreground: Default}
+
+symlink_path: {foreground: LightBlue}
+#control_char: {foreground: Red}
+#broken_symlink: {foreground: Red}
+#broken_path_overlay: {foreground: Default, is_underline: true}
+
+filenames:
+  # Custom filename-based overrides
+   .tmux.conf: {icon: {glyph: }}
+   .viminfo: {icon: {glyph: }}
+   .latexmkrc: {icon: {glyph: }}
+   latexmkrc: {icon: {glyph: }}
+   dircolors: {icon: {glyph: }}
+   .visidatarc: {icon: {glyph: }}
+   visidatarc: {icon: {glyph: }}
+   license*: {icon: {glyph: }}
+   license: {icon: {glyph: }}
+   LICENSE: {icon: {glyph: }}
+   .babelrc: {icon: {glyph: }}
+   .bash_profile: {icon: {glyph: }}
+   .bashrc: {icon: {glyph: }}
+   .clang-format: {icon: {glyph: }}
+   .clang-tidy: {icon: {glyph: }}
+   .codespellrc: {icon: {glyph: 󰓆}}
+   .condarc: {icon: {glyph: }}
+   .dockerignore: {icon: {glyph: 󰡨}}
+   .ds_store: {icon: {glyph: }}
+   .editorconfig: {icon: {glyph: }}
+   .env: {icon: {glyph: }}
+   .eslintignore: {icon: {glyph: }}
+   .eslintrc: {icon: {glyph: }}
+   .git-blame-ignore-revs: {icon: {glyph: }}
+   .gitattributes: {icon: {glyph: }}
+   .gitconfig: {icon: {glyph: }}
+   gitconfig: {icon: {glyph: }}
+   .gitignore: {icon: {glyph: }}
+   .gitlab-ci.yml: {icon: {glyph: }}
+   .gitmodules: {icon: {glyph: }}
+   .gtkrc-2.0: {icon: {glyph: }}
+   .gvimrc: {icon: {glyph: }}
+   .justfile: {icon: {glyph: }}
+   .luacheckrc: {icon: {glyph: }}
+   .luaurc: {icon: {glyph: }}
+   .mailmap: {icon: {glyph: 󰊢}}
+   .nanorc: {icon: {glyph: }}
+   .npmignore: {icon: {glyph: }}
+   .npmrc: {icon: {glyph: }}
+   .nuxtrc: {icon: {glyph: 󱄆}}
+   .nvmrc: {icon: {glyph: }}
+   .pre-commit-config.yaml: {icon: {glyph: 󰛢}}
+   .prettierignore: {icon: {glyph: }}
+   .prettierrc: {icon: {glyph: }}
+   .prettierrc.cjs: {icon: {glyph: }}
+   .prettierrc.js: {icon: {glyph: }}
+   .prettierrc.json: {icon: {glyph: }}
+   .prettierrc.json5: {icon: {glyph: }}
+   .prettierrc.mjs: {icon: {glyph: }}
+   .prettierrc.toml: {icon: {glyph: }}
+   .prettierrc.yaml: {icon: {glyph: }}
+   .prettierrc.yml: {icon: {glyph: }}
+   .pylintrc: {icon: {glyph: }}
+   .settings.json: {icon: {glyph: }}
+   .SRCINFO: {icon: {glyph: 󰣇}}
+   .vimrc: {icon: {glyph: }}
+   .Xauthority: {icon: {glyph: }}
+   .xinitrc: {icon: {glyph: }}
+   .Xresources: {icon: {glyph: }}
+   .xsession: {icon: {glyph: }}
+   .zprofile: {icon: {glyph: }}
+   zprofile: {icon: {glyph: }}
+   .zshenv: {icon: {glyph: }}
+   .zshrc: {icon: {glyph: }}
+   zshrc: {icon: {glyph: }}
+   _gvimrc: {icon: {glyph: }}
+   _vimrc: {icon: {glyph: }}
+   vimrc: {icon: {glyph: }}
+   AUTHORS: {icon: {glyph: }}
+   AUTHORS.txt: {icon: {glyph: }}
+   brewfile: {icon: {glyph: }}
+   bspwmrc: {icon: {glyph: }}
+   build: {icon: {glyph: }}
+   build.gradle: {icon: {glyph: }}
+   build.zig.zon: {icon: {glyph: }}
+   bun.lock: {icon: {glyph: }}
+   bun.lockb: {icon: {glyph: }}
+   cantorrc: {icon: {glyph: }}
+   checkhealth: {icon: {glyph: 󰓙}}
+   cmakelists.txt: {icon: {glyph: }}
+   code_of_conduct: {icon: {glyph: }}
+   code_of_conduct.md: {icon: {glyph: }}
+   commit_editmsg: {icon: {glyph: }}
+   commitlint.config.js: {icon: {glyph: 󰜘}}
+   commitlint.config.ts: {icon: {glyph: 󰜘}}
+   compose.yaml: {icon: {glyph: 󰡨}}
+   compose.yml: {icon: {glyph: 󰡨}}
+   config: {icon: {glyph: }}
+   containerfile: {icon: {glyph: 󰡨}}
+   copying: {icon: {glyph: }}
+   copying.lesser: {icon: {glyph: }}
+   Directory.Build.props: {icon: {glyph: }}
+   Directory.Build.targets: {icon: {glyph: }}
+   Directory.Packages.props: {icon: {glyph: }}
+   docker-compose.yaml: {icon: {glyph: 󰡨}}
+   docker-compose.yml: {icon: {glyph: 󰡨}}
+   dockerfile: {icon: {glyph: 󰡨}}
+   eslint.config.cjs: {icon: {glyph: }}
+   eslint.config.js: {icon: {glyph: }}
+   eslint.config.mjs: {icon: {glyph: }}
+   eslint.config.ts: {icon: {glyph: }}
+   ext_typoscript_setup.txt: {icon: {glyph: }}
+   favicon.ico: {icon: {glyph: }}
+   fp-info-cache: {icon: {glyph: }}
+   fp-lib-table: {icon: {glyph: }}
+   FreeCAD.conf: {icon: {glyph: }}
+   Gemfile: {icon: {glyph: }}
+   gnumakefile: {icon: {glyph: }}
+   go.mod: {icon: {glyph: }}
+   go.sum: {icon: {glyph: }}
+   go.work: {icon: {glyph: }}
+   gradle-wrapper.properties: {icon: {glyph: }}
+   gradle.properties: {icon: {glyph: }}
+   gradlew: {icon: {glyph: }}
+   groovy: {icon: {glyph: }}
+   gruntfile.babel.js: {icon: {glyph: }}
+   gruntfile.coffee: {icon: {glyph: }}
+   gruntfile.js: {icon: {glyph: }}
+   gruntfile.ts: {icon: {glyph: }}
+   gtkrc: {icon: {glyph: }}
+   gulpfile.babel.js: {icon: {glyph: }}
+   gulpfile.coffee: {icon: {glyph: }}
+   gulpfile.js: {icon: {glyph: }}
+   gulpfile.ts: {icon: {glyph: }}
+   hypridle.conf: {icon: {glyph: }}
+   hyprland.conf: {icon: {glyph: }}
+   hyprlandd.conf: {icon: {glyph: }}
+   hyprlock.conf: {icon: {glyph: }}
+   hyprpaper.conf: {icon: {glyph: }}
+   i18n.config.js: {icon: {glyph: 󰗊}}
+   i18n.config.ts: {icon: {glyph: 󰗊}}
+   i3blocks.conf: {icon: {glyph: }}
+   i3status.conf: {icon: {glyph: }}
+   index.theme: {icon: {glyph: }}
+   ionic.config.json: {icon: {glyph: }}
+   justfile: {icon: {glyph: }}
+   kalgebrarc: {icon: {glyph: }}
+   kdeglobals: {icon: {glyph: }}
+   kdenlive-layoutsrc: {icon: {glyph: }}
+   kdenliverc: {icon: {glyph: }}
+   kritadisplayrc: {icon: {glyph: }}
+   kritarc: {icon: {glyph: }}
+   license: {icon: {glyph: }}
+   license.md: {icon: {glyph: }}
+   lxde-rc.xml: {icon: {glyph: }}
+   lxqt.conf: {icon: {glyph: }}
+   makefile: {icon: {glyph: }}
+   mix.lock: {icon: {glyph: }}
+   mpv.conf: {icon: {glyph: }}
+   node_modules: {icon: {glyph: }}
+   nuxt.config.cjs: {icon: {glyph: 󱄆}}
+   nuxt.config.js: {icon: {glyph: 󱄆}}
+   nuxt.config.mjs: {icon: {glyph: 󱄆}}
+   nuxt.config.ts: {icon: {glyph: 󱄆}}
+   package-lock.json: {icon: {glyph: }}
+   package.json: {icon: {glyph: }}
+   PKGBUILD: {icon: {glyph: }}
+   platformio.ini: {icon: {glyph: }}
+   pom.xml: {icon: {glyph: }}
+   prettier.config.cjs: {icon: {glyph: }}
+   prettier.config.js: {icon: {glyph: }}
+   prettier.config.mjs: {icon: {glyph: }}
+   prettier.config.ts: {icon: {glyph: }}
+   procfile: {icon: {glyph: }}
+   PrusaSlicer.ini: {icon: {glyph: }}
+   PrusaSlicerGcodeViewer.ini: {icon: {glyph: }}
+   py.typed: {icon: {glyph: }}
+   QtProject.conf: {icon: {glyph: }}
+   rakefile: {icon: {glyph: }}
+   readme: {icon: {glyph: 󰂺}}
+   readme.md: {icon: {glyph: 󰂺}}
+   README.txt: {icon: {glyph: 󰂺}}
+   rmd: {icon: {glyph: }}
+   robots.txt: {icon: {glyph: 󰚩}}
+   security: {icon: {glyph: 󰒃}}
+   security.md: {icon: {glyph: 󰒃}}
+   settings.gradle: {icon: {glyph: }}
+   svelte.config.js: {icon: {glyph: }}
+   sxhkdrc: {icon: {glyph: }}
+   sym-lib-table: {icon: {glyph: }}
+   tailwind.config.js: {icon: {glyph: 󱏿}}
+   tailwind.config.mjs: {icon: {glyph: 󱏿}}
+   tailwind.config.ts: {icon: {glyph: 󱏿}}
+   tmux.conf: {icon: {glyph: }}
+   tmux.conf.local: {icon: {glyph: }}
+   tsconfig.json: {icon: {glyph: }}
+   unlicense: {icon: {glyph: }}
+   vagrantfile: {icon: {glyph: }}
+   vercel.json: {icon: {glyph: }}
+   vlcrc: {icon: {glyph: 󰕼}}
+   webpack: {icon: {glyph: 󰜫}}
+   weston.ini: {icon: {glyph: }}
+   workspace: {icon: {glyph: }}
+   wrangler.jsonc: {icon: {glyph: }}
+   wrangler.toml: {icon: {glyph: }}
+   xmobarrc: {icon: {glyph: }}
+   xmobarrc.hs: {icon: {glyph: }}
+   xmonad.hs: {icon: {glyph: }}
+   xorg.conf: {icon: {glyph: }}
+   xsettingsd.conf: {icon: {glyph: }}
+
+extensions:
+  # Custom extension-based overrides
+  # rs: {filename: {foreground: Red}, icon: {glyph: 🦀}}
+   tex: {icon: {glyph: }}
+   mscz: {icon: {glyph: }}
+   md: {icon: {glyph: }}
+   markdown: {icon: {glyph: }}
+   #*.afdesign: {icon: {glyph: #afd7ff}}
+   #*.afphoto: {icon: {glyph: #afd7ff}}
+   song: {icon: {glyph: }}
+   md: {icon: {glyph: }}
+   wiki: {icon: {glyph: }}
+   cls: {icon: {glyph: }}
+   sty: {icon: {glyph: }}
+   doc: {icon: {glyph: }}
+   gdoc: {icon: {glyph: }}
+   docx: {icon: {glyph: }}
+   mw: {icon: {glyph: }}
+   mpl: {icon: {glyph: }}
+   pptx: {icon: {glyph: }}
+   gsheet: {icon: {glyph: 󰈛}}
+   mscz: {icon: {glyph: }}
+   3gp: {icon: {glyph: }}
+   3mf: {icon: {glyph: 󰆧}}
+   7z: {icon: {glyph: }}
+   a: {icon: {glyph: }}
+   aac: {icon: {glyph: }}
+   ada: {icon: {glyph: }}
+   adb: {icon: {glyph: }}
+   ads: {icon: {glyph: }}
+   ai: {icon: {glyph: }}
+   aif: {icon: {glyph: }}
+   aiff: {icon: {glyph: }}
+   android: {icon: {glyph: }}
+   ape: {icon: {glyph: }}
+   apk: {icon: {glyph: }}
+   apl: {icon: {glyph: }}
+   app: {icon: {glyph: }}
+   applescript: {icon: {glyph: }}
+   asc: {icon: {glyph: 󰦝}}
+   asm: {icon: {glyph: }}
+   ass: {icon: {glyph: 󰨖}}
+   astro: {icon: {glyph: }}
+   avif: {icon: {glyph: }}
+   awk: {icon: {glyph: }}
+   azcli: {icon: {glyph: }}
+   bak: {icon: {glyph: 󰁯}}
+   bash: {icon: {glyph: }}
+   bat: {icon: {glyph: }}
+   bazel: {icon: {glyph: }}
+   bib: {icon: {glyph: 󱉟}}
+   bicep: {icon: {glyph: }}
+   bicepparam: {icon: {glyph: }}
+   bin: {icon: {glyph: }}
+   blade.php: {icon: {glyph: }}
+   blend: {icon: {glyph: 󰂫}}
+   blp: {icon: {glyph: 󰺾}}
+   bmp: {icon: {glyph: }}
+   bqn: {icon: {glyph: }}
+   brep: {icon: {glyph: 󰻫}}
+   bz: {icon: {glyph: }}
+   bz2: {icon: {glyph: }}
+   bz3: {icon: {glyph: }}
+   bzl: {icon: {glyph: }}
+   c: {icon: {glyph: }}
+   c++: {icon: {glyph: }}
+   cache: {icon: {glyph: }}
+   cast: {icon: {glyph: }}
+   cbl: {icon: {glyph: }}
+   cc: {icon: {glyph: }}
+   ccm: {icon: {glyph: }}
+   cfg: {icon: {glyph: }}
+   cjs: {icon: {glyph: }}
+   clj: {icon: {glyph: }}
+   cljc: {icon: {glyph: }}
+   cljd: {icon: {glyph: }}
+   cljs: {icon: {glyph: }}
+   cmake: {icon: {glyph: }}
+   cob: {icon: {glyph: }}
+   cobol: {icon: {glyph: }}
+   coffee: {icon: {glyph: }}
+   conda: {icon: {glyph: }}
+   conf: {icon: {glyph: }}
+   config.ru: {icon: {glyph: }}
+   cow: {icon: {glyph: 󰆚}}
+   cp: {icon: {glyph: }}
+   cpp: {icon: {glyph: }}
+   cppm: {icon: {glyph: }}
+   cpy: {icon: {glyph: }}
+   cr: {icon: {glyph: }}
+   crdownload: {icon: {glyph: }}
+   cs: {icon: {glyph: 󰌛}}
+   csh: {icon: {glyph: }}
+   cshtml: {icon: {glyph: 󱦗}}
+   cson: {icon: {glyph: }}
+   csproj: {icon: {glyph: 󰪮}}
+   css: {icon: {glyph: }}
+   csv: {icon: {glyph: }}
+   cts: {icon: {glyph: }}
+   cu: {icon: {glyph: }}
+   cue: {icon: {glyph: 󰲹}}
+   cuh: {icon: {glyph: }}
+   cxx: {icon: {glyph: }}
+   cxxm: {icon: {glyph: }}
+   d: {icon: {glyph: }}
+   d.ts: {icon: {glyph: }}
+   dart: {icon: {glyph: }}
+   db: {icon: {glyph: }}
+   dconf: {icon: {glyph: }}
+   desktop: {icon: {glyph: }}
+   diff: {icon: {glyph: }}
+   dll: {icon: {glyph: }}
+   doc: {icon: {glyph: 󰈬}}
+   Dockerfile: {icon: {glyph: 󰡨}}
+   dockerignore: {icon: {glyph: 󰡨}}
+   docx: {icon: {glyph: 󰈬}}
+   dot: {icon: {glyph: 󱁉}}
+   download: {icon: {glyph: }}
+   drl: {icon: {glyph: }}
+   dropbox: {icon: {glyph: }}
+   dump: {icon: {glyph: }}
+   dwg: {icon: {glyph: 󰻫}}
+   dxf: {icon: {glyph: 󰻫}}
+   ebook: {icon: {glyph: }}
+   ebuild: {icon: {glyph: }}
+   edn: {icon: {glyph: }}
+   eex: {icon: {glyph: }}
+   ejs: {icon: {glyph: }}
+   el: {icon: {glyph: }}
+   elc: {icon: {glyph: }}
+   elf: {icon: {glyph: }}
+   elm: {icon: {glyph: }}
+   eln: {icon: {glyph: }}
+   env: {icon: {glyph: }}
+   eot: {icon: {glyph: }}
+   epp: {icon: {glyph: }}
+   epub: {icon: {glyph: }}
+   erb: {icon: {glyph: }}
+   erl: {icon: {glyph: }}
+   ex: {icon: {glyph: }}
+   exe: {icon: {glyph: }}
+   exs: {icon: {glyph: }}
+   #f#: {icon: {glyph: }}
+   f3d: {icon: {glyph: 󰻫}}
+   f90: {icon: {glyph: 󱈚}}
+   fbx: {icon: {glyph: 󰆧}}
+   fcbak: {icon: {glyph: }}
+   fcmacro: {icon: {glyph: }}
+   fcmat: {icon: {glyph: }}
+   fcparam: {icon: {glyph: }}
+   fcscript: {icon: {glyph: }}
+   fcstd: {icon: {glyph: }}
+   fcstd1: {icon: {glyph: }}
+   fctb: {icon: {glyph: }}
+   fctl: {icon: {glyph: }}
+   fdmdownload: {icon: {glyph: }}
+   feature: {icon: {glyph: }}
+   fish: {icon: {glyph: }}
+   flac: {icon: {glyph: }}
+   flc: {icon: {glyph: }}
+   flf: {icon: {glyph: }}
+   fnl: {icon: {glyph: }}
+   fodg: {icon: {glyph: }}
+   fodp: {icon: {glyph: }}
+   fods: {icon: {glyph: }}
+   fodt: {icon: {glyph: }}
+   fs: {icon: {glyph: }}
+   fsi: {icon: {glyph: }}
+   fsscript: {icon: {glyph: }}
+   fsx: {icon: {glyph: }}
+   gcode: {icon: {glyph: 󰐫}}
+   gd: {icon: {glyph: }}
+   gemspec: {icon: {glyph: }}
+   gif: {icon: {glyph: }}
+   git: {icon: {glyph: }}
+   glb: {icon: {glyph: }}
+   gleam: {icon: {glyph: }}
+   gnumakefile: {icon: {glyph: }}
+   go: {icon: {glyph: }}
+   godot: {icon: {glyph: }}
+   gpr: {icon: {glyph: }}
+   gql: {icon: {glyph: }}
+   gradle: {icon: {glyph: }}
+   graphql: {icon: {glyph: }}
+   gresource: {icon: {glyph: }}
+   gv: {icon: {glyph: 󱁉}}
+   gz: {icon: {glyph: }}
+   h: {icon: {glyph: }}
+   haml: {icon: {glyph: }}
+   hbs: {icon: {glyph: }}
+   heex: {icon: {glyph: }}
+   hex: {icon: {glyph: }}
+   hh: {icon: {glyph: }}
+   hpp: {icon: {glyph: }}
+   hrl: {icon: {glyph: }}
+   hs: {icon: {glyph: }}
+   htm: {icon: {glyph: }}
+   html: {icon: {glyph: }}
+   thtml: {icon: {glyph: }}
+   http: {icon: {glyph: }}
+   huff: {icon: {glyph: 󰡘}}
+   hurl: {icon: {glyph: }}
+   hx: {icon: {glyph: }}
+   hxx: {icon: {glyph: }}
+   ical: {icon: {glyph: }}
+   icalendar: {icon: {glyph: }}
+   ico: {icon: {glyph: }}
+   ics: {icon: {glyph: }}
+   ifb: {icon: {glyph: }}
+   ifc: {icon: {glyph: 󰻫}}
+   ige: {icon: {glyph: 󰻫}}
+   iges: {icon: {glyph: 󰻫}}
+   igs: {icon: {glyph: 󰻫}}
+   image: {icon: {glyph: }}
+   img: {icon: {glyph: }}
+   import: {icon: {glyph: }}
+   info: {icon: {glyph: }}
+   ini: {icon: {glyph: }}
+   ino: {icon: {glyph: }}
+   ipynb: {icon: {glyph: }}
+   iso: {icon: {glyph: }}
+   ixx: {icon: {glyph: }}
+   java: {icon: {glyph: }}
+   jl: {icon: {glyph: }}
+   jpeg: {icon: {glyph: }}
+   jpg: {icon: {glyph: }}
+   js: {icon: {glyph: }}
+   json: {icon: {glyph: }}
+   json5: {icon: {glyph: }}
+   jsonc: {icon: {glyph: }}
+   jsx: {icon: {glyph: }}
+   jwmrc: {icon: {glyph: }}
+   jxl: {icon: {glyph: }}
+   kbx: {icon: {glyph: 󰯄}}
+   kdb: {icon: {glyph: }}
+   kdbx: {icon: {glyph: }}
+   kdenlive: {icon: {glyph: }}
+   kdenlivetitle: {icon: {glyph: }}
+   kicad_dru: {icon: {glyph: }}
+   kicad_mod: {icon: {glyph: }}
+   kicad_pcb: {icon: {glyph: }}
+   kicad_prl: {icon: {glyph: }}
+   kicad_pro: {icon: {glyph: }}
+   kicad_sch: {icon: {glyph: }}
+   kicad_sym: {icon: {glyph: }}
+   kicad_wks: {icon: {glyph: }}
+   ko: {icon: {glyph: }}
+   kpp: {icon: {glyph: }}
+   kra: {icon: {glyph: }}
+   krz: {icon: {glyph: }}
+   ksh: {icon: {glyph: }}
+   kt: {icon: {glyph: }}
+   kts: {icon: {glyph: }}
+   lck: {icon: {glyph: }}
+   leex: {icon: {glyph: }}
+   less: {icon: {glyph: }}
+   lff: {icon: {glyph: }}
+   lhs: {icon: {glyph: }}
+   lib: {icon: {glyph: }}
+   license: {icon: {glyph: }}
+   liquid: {icon: {glyph: }}
+   lock: {icon: {glyph: }}
+   #log: {icon: {glyph: 󰌱}}
+   log: {icon: {glyph: }} 
+   lrc: {icon: {glyph: 󰨖}}
+   lua: {icon: {glyph: }}
+   luac: {icon: {glyph: }}
+   luau: {icon: {glyph: }}
+   m: {icon: {glyph: }}
+   m3u: {icon: {glyph: 󰲹}}
+   m3u8: {icon: {glyph: 󰲹}}
+   m4a: {icon: {glyph: }}
+   m4v: {icon: {glyph: }}
+   magnet: {icon: {glyph: }}
+   makefile: {icon: {glyph: }}
+   markdown: {icon: {glyph: }}
+   material: {icon: {glyph: }}
+   md: {icon: {glyph: }}
+   md5: {icon: {glyph: 󰕥}}
+   mdx: {icon: {glyph: }}
+   mint: {icon: {glyph: 󰌪}}
+   mjs: {icon: {glyph: }}
+   mk: {icon: {glyph: }}
+   mkv: {icon: {glyph: }}
+   ml: {icon: {glyph: }}
+   mli: {icon: {glyph: }}
+   mm: {icon: {glyph: }}
+   mo: {icon: {glyph: }}
+   mobi: {icon: {glyph: }}
+   mojo: {icon: {glyph: }}
+   mov: {icon: {glyph: }}
+   mp3: {icon: {glyph: }}
+   mp4: {icon: {glyph: }}
+   mpp: {icon: {glyph: }}
+   msf: {icon: {glyph: }}
+   mts: {icon: {glyph: }}
+   mustache: {icon: {glyph: }}
+   nfo: {icon: {glyph: }}
+   nim: {icon: {glyph: }}
+   nix: {icon: {glyph: }}
+   norg: {icon: {glyph: }}
+   nswag: {icon: {glyph: }}
+   nu: {icon: {glyph: }}
+   o: {icon: {glyph: }}
+   obj: {icon: {glyph: 󰆧}}
+   odf: {icon: {glyph: }}
+   odg: {icon: {glyph: }}
+   odin: {icon: {glyph: 󰟢}}
+   odp: {icon: {glyph: }}
+   ods: {icon: {glyph: }}
+   odt: {icon: {glyph: }}
+   oga: {icon: {glyph: }}
+   ogg: {icon: {glyph: }}
+   ogv: {icon: {glyph: }}
+   ogx: {icon: {glyph: }}
+   opus: {icon: {glyph: }}
+   org: {icon: {glyph: }}
+   otf: {icon: {glyph: }}
+   out: {icon: {glyph: }}
+   part: {icon: {glyph: }}
+   patch: {icon: {glyph: }}
+   pck: {icon: {glyph: }}
+   pcm: {icon: {glyph: }}
+   pdf: {icon: {glyph: }}
+   php: {icon: {glyph: }}
+   pl: {icon: {glyph: }}
+   pls: {icon: {glyph: 󰲹}}
+   ply: {icon: {glyph: 󰆧}}
+   pm: {icon: {glyph: }}
+   png: {icon: {glyph: }}
+   po: {icon: {glyph: }}
+   pot: {icon: {glyph: }}
+   pp: {icon: {glyph: }}
+   ppt: {icon: {glyph: 󰈧}}
+   pptx: {icon: {glyph: 󰈧}}
+   prisma: {icon: {glyph: }}
+   pro: {icon: {glyph: }}
+   ps1: {icon: {glyph: 󰨊}}
+   psb: {icon: {glyph: }}
+   psd: {icon: {glyph: }}
+   psd1: {icon: {glyph: 󰨊}}
+   psm1: {icon: {glyph: 󰨊}}
+   pub: {icon: {glyph: 󰷖}}
+   pxd: {icon: {glyph: }}
+   pxi: {icon: {glyph: }}
+   py: {icon: {glyph: }}
+   pyc: {icon: {glyph: }}
+   pyd: {icon: {glyph: }}
+   pyi: {icon: {glyph: }}
+   pyo: {icon: {glyph: }}
+   pyw: {icon: {glyph: }}
+   pyx: {icon: {glyph: }}
+   qm: {icon: {glyph: }}
+   qml: {icon: {glyph: }}
+   qrc: {icon: {glyph: }}
+   qss: {icon: {glyph: }}
+   query: {icon: {glyph: }}
+   r: {icon: {glyph: 󰟔}}
+   R: {icon: {glyph: 󰟔}}
+   rake: {icon: {glyph: }}
+   rar: {icon: {glyph: }}
+   razor: {icon: {glyph: 󱦘}}
+   rb: {icon: {glyph: }}
+   res: {icon: {glyph: }}
+   resi: {icon: {glyph: }}
+   rlib: {icon: {glyph: }}
+   rmd: {icon: {glyph: }}
+   rproj: {icon: {glyph: 󰗆}}
+   rs: {icon: {glyph: }}
+   rss: {icon: {glyph: }}
+   s: {icon: {glyph: }}
+   sass: {icon: {glyph: }}
+   sbt: {icon: {glyph: }}
+   sc: {icon: {glyph: }}
+   scad: {icon: {glyph: }}
+   scala: {icon: {glyph: }}
+   scm: {icon: {glyph: 󰘧}}
+   scss: {icon: {glyph: }}
+   sh: {icon: {glyph: }}
+   sha1: {icon: {glyph: 󰕥}}
+   sha224: {icon: {glyph: 󰕥}}
+   sha256: {icon: {glyph: 󰕥}}
+   sha384: {icon: {glyph: 󰕥}}
+   sha512: {icon: {glyph: 󰕥}}
+   sig: {icon: {glyph: 󰘧}}
+   signature: {icon: {glyph: 󰘧}}
+   skp: {icon: {glyph: 󰻫}}
+   sldasm: {icon: {glyph: 󰻫}}
+   sldprt: {icon: {glyph: 󰻫}}
+   slim: {icon: {glyph: }}
+   sln: {icon: {glyph: }}
+   slnx: {icon: {glyph: }}
+   slvs: {icon: {glyph: 󰻫}}
+   sml: {icon: {glyph: 󰘧}}
+   so: {icon: {glyph: }}
+   sol: {icon: {glyph: }}
+   spec.js: {icon: {glyph: }}
+   spec.jsx: {icon: {glyph: }}
+   spec.ts: {icon: {glyph: }}
+   spec.tsx: {icon: {glyph: }}
+   spx: {icon: {glyph: }}
+   sql: {icon: {glyph: }}
+   sqlite: {icon: {glyph: }}
+   sqlite3: {icon: {glyph: }}
+   srt: {icon: {glyph: 󰨖}}
+   ssa: {icon: {glyph: 󰨖}}
+   ste: {icon: {glyph: 󰻫}}
+   step: {icon: {glyph: 󰻫}}
+   stl: {icon: {glyph: 󰆧}}
+   stories.js: {icon: {glyph: }}
+   stories.jsx: {icon: {glyph: }}
+   stories.mjs: {icon: {glyph: }}
+   stories.svelte: {icon: {glyph: }}
+   stories.ts: {icon: {glyph: }}
+   stories.tsx: {icon: {glyph: }}
+   stories.vue: {icon: {glyph: }}
+   stp: {icon: {glyph: 󰻫}}
+   strings: {icon: {glyph: }}
+   styl: {icon: {glyph: }}
+   sub: {icon: {glyph: 󰨖}}
+   sublime: {icon: {glyph: }}
+   suo: {icon: {glyph: }}
+   sv: {icon: {glyph: 󰍛}}
+   svelte: {icon: {glyph: }}
+   svg: {icon: {glyph: 󰜡}}
+   svgz: {icon: {glyph: 󰜡}}
+   svh: {icon: {glyph: 󰍛}}
+   swift: {icon: {glyph: }}
+   t: {icon: {glyph: }}
+   tbc: {icon: {glyph: 󰛓}}
+   tcl: {icon: {glyph: 󰛓}}
+   templ: {icon: {glyph: }}
+   terminal: {icon: {glyph: }}
+   test.js: {icon: {glyph: }}
+   test.jsx: {icon: {glyph: }}
+   test.ts: {icon: {glyph: }}
+   test.tsx: {icon: {glyph: }}
+   tex: {icon: {glyph: }}
+   tf: {icon: {glyph: }}
+   tfvars: {icon: {glyph: }}
+   tgz: {icon: {glyph: }}
+   tmpl: {icon: {glyph: }}
+   tmux: {icon: {glyph: }}
+   toml: {icon: {glyph: }}
+   torrent: {icon: {glyph: }}
+   tres: {icon: {glyph: }}
+   ts: {icon: {glyph: }}
+   tscn: {icon: {glyph: }}
+   tsconfig: {icon: {glyph: }}
+   tsx: {icon: {glyph: }}
+   ttf: {icon: {glyph: }}
+   twig: {icon: {glyph: }}
+   txt: {icon: {glyph: 󰈙}}
+   txz: {icon: {glyph: }}
+   typ: {icon: {glyph: }}
+   typoscript: {icon: {glyph: }}
+   ui: {icon: {glyph: }}
+   v: {icon: {glyph: 󰍛}}
+   vala: {icon: {glyph: }}
+   vh: {icon: {glyph: 󰍛}}
+   vhd: {icon: {glyph: 󰍛}}
+   vhdl: {icon: {glyph: 󰍛}}
+   vi: {icon: {glyph: }}
+   vim: {icon: {glyph: }}
+   vsh: {icon: {glyph: }}
+   vsix: {icon: {glyph: }}
+   vue: {icon: {glyph: }}
+   wasm: {icon: {glyph: }}
+   wav: {icon: {glyph: }}
+   webm: {icon: {glyph: }}
+   webmanifest: {icon: {glyph: }}
+   webp: {icon: {glyph: }}
+   webpack: {icon: {glyph: 󰜫}}
+   wma: {icon: {glyph: }}
+   woff: {icon: {glyph: }}
+   woff2: {icon: {glyph: }}
+   wrl: {icon: {glyph: 󰆧}}
+   wrz: {icon: {glyph: 󰆧}}
+   wv: {icon: {glyph: }}
+   wvc: {icon: {glyph: }}
+   x: {icon: {glyph: }}
+   xaml: {icon: {glyph: 󰙳}}
+   xcf: {icon: {glyph: }}
+   xcplayground: {icon: {glyph: }}
+   xcstrings: {icon: {glyph: }}
+   xls: {icon: {glyph: 󰈛}}
+   xlsx: {icon: {glyph: 󰈛}}
+   xm: {icon: {glyph: }}
+   xml: {icon: {glyph: 󰗀}}
+   xpi: {icon: {glyph: }}
+   xul: {icon: {glyph: }}
+   xz: {icon: {glyph: }}
+   yaml: {icon: {glyph: }}
+   yml: {icon: {glyph: }}
+   zig: {icon: {glyph: }}
+   zip: {icon: {glyph: }}
+   zsh: {icon: {glyph: }}
+   zst: {icon: {glyph: }}
+   #🔥: {icon: {glyph: }}
+   
+   
+   

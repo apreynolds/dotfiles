@@ -1,0 +1,377 @@
+#{{{ WANT TO ADD/EDIT A COLOR? READ THIS FIRST...
+
+# (This is my custom color scheme, created 2025-07-29)
+# (The structure of this file is based on https://github.com/seebi/dircolors-solarized.)
+
+# TO ADD/EDIT A COLOR, first add/edit it to ~/.config/yazi/theme.toml
+# The reasons are twofold:
+  #- convenience of quick previews in yazi
+  #- it's easier to edit this file to match yazi/theme.toml than vice versa
+
+#}}}
+
+#{{{ Term Section (copied from dircolors-solarized)
+TERM Eterm
+TERM alacritty
+TERM ansi
+TERM color-xterm
+TERM con132x25
+TERM con132x30
+TERM con132x43
+TERM con132x60
+TERM con80x25
+TERM con80x28
+TERM con80x30
+TERM con80x43
+TERM con80x50
+TERM con80x60
+TERM cons25
+TERM console
+TERM cygwin
+TERM dtterm
+TERM dvtm
+TERM dvtm-256color
+TERM eterm-color
+TERM fbterm
+TERM foot
+TERM gnome
+TERM gnome-256color
+TERM jfbterm
+TERM konsole
+TERM konsole-256color
+TERM kterm
+TERM linux
+TERM linux-16color
+TERM linux-c
+TERM mach-color
+TERM mlterm
+TERM putty
+TERM putty-256color
+TERM rxvt
+TERM rxvt-256color
+TERM rxvt-cygwin
+TERM rxvt-cygwin-native
+TERM rxvt-unicode
+TERM rxvt-unicode256
+TERM rxvt-unicode-256color
+TERM screen
+TERM screen-16color
+TERM screen-16color-bce
+TERM screen-16color-s
+TERM screen-16color-bce-s
+TERM screen-256color
+TERM screen-256color-bce
+TERM screen-256color-s
+TERM screen-256color-bce-s
+TERM screen-256color-italic
+TERM screen-bce
+TERM screen-w
+TERM screen.linux
+TERM screen.xterm-256color
+TERM st
+TERM st-meta
+TERM st-256color
+TERM st-meta-256color
+TERM tmux
+TERM tmux-256color
+TERM vt100
+TERM xterm
+TERM xterm-16color
+TERM xterm-256color
+TERM xterm-256color-italic
+TERM xterm-88color
+TERM xterm-color
+TERM xterm-debian
+TERM xterm-kitty
+TERM xterm-termite
+#}}}
+
+#{{{ Helpful Documentation
+#
+# standard colors
+#
+# Below are the color init strings for the basic file types. A color init
+# string consists of one or more of the following numeric codes:
+# Attribute codes:
+# 00=none 01=bold 04=underscore 05=blink 07=reverse 08=concealed
+# Text color codes:
+# 30=black 31=red 32=green 33=yellow 34=blue 35=magenta 36=cyan 37=white
+# Background color codes:
+# 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
+#
+#
+# 256 color support
+# see here: http://www.mail-archive.com/bug-coreutils@gnu.org/msg11030.html)
+#
+# Text 256 color coding:
+# 38;5;COLOR_NUMBER
+# Background 256 color coding:
+# 48;5;COLOR_NUMBER
+#}}}
+
+#{{{ Notes on my strategy, and color codes/numbers
+# - Blues, greens for files that open in apps: docx, xlsx, mpl, mscz, etc
+#
+# 01  | red              | #cc241d | orphan/broken symlinks
+# 02  | green            | #98971a | executable
+# 03  | yellow           | #d79921 | source (mpl)
+# 04  | blue             | #458588 | powerpoint
+# 05  | purple           | #b16286 | images
+# 06  | aqua/cyan        | #689d6a | xlsx
+# 07  | gray             | #a89984 | tex, wiki, song, md
+# 08  | dark grey        | #928374 | default, configs
+# 09  | bright red       | #fb4934 | archives
+# 10  | bright green     | #b8bb26 | wav, flac audio
+# 11  | bright yellow    | #fabd2f | source (js, py, lua)
+# 12  | bright blue      | #83a598 | directories
+# 13  | bright purple    | #d3869b | movies
+# 14  | bright aqua/cyan | #8ec07c | mp3, lossy audio
+# 15  | fg/white         | #ebdbb2 | txt, READMEs
+# 67  | blue             | #5f87af | docx
+# 94  | brown            | #875f00 | html
+# 130 | light brown      | #af5f00 | cls
+# 137 | very light brown | #af875f | pdf
+# 143 | yellowgreen      | #afaf5f | csv
+# 166 | orange           | #d75f00 | css
+# 208 | orange           | #ff8700 | sty
+# 239 | very dark grey   | #504945 | logs and backups
+# 243 | darker grey      | #7c6f64 | git stuff
+#}}}
+
+#{{{ RULES
+
+#{{{ BASIC sessings, Special files
+
+NORMAL 00;38;5;15 #ebdbb2 fallback is "white" (foreground)
+#FILE 00 # regular file: use no color at all
+RESET 0 # reset to "normal" color
+DIR 00;38;5;12 #83a598
+LINK target
+#LINK 00;38;5;37 # symbolic link. (If you set this to 'target' instead of a
+ # numerical value, the color is as for the file pointed to.)
+MULTIHARDLINK 00 # regular file with more than one link
+FIFO 48;5;230;38;5;136;01 # pipe
+SOCK 48;5;230;38;5;136;01 # socket
+DOOR 48;5;230;38;5;136;01 # door
+BLK 48;5;230;38;5;244;01 # block device driver
+CHR 48;5;230;38;5;244;01 # character device driver
+ORPHAN 00;38;5;160 # symlink to nonexistent file, or non-stat'able file
+#ORPHAN 48;5;235;38;5;160 # symlink to nonexistent file, or non-stat'able file
+SETUID 48;5;160;38;5;230 # file that is setuid (u+s)
+SETGID 48;5;136;38;5;230 # file that is setgid (g+s)
+CAPABILITY 30;41 # file with capability
+STICKY_OTHER_WRITABLE 48;5;64;38;5;230 # dir that is sticky and other-writable (+t,o+w)
+OTHER_WRITABLE 48;5;235;38;5;33 # dir that is other-writable (o+w) and not sticky
+STICKY 48;5;33;38;5;230 # dir with the sticky bit set (+t) and not other-writable
+# This is for files with execute permission:
+EXEC 00;38;5;2 #98971a
+
+#}}}
+
+#{{{ Some particular customizations
+.PDF             00;38;5;137 
+.pdf             00;38;5;137 
+.tex             00;38;5;15
+.cls             00;38;5;130 
+.sty             00;38;5;208 
+.song            00;38;5;7 
+.md              00;38;5;7 
+.markdown        00;38;5;7 
+.wiki            00;38;5;7 
+.txt             00;38;5;15 
+*README          00;38;5;15
+*README.txt      00;38;5;15
+*readme.txt      00;38;5;15
+*README.md       00;38;5;15
+*README.markdown 00;38;5;15
+.html            00;38;5;94
+.thtml           00;38;5;94
+.css             00;38;5;166 
+.mw              00;38;5;110
+.mpl             00;38;5;3
+.doc             00;38;5;67 
+.gdoc            00;38;5;67 
+.docx            00;38;5;67 
+.pptx            00;38;5;4 
+.xlsx            00;38;5;6
+.gsheet          00;38;5;6
+.csv             00;38;5;143 
+.mscz            00;38;5;110 
+.afdesign        00;38;5;153 
+.afphoto         00;38;5;153 
+.git*            00;38;5;243
+#}}}
+
+#{{{ Archives or compressed; 9, #fb4934
+.tar    00;38;5;9
+.tgz    00;38;5;9
+.arj    00;38;5;9
+.taz    00;38;5;9
+.lzh    00;38;5;9
+.lzma   00;38;5;9
+.tlz    00;38;5;9
+.txz    00;38;5;9
+.zip    00;38;5;9
+.zst    00;38;5;9
+.z      00;38;5;9
+.Z      00;38;5;9
+.dz     00;38;5;9
+.gz     00;38;5;9
+.lz     00;38;5;9
+.xz     00;38;5;9
+.bz2    00;38;5;9
+.bz     00;38;5;9
+.tbz    00;38;5;9
+.tbz2   00;38;5;9
+.tz     00;38;5;9
+.deb    00;38;5;9
+.rpm    00;38;5;9
+.jar    00;38;5;9
+.rar    00;38;5;9
+.ace    00;38;5;9
+.zoo    00;38;5;9
+.cpio   00;38;5;9
+.7z     00;38;5;9
+.rz     00;38;5;9
+.apk    00;38;5;9
+.gem    00;38;5;9
+#}}}
+
+#{{{ Image formats (purple, 5, #b16286)
+.jpg    00;38;5;5
+.JPG    00;38;5;5 #stupid but needed
+.jpeg   00;38;5;5
+.gif    00;38;5;5
+.bmp    00;38;5;5
+.pbm    00;38;5;5
+.pgm    00;38;5;5
+.ppm    00;38;5;5
+.tga    00;38;5;5
+.xbm    00;38;5;5
+.xpm    00;38;5;5
+.tif    00;38;5;5
+.tiff   00;38;5;5
+.png    00;38;5;5
+.PNG    00;38;5;5
+.svg    00;38;5;5
+.svgz   00;38;5;5
+.mng    00;38;5;5
+.pcx    00;38;5;5
+.dl     00;38;5;5
+.xcf    00;38;5;5
+.xwd    00;38;5;5
+.yuv    00;38;5;5
+.cgm    00;38;5;5
+.emf    00;38;5;5
+.eps    00;38;5;5
+.CR2    00;38;5;5
+.ico    00;38;5;5
+.nef    00;38;5;5 # Nikon RAW format
+.NEF    00;38;5;5
+.webp   00;38;5;5 # https://en.wikipedia.org/wiki/WebP
+.heic   00;38;5;5
+.HEIC   00;38;5;5
+.avif   00;38;5;5
+#}}}
+
+#{{{ "unimportant" files as logs and backups (very dark grey, 239, #504945
+.log         00;38;5;239
+.bak         00;38;5;239
+.aux         00;38;5;239
+.fls         00;38;5;239
+.fdb_latexmk 00;38;5;239
+.lof         00;38;5;239
+.lol         00;38;5;239
+.lot         00;38;5;239
+.out         00;38;5;239
+.toc         00;38;5;239
+.bbl         00;38;5;239
+.blg         00;38;5;239
+*~           00;38;5;239
+*#           00;38;5;239
+.part        00;38;5;239
+.incomplete  00;38;5;239
+.swp         00;38;5;239
+.tmp         00;38;5;239
+.temp        00;38;5;239
+.o           00;38;5;239
+.pyc         00;38;5;239
+.class       00;38;5;239
+.cache       00;38;5;239
+.DS_Store    00;38;5;239
+#}}}
+
+#{{{ Audio formats: green, 14 #8ec07c (lossy),  10 #b8bb26 (lossless)
+.aac    00;38;5;14
+.au     00;38;5;14
+.mid    00;38;5;14
+.midi   00;38;5;14
+.mka    00;38;5;14
+.mp3    00;38;5;14
+.mpc    00;38;5;14
+.ogg    00;38;5;14
+.opus   00;38;5;14
+.ra     00;38;5;14
+.m4a    00;38;5;14
+.axa    00;38;5;14
+.oga    00;38;5;14
+.spx    00;38;5;14
+.xspf   00;38;5;14
+.flac   00;38;5;10
+.wav    00;38;5;10
+# http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
+#}}}
+
+#{{{ Video formats (light purple, 13, #d3869b)
+.mov  00;38;5;13
+.MOV  00;38;5;13
+.mpg  00;38;5;13
+.mpeg 00;38;5;13
+.m2v  00;38;5;13
+.mkv  00;38;5;13
+.ogm  00;38;5;13
+.mp4  00;38;5;13
+.m4v  00;38;5;13
+.mp4v 00;38;5;13
+.vob  00;38;5;13
+.qt   00;38;5;13
+.nuv  00;38;5;13
+.wmv  00;38;5;13
+.asf  00;38;5;13
+.rm   00;38;5;13
+.rmvb 00;38;5;13
+.flc  00;38;5;13
+.avi  00;38;5;13
+.fli  00;38;5;13
+.flv  00;38;5;13
+.gl   00;38;5;13
+.m2ts 00;38;5;13
+.divx 00;38;5;13
+.webm 00;38;5;13
+.axv  00;38;5;13
+.anx  00;38;5;13
+.ogv  00;38;5;13
+.ogx  00;38;5;13
+# http://wiki.xiph.org/index.php/MIME_Types_and_File_Extensions
+#}}}
+
+#{{{ source files ( yellow 11, #fabd2f )
+*.lua               00;38;5;11
+*.js                00;38;5;11
+*.py                00;38;5;11
+*.rb                00;38;5;11
+*Gemfile            00;38;5;11
+*Makefile           00;38;5;11
+*Rakefile           00;38;5;11
+*Dockerfile         00;38;5;11
+*build.xml          00;38;5;11
+.c                  00;38;5;11
+.cpp                00;38;5;11
+.cxx                00;38;5;11
+.cc                 00;38;5;11
+.objc               00;38;5;11
+.sqlite             00;38;5;11
+.go                 00;38;5;11
+.sql                00;38;5;11
+#}}}
+#}}} 
