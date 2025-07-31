@@ -104,7 +104,7 @@ Plug 'sirver/ultisnips'
 Plug 'junegunn/vim-easy-align'
 "Plug 'junegunn/limelight.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'tpope/vim-obsession', {'on': []}
+Plug 'tpope/vim-obsession' 
 Plug 'tpope/vim-dispatch' "keymaps disabled
 Plug 'vimwiki/vimwiki'
 Plug 'freitass/todo.txt-vim', { 'frozen': 1 } "Plugin was last updated in 2016, and I've made local changes to it, so don't update it.
@@ -131,7 +131,8 @@ Plug 'nanotee/zoxide.vim'
 Plug 'preservim/vim-markdown'
 Plug 'AndrewRadev/bufferize.vim'
 Plug 'kshenoy/vim-signature' "for marks
-Plug 'dominickng/fzf-session.vim'
+"Plug 'dominickng/fzf-session.vim', {'on': []}
+Plug 'Tarmean/fzf-session.vim'
 call plug#end()
 "}}}
 "-----------------------------------------
@@ -266,6 +267,10 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#tab_nr_type = 2 " splits and tab number
 let g:airline_powerline_fonts=1
 
+"NOTE: couldn't get the airline obsession status to work, but will abandon.
+"See https://github.com/vim-airline/vim-airline/issues/777
+"let g:airline#extensions#obsession#enabled = 1
+
 " Change theme with :AirlineTheme
 let g:airline_theme='gruvbox'
 "let g:airline_theme='bubblegum'
@@ -396,11 +401,37 @@ map <F3> :UltiSnipsEdit<CR>
 nnoremap <leader>wo :Wipeout<CR>
 "}}}
 "-----------------------------------------
-"{{{ plugin: fzf-session (and session mappings)
-let g:fzf_session_path = $HOME . '/.vim/session'
+"{{{ plugin: Obsession and fzf-session 
 
-map <leader>o :Session 
-map <leader>ss :Sessions<cr>
+"NOTE: Using 'Tarmean/fzf-session.vim', after previously trying 'dominickng/fzf-session.vim'; the former is a little newer.
+"I mistakenly thought that the latter would obviate the need for Obsession, but I was wrong: Obsession provides the crucial "auto-save sessions" functionality.
+"While it may be possible to get the latter working the way I want with Obsession, I won't bother trying as the function below allows the behaviour I want, namely:
+"- Unload the current session and wipeout all the hidden buffers
+"- Load a new session (fuzzy)
+
+map <leader>oo :Obsession ~/.vim/sessions/
+map <leader>os :echo ObsessionStatus()<cr>
+
+map <leader>sl :SessionLoad<cr>
+map <leader>ss :call SessUnloadWipeoutLoad()<cr>
+map <leader>su :call SessUnloadWipeout()<cr>
+
+"Custom function to unload, wipeout:
+function! SessUnloadWipeout()
+  "Unload the current session:
+  execute 'SessionUnload' 
+  "Wipeout all hidden buffers so they won't be in the next session:
+  execute 'Wipeout'
+endfunction
+"Custom function to unload, wipeout, and load new session:
+function! SessUnloadWipeoutLoad()
+  "Unload the current session:
+  execute 'SessionUnload' 
+  "Wipeout all hidden buffers so they won't be in the next session:
+  execute 'Wipeout'
+  "Fuzzy load a new session:
+  execute 'SessionLoad'
+endfunction
 "}}}
 "-----------------------------------------
 "{{{ Diff (and mappings)
@@ -1047,13 +1078,13 @@ function! MyKeymaps()
   echo ",ff: FilesIncludeVCS -- run modified Files in cwd; include .gitignore files so I can open pdfs"
   echo ",fh: FilesIncludeVCS ~ -- run modified Files in $HOME"
   echo ",fz: FilesIncludeHidden --  run modified Files in cwd, include hidden files/dirs"
-  echo ",f<leader>t :TextOnlyFiles -- run Files in cwd, but only on text files specified in .config/fd/ign-except-text"
-  echo ",f<leader>z :TextOnlyFilesIncludeHidden -- same as TextOnlyFiles but include hidden files/dirs"
+  echo ",f,t :TextOnlyFiles -- run Files in cwd, but only on text files specified in .config/fd/ign-except-text"
+  echo ",f,z :TextOnlyFilesIncludeHidden -- same as TextOnlyFiles but include hidden files/dirs"
   echo ",rg: Rg -- run Rg in cwd (default)"
   echo ",rh: RgHome -- run Rg in $HOME"
-  echo ",r<leader>t: RgTextOnly -- run Rg in cwd only on text files specified in .config/fd/ign-except-text"
-  echo ",r<leader>d :RgDiary -- run Rg in diary of current wiki"
-  echo ",r<leader>z :RgTextOnlyIncludeHidden -- run Rg in cwd, only on specific text files, include hidden files/dirs"
+  echo ",r,t: RgTextOnly -- run Rg in cwd only on text files specified in .config/fd/ign-except-text"
+  echo ",r,d :RgDiary -- run Rg in diary of current wiki"
+  echo ",r,z :RgTextOnlyIncludeHidden -- run Rg in cwd, only on specific text files, include hidden files/dirs"
   echo "}}}"
   echo "{{{ VIMWIKI "
   echo ",vc: VimwikiTOC"
@@ -1092,8 +1123,11 @@ function! MyKeymaps()
   echo "<F12>: Compile"
   echo "}}}"
   echo "{{{ SESSIONS "
-  echo ",o: Session <name> -- track session <name> (don't add .vim extension!)"
-  echo ",ss: Sessions -- fuzzy find session to open"
+  echo ",oo: Obsession <name> -- track session <name>"
+  echo ",os: echo ObsessionStatus()"
+  echo ",ss: SessUnloadWipeoutLoad -- unload, wipeout, and fuzzy load new session"
+  echo ",su: SessUnloadWipeout -- unload, wipeout"
+  echo ",sl: SessionLoad -- fuzzy load new session"
   echo "}}}"
   echo "{{{ TABOO "
   echo ",tr: TabooRename"
