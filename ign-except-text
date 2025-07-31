@@ -1,4 +1,4 @@
-#Start by ignoring all files:
+#Start by ignoring all files with extensions:
 *.* 
 #Then, don't ignore the following extensions:
 !*.wiki
@@ -10,7 +10,13 @@
 !*.txt
 !*.song
 !*.csv
-!*.toml
+!*.mw
+!*.sh
+!*.css
+#Don't ingore contents of dotfiles...:
+!dotfiles/*
+#...but DO ingore .git files in dotfiles:
+dotfiles/*.git*
 
 #Ignore everything in the following:
 Applications/*
