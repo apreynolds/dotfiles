@@ -6,9 +6,11 @@
 !*.sty
 !*.cls
 !*.md
+!*.markdown
 !*.txt
 !*.song
 !*.csv
+!*.toml
 
 #Ignore everything in the following:
 Applications/*
