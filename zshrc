@@ -27,7 +27,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # MYEDIT 2024-11-05 use gnu dircolors
 #if [ -x "$(command -v gdircolors)" ]; then alias dircolors='gdircolors'; fi
-eval `gdircolors -b ~/.dotfiles/dircolors`
+eval `gdircolors -b ~/dotfiles/dircolors`
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load

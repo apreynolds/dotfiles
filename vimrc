@@ -828,16 +828,16 @@ nnoremap <leader>cp :let @" = expand("%:p")<CR>
 
 "VIMRC:
 nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>ev :$tabe $HOME/.dotfiles/vimrc<cr>
+nnoremap <leader>ev :$tabe $HOME/dotfiles/vimrc<cr>
 
 "PASSWORD:
 "nnoremap <leader>ep :$tabe ~/7personal/pwd/pwd.txt<CR>
 
 "ZSH ALIASES:
-nnoremap <leader>eza :$tabe /Users/preynol1/.dotfiles/aliases.zsh<CR>
+nnoremap <leader>eza :$tabe /Users/preynol1/dotfiles/aliases.zsh<CR>
 
 "YAZI KEYMAP:
-nnoremap <leader>ek :$tabe /Users/preynol1/.dotfiles/yazi-keymap.toml<CR>
+nnoremap <leader>ek :$tabe /Users/preynol1/dotfiles/yazi-keymap.toml<CR>
 
 "OLDER EXPERIMENTS:
 "nnoremap <leader>bc :BeginCenter <CR>
