@@ -423,6 +423,8 @@ function! SessUnloadWipeout()
   execute 'SessionUnload' 
   "Wipeout all hidden buffers so they won't be in the next session:
   execute 'Wipeout'
+  "Remove the custom label associated with the current tab:
+  execute 'TabooReset'
 endfunction
 "Custom function to unload, wipeout, and load new session:
 function! SessUnloadWipeoutLoad()
@@ -430,6 +432,8 @@ function! SessUnloadWipeoutLoad()
   execute 'SessionUnload' 
   "Wipeout all hidden buffers so they won't be in the next session:
   execute 'Wipeout'
+  "Remove the custom label associated with the current tab:
+  execute 'TabooReset'
   "Fuzzy load a new session:
   execute 'SessionLoad'
 endfunction
