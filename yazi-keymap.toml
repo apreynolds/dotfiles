@@ -242,7 +242,7 @@ prepend_keymap = [
 #─────────────────────────── 
 # {{{ CUSTOM SEARCH
 #─────────────────────────── 
-{ on = [ "s", "s" ], run = "search --via=fd --args='--no-ignore-vcs'",                                             desc = "Search via fd, include vcs"},
+{ on = [ "s", "s" ], run = "search --via=fd --args='--no-ignore-vcs --follow'",                                             desc = "Search via fd, include vcs"},
 { on = [ "s", "a" ], run = "search --via=fd --args='--no-ignore-vcs --hidden'",                                    desc = "Search via fd, include hidden"},
 { on = [ "s", "t" ], run = "search --via=fd --args='-I --ignore-file=/Users/preynol1/.config/fd/ign-except-text'", desc = "Search via fd, text-only"},
 #{ on = "S", run = "search --via=ug", desc = "Search ivia ug"},
