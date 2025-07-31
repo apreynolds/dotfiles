@@ -129,11 +129,11 @@ TERM xterm-termite
 # 15  | fg/white         | #ebdbb2 | txt, READMEs
 # 67  | blue             | #5f87af | docx
 # 94  | brown            | #875f00 | html
-# 130 | light brown      | #af5f00 | cls
+# 130 | light brown      | #af5f00 | sty
 # 137 | very light brown | #af875f | pdf
 # 143 | yellowgreen      | #afaf5f | csv
 # 166 | orange           | #d75f00 | css
-# 208 | orange           | #ff8700 | sty
+# 208 | orange           | #ff8700 | cls
 # 239 | very dark grey   | #504945 | logs and backups
 # 243 | darker grey      | #7c6f64 | git stuff
 #}}}
@@ -172,8 +172,8 @@ EXEC 00;38;5;2 #98971a
 .PDF             00;38;5;137 
 .pdf             00;38;5;137 
 .tex             00;38;5;15
-.cls             00;38;5;130 
-.sty             00;38;5;208 
+.cls             00;38;5;208
+.sty             00;38;5;130
 .song            00;38;5;7 
 .md              00;38;5;7 
 .markdown        00;38;5;7 
