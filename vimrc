@@ -500,7 +500,7 @@ nnoremap <localleader>vj :VimwikiDiaryPrevDay<CR>
 autocmd BufNewFile,BufRead *.thtml set filetype=html
 
 "-----------------------------------------
-"{{{ InitializeWikis
+"{{{ InitializeWikis (obsolete?)
 "-----------------------------------------
 nnoremap <localleader>iw :call InitializeWikis()<CR>
 
@@ -550,27 +550,27 @@ endfunction
 let $myrx_todo = '\C\<\%(TODO\|\|DONE\|\|STARTED\|\|FIXME\|\|FIXED\|\|XXX\|\|NOTE\|\)\>'
 "default: '\C\<\%(TODO\|DONE\|STARTED\|FIXME\|FIXED\|XXX\)\>'
 
-let twc = {}
-let twc.path = '~/0twc/'
-let twc.path_html = '~/0twc/'
-let twc.diary_rel_path = 'diary/'
-let twc.index = 'twc'
-let twc.css_name = '.wikiconfig/style_www/style.css'
-let twc.template_path = '~/0twc/.wikiconfig/'
-let twc.rx_todo = $myrx_todo
-let twc.template_default = 'def_template'
-let twc.template_ext = '.thtml'
-let twc.auto_tags = 1
-let twc.auto_export = 1
-let twc.auto_diary_index = 1
+let docs = {}
+let docs.path = '~/apr-docs/'
+let docs.path_html = '~/apr-docs/'
+let docs.diary_rel_path = 'diary/'
+let docs.index = 'docs'
+let docs.css_name = '.wikiconfig/style_www/style.css'
+let docs.template_path = '~/apr-docs/.wikiconfig/'
+let docs.rx_todo = $myrx_todo
+let docs.template_default = 'def_template'
+let docs.template_ext = '.thtml'
+let docs.auto_tags = 1
+let docs.auto_export = 1
+let docs.auto_diary_index = 1
 
 let music = {}
-let music.path = '~/4music/'
-let music.path_html = '~/4music/'
+let music.path = '~/apr-music/'
+let music.path_html = '~/apr-music/'
 let music.diary_rel_path = 'diary/'
-let music.index = 'musicwiki'
+let music.index = 'music'
 let music.css_name = '.wikiconfig/style_www/style.css'
-let music.template_path = '~/4music/.wikiconfig/'
+let music.template_path = '~/apr-music/.wikiconfig/'
 let music.template_default = 'def_template'
 let music.rx_todo = $myrx_todo
 let music.template_ext = '.thtml'
@@ -578,25 +578,25 @@ let music.auto_tags = 1
 let music.auto_export = 0
 let music.auto_diary_index = 1
 
-let music_website = {}
-let music_website.path = '~/5music_website/'
-let music_website.path_html = '~/5music_website/'
-let music_website.css_name = 'style_www/style.css'
-let music_website.template_path = '~/5music_website/wikiconfig/'
-let music_website.template_default = 'def_template'
-let music_website.template_ext = '.thtml'
-let music_website.auto_export = 1
+let music_web= {}
+let music_web.path = '~/apr-web/music-web/'
+let music_web.path_html = '~/apr-web/music-web/'
+let music_web.css_name = 'style_www/style.css'
+let music_web.template_path = '~/apr-web/music-web/wikiconfig/'
+let music_web.template_default = 'def_template'
+let music_web.template_ext = '.thtml'
+let music_web.auto_export = 1
 
-let work_website = {}
-let work_website.path = '~/6work_website/'
-let work_website.path_html = '~/6work_website/'
-let work_website.css_name = 'style_www/style.css'
-let work_website.template_path = '~/6work_website/wikiconfig/'
-let work_website.template_default = 'def_template'
-let work_website.template_ext = '.thtml'
-let work_website.auto_export = 1
+let work_web = {}
+let work_web.path = '~/apr-web/work-web/'
+let work_web.path_html = '~/apr-web/work-web/'
+let work_web.css_name = 'style_www/style.css'
+let work_web.template_path = '~/apr-web/work-web/wikiconfig/'
+let work_web.template_default = 'def_template'
+let work_web.template_ext = '.thtml'
+let work_web.auto_export = 1
 
-let g:vimwiki_list = [ twc, music, music_website, work_website ]
+let g:vimwiki_list = [ docs, music, music_web, work_web ]
 
 "-----------------------------------------
 "}}} end Setting up the wikis
