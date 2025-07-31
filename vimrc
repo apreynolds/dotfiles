@@ -71,8 +71,6 @@ set scrolloff=2      " Keep 2 lines visible at top/bottom when scrolling
 set noshowmode       " Showmode is unnecessary when using airline
 set formatoptions+=j " Delete comment character when joining commented lines.
 
-autocmd BufNewFile,BufRead *.txt setlocal tw=80
-
 "MAXIMIZE WINDOW:
 nnoremap <C-W>m <C-W>\|<C-W>_ 
 
@@ -93,6 +91,23 @@ let maplocalleader = "," "same
 " older experiment:
 "let maplocalleader = "\<Space>"
 "}}}
+"-----------------------------------------
+"{{{ AUGROUP
+augroup GENERAL
+  autocmd BufNewFile,BufRead *.txt setlocal tw=80
+  autocmd BufNewFile,BufRead *.cls setlocal filetype=tex
+  " 2024-10-07 Started using ".song" filetype for music songsheets, as it's better for custom snippets and compilation commands. Note that ft=song.tex set filetype to both song and tex, and syntax to tex
+  autocmd BufNewFile,BufRead *.song setlocal filetype=song.tex
+  autocmd BufNewFile,BufRead *tex.snippets setlocal foldmarker=<<<,>>>
+  autocmd BufNewFile,BufRead *tex.snippets setlocal foldmethod=marker
+  "The following will reload a buffer on BufEnter (useful for my AddTo... functions):
+  autocmd BufNewFile,BufRead *rc setlocal foldmethod=marker
+  autocmd BufNewFile,BufRead *.toml setlocal foldmethod=marker
+  autocmd BufNewFile,BufRead *ign-except-text setlocal filetype=gitignore
+  autocmd BufNewFile,BufRead *dircolors setlocal foldmethod=marker
+  autocmd BufEnter *todo.txt e
+augroup end
+"}}} end AUGROUP
 " -----------------------------------------
 "{{{ Vim-plug
 call plug#begin()
@@ -198,8 +213,11 @@ function! s:goyo_leave()
   highlight VertSplit ctermfg=bg
 endfunction
 
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
+augroup GOYO
+  autocmd!
+  autocmd User GoyoEnter nested call <SID>goyo_enter()
+  autocmd User GoyoLeave nested call <SID>goyo_leave()
+augroup end
 "}}}
 "-----------------------------------------
 "{{{ plugin: FZF, Rg
@@ -244,19 +262,19 @@ nnoremap <leader>r<leader>h :RgTextOnlyIncludeHiddenHome <cr>
 
 "run Rg in cwd only on specific text files:
 command! -bang -nargs=* RgTextOnly call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
-"run Rg in diary of current wiki, only on specific text files:
+  "run Rg in diary of current wiki, only on specific text files:
 command! -bang -nargs=* RgDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/apr-docs/diary'}), <bang>0)',
-"run Rg in cwd, only on specific text files, include zz-* directories
+  "run Rg in cwd, only on specific text files, include zz-* directories
 command! -bang -nargs=* RgTextOnlyIncludeHidden call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
 
-"run Rg in $HOME:
+  "run Rg in $HOME:
 command! -bang -nargs=* RgHome call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~'}), <bang>0)',
-"run Rg in $HOME only on specific text files:
+  "run Rg in $HOME only on specific text files:
 command! -bang -nargs=* RgTextOnlyHome call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~'}), <bang>0)',
-"run Rg in $HOME, only on specific text files, include zz-* directories
+  "run Rg in $HOME, only on specific text files, include zz-* directories
 command! -bang -nargs=* RgTextOnlyIncludeHiddenHome call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~'}), <bang>0)',
 
-"}}}
+  "}}}
 "-----------------------------------------
 "{{{ plugin: Airline
 let g:airline#extensions#whitespace#enabled = 0
@@ -314,12 +332,6 @@ let g:tmuxline_preset = {
 let g:tex_flavor='latex' "new tex files will have ft set to tex
 
 let g:vimtex_toc_todo_labels = {'TODO': 'TODO: ', 'FIXME': 'FIXME: ', 'NOTE': 'NOTE: '}
-
-autocmd BufNewFile,BufRead *.cls set filetype=tex
-"autocmd BufNewFile,BufRead *.cfg set filetype=tex
-
-" 2024-10-07 Started using ".song" filetype for music songsheets, as it's better for custom snippets and compilation commands. Note that ft=song.tex set filetype to both song and tex, and syntax to tex
-autocmd BufNewFile,BufRead *.song set filetype=song.tex
 
 let g:vimtex_compiler_latexmk = {
       \ 'callback' : 1,
@@ -392,8 +404,6 @@ let g:UltiSnipsEditSplit='context'
 "let g:UltiSnipsListSnippets='<C-u>'
 let g:UltiSnipsExpandTrigger='<s-tab>'
 
-autocmd BufNewFile,BufRead *tex.snippets setlocal foldmarker=<<<,>>>
-autocmd BufNewFile,BufRead *tex.snippets setlocal foldmethod=marker
 map <F3> :UltiSnipsEdit<CR>
 "}}}
 "-----------------------------------------
@@ -469,6 +479,9 @@ nnoremap <leader>sy :Start! sync2onedrive
 "{{{ plugin: Vimwiki
 "-----------------------------------------
 
+"-----------------------------------------
+"{{{ GENERAL
+"-----------------------------------------
 let g:vimwiki_folding='expr' "2019-07-17 'list' is another option; see documentation
 let g:vimwiki_hl_headers=1
 let g:vimwiki_hl_cb_checked=1
@@ -501,11 +514,10 @@ nnoremap <localleader>vv :VimwikiVSplitLink<CR>
 nnoremap <localleader>vk :VimwikiDiaryNextDay<CR>
 nnoremap <localleader>vj :VimwikiDiaryPrevDay<CR>
 
-"HTML FILETYPE AUTOCMD: for thtml (template) files
-autocmd BufNewFile,BufRead *.thtml set filetype=html
-
 "-----------------------------------------
-"{{{ InitializeWikis (obsolete?)
+"}}} end GENERAL
+"-----------------------------------------
+"{{{ My InitializeWikis function (obsolete?)
 "-----------------------------------------
 nnoremap <localleader>iw :call InitializeWikis()<CR>
 
@@ -641,12 +653,6 @@ function! MyVimwikiGenerateTags()
   "execute '%s/.*TAGS#Generated Tags#.*\n//'
 endfunction
 
-" Automatically call MyTags upon writing TAGS.wiki
-augroup TAGS
-  autocmd!
-  autocmd BufWrite *TAGS.wiki  call MyVimwikiGenerateTags()
-augroup end
-
 "}}}
 "-----------------------------------------
 "{{{ DIARY
@@ -680,13 +686,6 @@ function! MyMakeDiaryNote()
   execute '$'
   execute 'startinsert'
 endfunction
-
-"Generate links in a wiki's diary file upon write:
-augroup diary
-  autocmd!
-  "note that VimwikiDiaryIndex function has 'write' built into it, so this will be executed upon (number)<leader>wi
-  autocmd BufWrite *diary.wiki  VimwikiDiaryGenerateLinks
-augroup end
 
 function! MyUpdateTags()
   "replace colons with semicolons in tags:
@@ -739,14 +738,33 @@ endfunction
 "-----------------------------------------
 "}}} end DIARY
 "-----------------------------------------
+"{{{ AUGROUP
+"-----------------------------------------
+augroup WIKI
+  autocmd!
+  "Generate links in a wiki's diary file upon write (note that VimwikiDiaryIndex function has 'write' built into it, so this will be executed upon (number)<leader>wi):
+  autocmd BufWrite *diary.wiki  VimwikiDiaryGenerateLinks
+  " Automatically call MyTags upon writing TAGS.wiki
+  autocmd BufWrite *TAGS.wiki  call MyVimwikiGenerateTags()
+  "HTML FILETYPE: for thtml (template) files
+  autocmd BufNewFile,BufRead *.thtml setlocal filetype=html
+  "The following will reload a buffer on BufEnter (useful for my AddTo... functions)
+  autocmd BufEnter *docs.wiki e
+augroup end
+"-----------------------------------------
+"}}} end AUGROUP
+"-----------------------------------------
 
 "-----------------------------------------
 "}}} end PLUGIN vimwiki
 "-----------------------------------------
 "{{{ MY CUSTOM HELP FILES
 "-----------------------------------------
-autocmd BufNewFile,BufRead *.help.txt set filetype=help foldmethod=marker modifiable noreadonly
-autocmd BufWritePost ~/.vim/doc/* :helptags ~/.vim/doc
+augroup CUSTOMHELP
+  autocmd!
+  autocmd BufNewFile,BufRead *.help.txt setlocal filetype=help foldmethod=marker modifiable noreadonly
+  autocmd BufWritePost ~/.vim/doc/* :helptags ~/.vim/doc
+augroup end
 
 "JUST IN CASE I NEED TO SET MODIFIABLE:
 nnoremap <leader>md :set modifiable<cr>
@@ -809,12 +827,7 @@ nnoremap <leader>cp :let @" = expand("%:p")<CR>
 
 "VIMRC:
 nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>ev :call OpenVimrc()<CR>
-
-function! OpenVimrc()
-  execute '$tabe $HOME/.dotfiles/vimrc'
-  execute 'set foldmethod=marker'
-endfunction
+nnoremap <leader>ev :$tabe $HOME/.dotfiles/vimrc<cr>
 
 "PASSWORD:
 "nnoremap <leader>ep :$tabe ~/7personal/pwd/pwd.txt<CR>
@@ -963,12 +976,6 @@ let g:cool_total_matches = 1
 "current buffer. 
 "(Remember to delete line afterwards, as it's not relevant to current file!)
 
-"2025-05-28 The following will reload a buffer on BufEnter (useful for my AddTo... functions)
-augroup MyReload
-  autocmd!
-  autocmd BufEnter *todo.txt e
-  autocmd BufEnter *docs.wiki e
-augroup end
 
 "2025-07-17 Found the following function at https://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript
 function! Get_visual_selection()
