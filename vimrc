@@ -245,7 +245,7 @@ nnoremap <leader>r<leader>h :RgTextOnlyIncludeHiddenHome <cr>
 "run Rg in cwd only on specific text files:
 command! -bang -nargs=* RgTextOnly call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
 "run Rg in diary of current wiki, only on specific text files:
-command! -bang -nargs=* RgDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/0twc/diary'}), <bang>0)',
+command! -bang -nargs=* RgDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/apr-docs/diary'}), <bang>0)',
 "run Rg in cwd, only on specific text files, include zz-* directories
 command! -bang -nargs=* RgTextOnlyIncludeHidden call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
 
@@ -506,15 +506,15 @@ autocmd BufNewFile,BufRead *.thtml set filetype=html
 nnoremap <localleader>iw :call InitializeWikis()<CR>
 
 function! InitializeWikis()
-  execute 'e ~/0twc/twc.wiki'
+  execute 'e ~/apr-docs/docs.wiki'
   execute 'lcd %:p:h'
-  execute 'sp +3 ~/0twc/TAGS.wiki'
+  execute 'sp +3 ~/apr-docs/TAGS.wiki'
   execute 'foldopen'
-  execute 'vs +2 ~/0twc/diary/diary.wiki'
+  execute 'vs +2 ~/apr-docs/diary/diary.wiki'
   execute 'foldopen!'
   execute 'wincmd L'
   execute 'wincmd h'
-  execute 'TabooRename twc'
+  execute 'TabooRename docs'
   execute 'tabfirst'
 endfunction
 
@@ -749,7 +749,7 @@ nnoremap <leader>md :set modifiable<cr>
 
 "USE MY HELP FILES:
 nnoremap <leader>hv :help myvim-
-nnoremap <leader>hl :$tabe ~/0twc/3computer/latex/latex-mytips.tex<cr>
+nnoremap <leader>hl :$tabe ~/apr-docs/computer/latex/latex-mytips.tex<cr>
 nnoremap <leader>hb :help mybash-
 
 "EDIT MY HELP FILES:
@@ -813,13 +813,13 @@ function! OpenVimrc()
 endfunction
 
 "PASSWORD:
-nnoremap <leader>ep :$tabe ~/7personal/pwd/pwd.txt<CR>
+"nnoremap <leader>ep :$tabe ~/7personal/pwd/pwd.txt<CR>
 
 "ZSH ALIASES:
-nnoremap <leader>eza :$tabe /Users/preynol1/.oh-my-zsh/custom/aliases.zsh<CR>
+nnoremap <leader>eza :$tabe /Users/preynol1/.dotfiles/aliases.zsh<CR>
 
 "YAZI KEYMAP:
-nnoremap <leader>ek :$tabe /Users/preynol1/.config/yazi/keymap.toml<CR>
+nnoremap <leader>ek :$tabe /Users/preynol1/.dotfiles/yazi-keymap.toml<CR>
 
 "OLDER EXPERIMENTS:
 "nnoremap <leader>bc :BeginCenter <CR>
@@ -963,7 +963,7 @@ let g:cool_total_matches = 1
 augroup MyReload
   autocmd!
   autocmd BufEnter *todo.txt e
-  autocmd BufEnter *twc.wiki e
+  autocmd BufEnter *docs.wiki e
 augroup end
 
 "2025-07-17 Found the following function at https://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript
@@ -998,13 +998,13 @@ function! AddToTodo()
   call writefile([strftime("%F") . ': ' . l:line], $HOME . "/Documents/todo/todo.txt", "a")
 endfunction
 
-nnoremap <leader>aa :call AddToTWCQuicknotes()<CR>
-function! AddToTWCQuicknotes()
+nnoremap <leader>aa :call AddToDocsQuicknotes()<CR>
+function! AddToDocsQuicknotes()
   let l:line = getline('.')
-  call writefile(['- ' . strftime("%F") . ': ' . l:line], $HOME . "/0twc/twc.wiki", "a")
+  call writefile(['- ' . strftime("%F") . ': ' . l:line], $HOME . "/apr-docs/docs.wiki", "a")
 endfunction
 
-command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(), $HOME . "/0twc/3computer/latex/latex-mytips.tex", "a")
+command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(), $HOME . "/apr-docs/computer/latex/latex-mytips.tex", "a")
 "-----------------------------------------
 "}}} 
 "-----------------------------------------
@@ -1061,7 +1061,7 @@ function! MyKeymaps()
   echo "{{{ MY CUSTOM HELP "
   echo ",md: set modifiable"
   echo ",hv: help myvim-"
-  echo ",hl: $tabe ~/0twc/3computer/latex/latex-mytips.tex"
+  echo ",hl: $tabe ~/apr-docs/computer/latex/latex-mytips.tex"
   echo ",hb: help mybash-"
   echo "<F4>: call OpenMyVimQuicknotes()"
   echo "<F5>: call OpenMyLatexQuicknotes()"
@@ -1071,7 +1071,7 @@ function! MyKeymaps()
   echo ",att: AddToTodoTeaching"
   echo ",atw: AddToTodoWork"
   echo ",atd: AddToTodo"
-  echo ",aa: AddToTWCQuicknotes"
+  echo ",aa: AddToDocsQuicknotes"
   echo "(no keymap): AddToLatexMyTips -- appends visual selection to latex-mytips.tex"
   echo "}}}"
   echo "{{{ FZF, RG "
