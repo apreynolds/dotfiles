@@ -412,15 +412,24 @@ nnoremap <leader>wo :Wipeout<CR>
 map <leader>oo :Obsession ~/.vim/sessions/
 map <leader>os :echo ObsessionStatus()<cr>
 
+map <leader>sl :SessionLoad<cr>
 map <leader>ss :call SessUnloadWipeoutLoad()<cr>
+map <leader>su :call SessUnloadWipeout()<cr>
 
+"Custom function to unload, wipeout:
+function! SessUnloadWipeout()
+  "Unload the current session:
+  execute 'SessionUnload' 
+  "Wipeout all hidden buffers so they won't be in the next session:
+  execute 'Wipeout'
+endfunction
 "Custom function to unload, wipeout, and load new session:
 function! SessUnloadWipeoutLoad()
   "Unload the current session:
   execute 'SessionUnload' 
   "Wipeout all hidden buffers so they won't be in the next session:
   execute 'Wipeout'
-  "Load a new session:
+  "Fuzzy load a new session:
   execute 'SessionLoad'
 endfunction
 "}}}
@@ -1116,7 +1125,9 @@ function! MyKeymaps()
   echo "{{{ SESSIONS "
   echo ",oo: Obsession <name> -- track session <name>"
   echo ",os: echo ObsessionStatus()"
-  echo ",ss: SessUnloadWipeoutLoad -- unload, wipeout, and load new session"
+  echo ",ss: SessUnloadWipeoutLoad -- unload, wipeout, and fuzzy load new session"
+  echo ",su: SessUnloadWipeout -- unload, wipeout"
+  echo ",sl: SessionLoad -- fuzzy load new session"
   echo "}}}"
   echo "{{{ TABOO "
   echo ",tr: TabooRename"
