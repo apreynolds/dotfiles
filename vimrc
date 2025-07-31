@@ -137,6 +137,7 @@ call plug#end()
 "}}}
 "-----------------------------------------
 "{{{ Colors
+"https://github.com/morhetz/gruvbox/wiki/Configuration
 let g:gruvbox_italic=1
 let g:gruvbox_italicize_comments=1
 colorscheme gruvbox
@@ -244,7 +245,7 @@ nnoremap <leader>r<leader>h :RgTextOnlyIncludeHiddenHome <cr>
 "run Rg in cwd only on specific text files:
 command! -bang -nargs=* RgTextOnly call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
 "run Rg in diary of current wiki, only on specific text files:
-command! -bang -nargs=* RgDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/0twc/diary'}), <bang>0)',
+command! -bang -nargs=* RgDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/apr-docs/diary'}), <bang>0)',
 "run Rg in cwd, only on specific text files, include zz-* directories
 command! -bang -nargs=* RgTextOnlyIncludeHidden call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
 
@@ -422,6 +423,8 @@ function! SessUnloadWipeout()
   execute 'SessionUnload' 
   "Wipeout all hidden buffers so they won't be in the next session:
   execute 'Wipeout'
+  "Remove the custom label associated with the current tab:
+  execute 'TabooReset'
 endfunction
 "Custom function to unload, wipeout, and load new session:
 function! SessUnloadWipeoutLoad()
@@ -429,6 +432,8 @@ function! SessUnloadWipeoutLoad()
   execute 'SessionUnload' 
   "Wipeout all hidden buffers so they won't be in the next session:
   execute 'Wipeout'
+  "Remove the custom label associated with the current tab:
+  execute 'TabooReset'
   "Fuzzy load a new session:
   execute 'SessionLoad'
 endfunction
@@ -500,20 +505,20 @@ nnoremap <localleader>vj :VimwikiDiaryPrevDay<CR>
 autocmd BufNewFile,BufRead *.thtml set filetype=html
 
 "-----------------------------------------
-"{{{ InitializeWikis
+"{{{ InitializeWikis (obsolete?)
 "-----------------------------------------
 nnoremap <localleader>iw :call InitializeWikis()<CR>
 
 function! InitializeWikis()
-  execute 'e ~/0twc/twc.wiki'
+  execute 'e ~/apr-docs/docs.wiki'
   execute 'lcd %:p:h'
-  execute 'sp +3 ~/0twc/TAGS.wiki'
+  execute 'sp +3 ~/apr-docs/TAGS.wiki'
   execute 'foldopen'
-  execute 'vs +2 ~/0twc/diary/diary.wiki'
+  execute 'vs +2 ~/apr-docs/diary/diary.wiki'
   execute 'foldopen!'
   execute 'wincmd L'
   execute 'wincmd h'
-  execute 'TabooRename twc'
+  execute 'TabooRename docs'
   execute 'tabfirst'
 endfunction
 
@@ -550,27 +555,27 @@ endfunction
 let $myrx_todo = '\C\<\%(TODO\|\|DONE\|\|STARTED\|\|FIXME\|\|FIXED\|\|XXX\|\|NOTE\|\)\>'
 "default: '\C\<\%(TODO\|DONE\|STARTED\|FIXME\|FIXED\|XXX\)\>'
 
-let twc = {}
-let twc.path = '~/0twc/'
-let twc.path_html = '~/0twc/'
-let twc.diary_rel_path = 'diary/'
-let twc.index = 'twc'
-let twc.css_name = '.wikiconfig/style_www/style.css'
-let twc.template_path = '~/0twc/.wikiconfig/'
-let twc.rx_todo = $myrx_todo
-let twc.template_default = 'def_template'
-let twc.template_ext = '.thtml'
-let twc.auto_tags = 1
-let twc.auto_export = 1
-let twc.auto_diary_index = 1
+let docs = {}
+let docs.path = '~/apr-docs/'
+let docs.path_html = '~/apr-docs/'
+let docs.diary_rel_path = 'diary/'
+let docs.index = 'docs'
+let docs.css_name = '.wikiconfig/style_www/style.css'
+let docs.template_path = '~/apr-docs/.wikiconfig/'
+let docs.rx_todo = $myrx_todo
+let docs.template_default = 'def_template'
+let docs.template_ext = '.thtml'
+let docs.auto_tags = 1
+let docs.auto_export = 1
+let docs.auto_diary_index = 1
 
 let music = {}
-let music.path = '~/4music/'
-let music.path_html = '~/4music/'
+let music.path = '~/apr-music/'
+let music.path_html = '~/apr-music/'
 let music.diary_rel_path = 'diary/'
-let music.index = 'musicwiki'
+let music.index = 'music'
 let music.css_name = '.wikiconfig/style_www/style.css'
-let music.template_path = '~/4music/.wikiconfig/'
+let music.template_path = '~/apr-music/.wikiconfig/'
 let music.template_default = 'def_template'
 let music.rx_todo = $myrx_todo
 let music.template_ext = '.thtml'
@@ -578,25 +583,25 @@ let music.auto_tags = 1
 let music.auto_export = 0
 let music.auto_diary_index = 1
 
-let music_website = {}
-let music_website.path = '~/5music_website/'
-let music_website.path_html = '~/5music_website/'
-let music_website.css_name = 'style_www/style.css'
-let music_website.template_path = '~/5music_website/wikiconfig/'
-let music_website.template_default = 'def_template'
-let music_website.template_ext = '.thtml'
-let music_website.auto_export = 1
+let music_web= {}
+let music_web.path = '~/apr-web/music-web/'
+let music_web.path_html = '~/apr-web/music-web/'
+let music_web.css_name = 'style_www/style.css'
+let music_web.template_path = '~/apr-web/music-web/wikiconfig/'
+let music_web.template_default = 'def_template'
+let music_web.template_ext = '.thtml'
+let music_web.auto_export = 1
 
-let work_website = {}
-let work_website.path = '~/6work_website/'
-let work_website.path_html = '~/6work_website/'
-let work_website.css_name = 'style_www/style.css'
-let work_website.template_path = '~/6work_website/wikiconfig/'
-let work_website.template_default = 'def_template'
-let work_website.template_ext = '.thtml'
-let work_website.auto_export = 1
+let work_web = {}
+let work_web.path = '~/apr-web/work-web/'
+let work_web.path_html = '~/apr-web/work-web/'
+let work_web.css_name = 'style_www/style.css'
+let work_web.template_path = '~/apr-web/work-web/wikiconfig/'
+let work_web.template_default = 'def_template'
+let work_web.template_ext = '.thtml'
+let work_web.auto_export = 1
 
-let g:vimwiki_list = [ twc, music, music_website, work_website ]
+let g:vimwiki_list = [ docs, music, music_web, work_web ]
 
 "-----------------------------------------
 "}}} end Setting up the wikis
@@ -748,7 +753,7 @@ nnoremap <leader>md :set modifiable<cr>
 
 "USE MY HELP FILES:
 nnoremap <leader>hv :help myvim-
-nnoremap <leader>hl :$tabe ~/0twc/3computer/latex/latex-mytips.tex<cr>
+nnoremap <leader>hl :$tabe ~/apr-docs/computer/latex/latex-mytips.tex<cr>
 nnoremap <leader>hb :help mybash-
 
 "EDIT MY HELP FILES:
@@ -807,18 +812,18 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :call OpenVimrc()<CR>
 
 function! OpenVimrc()
-  execute '$tabe $MYVIMRC'
+  execute '$tabe $HOME/.dotfiles/vimrc'
   execute 'set foldmethod=marker'
 endfunction
 
 "PASSWORD:
-nnoremap <leader>ep :$tabe ~/7personal/pwd/pwd.txt<CR>
+"nnoremap <leader>ep :$tabe ~/7personal/pwd/pwd.txt<CR>
 
 "ZSH ALIASES:
-nnoremap <leader>eza :$tabe /Users/preynol1/.oh-my-zsh/custom/aliases.zsh<CR>
+nnoremap <leader>eza :$tabe /Users/preynol1/.dotfiles/aliases.zsh<CR>
 
 "YAZI KEYMAP:
-nnoremap <leader>ek :$tabe /Users/preynol1/.config/yazi/keymap.toml<CR>
+nnoremap <leader>ek :$tabe /Users/preynol1/.dotfiles/yazi-keymap.toml<CR>
 
 "OLDER EXPERIMENTS:
 "nnoremap <leader>bc :BeginCenter <CR>
@@ -962,7 +967,7 @@ let g:cool_total_matches = 1
 augroup MyReload
   autocmd!
   autocmd BufEnter *todo.txt e
-  autocmd BufEnter *twc.wiki e
+  autocmd BufEnter *docs.wiki e
 augroup end
 
 "2025-07-17 Found the following function at https://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript
@@ -997,13 +1002,13 @@ function! AddToTodo()
   call writefile([strftime("%F") . ': ' . l:line], $HOME . "/Documents/todo/todo.txt", "a")
 endfunction
 
-nnoremap <leader>aa :call AddToTWCQuicknotes()<CR>
-function! AddToTWCQuicknotes()
+nnoremap <leader>aa :call AddToDocsQuicknotes()<CR>
+function! AddToDocsQuicknotes()
   let l:line = getline('.')
-  call writefile(['- ' . strftime("%F") . ': ' . l:line], $HOME . "/0twc/twc.wiki", "a")
+  call writefile(['- ' . strftime("%F") . ': ' . l:line], $HOME . "/apr-docs/docs.wiki", "a")
 endfunction
 
-command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(), $HOME . "/0twc/3computer/latex/latex-mytips.tex", "a")
+command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(), $HOME . "/apr-docs/computer/latex/latex-mytips.tex", "a")
 "-----------------------------------------
 "}}} 
 "-----------------------------------------
@@ -1060,7 +1065,7 @@ function! MyKeymaps()
   echo "{{{ MY CUSTOM HELP "
   echo ",md: set modifiable"
   echo ",hv: help myvim-"
-  echo ",hl: $tabe ~/0twc/3computer/latex/latex-mytips.tex"
+  echo ",hl: $tabe ~/apr-docs/computer/latex/latex-mytips.tex"
   echo ",hb: help mybash-"
   echo "<F4>: call OpenMyVimQuicknotes()"
   echo "<F5>: call OpenMyLatexQuicknotes()"
@@ -1070,7 +1075,7 @@ function! MyKeymaps()
   echo ",att: AddToTodoTeaching"
   echo ",atw: AddToTodoWork"
   echo ",atd: AddToTodo"
-  echo ",aa: AddToTWCQuicknotes"
+  echo ",aa: AddToDocsQuicknotes"
   echo "(no keymap): AddToLatexMyTips -- appends visual selection to latex-mytips.tex"
   echo "}}}"
   echo "{{{ FZF, RG "
