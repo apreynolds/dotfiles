@@ -231,42 +231,43 @@ let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95 } }
 nnoremap <leader>bb :Buffers<cr>
 
 "run Files in cwd (default)
-nnoremap <leader>ff :FilesVCS<cr>
-nnoremap <leader>fh :FilesVCSandHidden<cr>
-nnoremap <leader>ft :FilesVCSTextOnly<cr>
+nnoremap <leader>ff :FilesTextOnly<cr>
+nnoremap <leader>fa :FilesAll<cr>
+nnoremap <leader>fh :FilesAllHidden<cr>
 
 "run Files in $HOME:
-nnoremap <leader>f<leader>f :FilesVCS ~<cr>
-nnoremap <leader>f<leader>h :FilesVCSandHidden ~<cr>
-nnoremap <leader>f<leader>t :FilesVCSTextOnly ~<cr>
+nnoremap <leader>f<leader>f :FilesTextOnly ~<cr>
+nnoremap <leader>f<leader>a :FilesAll ~<cr>
+nnoremap <leader>f<leader>h :FilesAllHidden ~<cr>
 
 "run Files in directory of current buffer:
 "nnoremap <leader>fb :FilesIncludeVCS %:p:h<cr>
 
-"modified Files (don't ignore .gitignore files, so I can open e.g. pdfs)
-command! -bang -nargs=? -complete=dir FilesVCS call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'fd --no-ignore-vcs'}), <bang>0)
-"run Files, include hidden files/directories
-command! -bang -nargs=? -complete=dir FilesVCSandHidden call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'fd --no-ignore-vcs --hidden'}), <bang>0)
-"run Files, but only on specific text files
-command! -bang -nargs=? -complete=dir FilesVCSTextOnly call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'fd --no-ignore-vcs --ignore-file ~/.config/fd/ign-except-text'}), <bang>0)
+"run Files, DO ignore .gitignore files, AND run only on specific text files
+command! -bang -nargs=? -complete=dir FilesTextOnly call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'fd --follow --ignore-file ~/.config/fd/ign-except-text'}), <bang>0)
+"run Files, DON'T ignore .gitignore files, so I can open e.g. pdfs
+command! -bang -nargs=? -complete=dir FilesAll call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'fd --no-ignore-vcs --follow'}), <bang>0)
+"run Files, DON'T ignore .gitignore files AND include hidden files/directories (for searching archives)
+command! -bang -nargs=? -complete=dir FilesAllHidden call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'fd --no-ignore-vcs --hidden --follow'}), <bang>0)
 
 "run Rg in cwd (default)
-nnoremap <leader>rg :Rg <cr>
-nnoremap <leader>rt :RgTextOnly <cr>
+nnoremap <leader>rr :RgTextOnly <cr>
 nnoremap <leader>rd :RgDiary <cr>
+nnoremap <leader>rg :Rg <cr>
 nnoremap <leader>rh :RgTextOnlyIncludeHidden <cr>
 "run Rg in $HOME:
 nnoremap <leader>r<leader>g :RgHome <cr>
 nnoremap <leader>r<leader>t :RgTextOnlyHome <cr>
 nnoremap <leader>r<leader>h :RgTextOnlyIncludeHiddenHome <cr>
 
-"run Rg in cwd only on specific text files:
-command! -bang -nargs=* RgTextOnly call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
+"run Rg in cwd only on specific text files (and follow symlinks):
+command! -bang -nargs=* RgTextOnly call fzf#vim#grep("rg --follow --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
   "run Rg in diary of current wiki, only on specific text files:
 command! -bang -nargs=* RgDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/apr-docs/diary'}), <bang>0)',
   "run Rg in cwd, only on specific text files, include zz-* directories
 command! -bang -nargs=* RgTextOnlyIncludeHidden call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
 
+  "(MAYBE NOT THAT USEFUL????)
   "run Rg in $HOME:
 command! -bang -nargs=* RgHome call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~'}), <bang>0)',
   "run Rg in $HOME only on specific text files:
@@ -1087,16 +1088,21 @@ function! MyKeymaps()
   echo "}}}"
   echo "{{{ FZF, RG "
   echo ",bb: Buffers"
-  echo ",ff: FilesIncludeVCS -- run modified Files in cwd; include .gitignore files so I can open pdfs"
-  echo ",fh: FilesIncludeVCS ~ -- run modified Files in $HOME"
-  echo ",fz: FilesIncludeHidden --  run modified Files in cwd, include hidden files/dirs"
-  echo ",f,t :TextOnlyFiles -- run Files in cwd, but only on text files specified in .config/fd/ign-except-text"
-  echo ",f,z :TextOnlyFilesIncludeHidden -- same as TextOnlyFiles but include hidden files/dirs"
+  echo "MOST USEFUL:"
+  echo ",ff: FilesTextOnly -- run Files in cwd only on files specified in ign-except-text; exclude .gitignore files"
+  echo ",fa: FilesAll -- run Files in cwd; include .gitignore files so I can open e.g. pdfs"
+  echo ",fh: FilesAllHidden ~ -- run Files in cwd, include .gitignore AND hidden"
+  echo ",rr: RgTextOnly -- run Rg in cwd only on textfiles, follow symlinks"
+  echo ",rd: RgDiary -- run Rg in apr-docs/diary"
+  echo "LESS USEFUL??"
   echo ",rg: Rg -- run Rg in cwd (default)"
-  echo ",rh: RgHome -- run Rg in $HOME"
-  echo ",r,t: RgTextOnly -- run Rg in cwd only on text files specified in .config/fd/ign-except-text"
-  echo ",r,d :RgDiary -- run Rg in diary of current wiki"
-  echo ",r,z :RgTextOnlyIncludeHidden -- run Rg in cwd, only on specific text files, include hidden files/dirs"
+  echo ",rh :RgTextOnlyIncludeHidden -- run Rg in cwd, only on specific text files, include hidden files/dirs"
+  echo ",r,g: RgHome -- run Rg in $HOME"
+  echo ",r,t: RgTextOnly -- run Rg in $HOME only on text files specified in .config/fd/ign-except-text"
+  echo ",r,h: RgTextOnlyIncludeHidden -- run Rg in $HOME, include hidden "
+  echo ",f,f: FilesTextOnly -- run Files in $HOME only on files specified in ign-except-text; exclude .gitignore files"
+  echo ",f,a: FilesAll -- run Files in $HOME; include .gitignore files so I can open e.g. pdfs"
+  echo ",f,h: FilesAllHidden ~ -- run Files in $HOME, include .gitignore AND hidden"
   echo "}}}"
   echo "{{{ VIMWIKI "
   echo ",vc: VimwikiTOC"
