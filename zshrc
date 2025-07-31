@@ -15,6 +15,8 @@ export PATH=$HOME/bin:$PATH
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+export BAT_THEME="gruvbox-dark"
+
 #https://stackoverflow.com/questions/62931101/i-have-multiple-files-of-zcompdump-why-do-i-have-multiple-files-of-these
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
