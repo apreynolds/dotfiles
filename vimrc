@@ -137,6 +137,7 @@ call plug#end()
 "}}}
 "-----------------------------------------
 "{{{ Colors
+"https://github.com/morhetz/gruvbox/wiki/Configuration
 let g:gruvbox_italic=1
 let g:gruvbox_italicize_comments=1
 colorscheme gruvbox
