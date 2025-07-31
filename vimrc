@@ -807,7 +807,7 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :call OpenVimrc()<CR>
 
 function! OpenVimrc()
-  execute '$tabe $MYVIMRC'
+  execute '$tabe $HOME/.dotfiles/vimrc'
   execute 'set foldmethod=marker'
 endfunction
 
