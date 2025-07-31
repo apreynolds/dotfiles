@@ -25,9 +25,7 @@ alias pdfexpert='/Applications/PDF\ Expert.app/Contents/MacOS/PDF\ Expert'
 
 
 alias ls='eza --group-directories-first'
-#alias ls='lsd'
-#alias la='lsd -al'
-#alias lt='lsd --tree'
+alias lt='ls --tree'
 
 alias c='clear'
 
