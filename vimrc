@@ -462,13 +462,14 @@ endif
 
 nnoremap <leader>dt :diffthis<CR>
 nnoremap <leader>do :diffoff<CR>
-
 "-----------------------------------------
 "}}} end DIFF
 "-----------------------------------------
 "{{{ Mappings: Inserting date/time
+"Enter current date (see help i^R and search =):
 inoremap <F1> <C-R>=strftime("%F")<CR>
-nnoremap <F1> <C-R>=strftime("%F")<CR>
+"First enter insert mode, then date, then esc back to normal:
+nnoremap <F1> i<C-R>=strftime("%F")<CR><ESC>
 "}}} end Inserting date/time
 "-----------------------------------------
 "{{{ MISC: launching external scripts
