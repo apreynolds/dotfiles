@@ -569,7 +569,7 @@ endfunction
 "-----------------------------------------
 "{{{ Setting up the wikis
 "-----------------------------------------
-let $myrx_todo = '\C\<\%(TODO\|\|DONE\|\|NOTE\|UPDATE\|ISSUE\|HOWTO\|\)\>'
+let $myrx_todo = '\C\<\%(TODO\|\|DONE\|\|NOTE\|UPDATE\|ISSUE\|RESOLVED\|HOWTO\|\)\>'
 
 let docs = {}
 let docs.path = '~/apr-docs/'
@@ -762,8 +762,10 @@ augroup end
 "-----------------------------------------
 "}}} end PLUGIN vimwiki
 "-----------------------------------------
-"{{{ MY CUSTOM HELP FILES
+"{{{ MY CUSTOM HELP FILES (In progress)
 "-----------------------------------------
+
+"TODO this can all be deleted once I transfer my vim notes to a .md file in computer/mytips, but I'll keep it for now
 
 augroup CUSTOMHELP
   autocmd!
@@ -776,28 +778,16 @@ nnoremap <leader>md :set modifiable<cr>
 
 "USE MY HELP FILES:
 nnoremap <leader>hv :help myvim-
-nnoremap <leader>hl :$tabe ~/apr-docs/computer/latex/latex-mytips.tex<cr>
-nnoremap <leader>hb :help mybash-
+nnoremap <leader>hl :$tabe ~/apr-docs/computer/mytips/latex.tex<cr>
 
 "EDIT MY HELP FILES:
 nnoremap <F4> :call OpenMyVimQuicknotes()<CR>
-"nnoremap <F5> :call OpenMyLatexQuicknotes()<CR>
-nnoremap <F6> :call OpenMyBashQuicknotes()<CR>
 
 function! OpenMyVimQuicknotes()
   execute 'help myvim-quicknotes'
   execute 'set modifiable'
 endfunction
 
-function! OpenMyLatexQuicknotes()
-  execute 'help mylatex-quicknotes'
-  execute 'set modifiable'
-endfunction
-
-function! OpenMyBashQuicknotes()
-  execute 'help mybash-quicknotes'
-  execute 'set modifiable'
-endfunction
 "-----------------------------------------
 "}}} end MY CUSTOM HELP FILES
 "-----------------------------------------
@@ -859,10 +849,12 @@ function! MyTodo()
   execute '$tabe ~/Documents/todo/teaching.todo.txt'
   execute 'lcd %:p:h'
   execute 'vs ~/Documents/todo/work.todo.txt'
-  execute 'vs ~/Documents/todo/todo.txt'
+  execute 'vs ~/Documents/todo/computer.todo.txt'
   execute 'wincmd J'
+  execute 'vs ~/Documents/todo/todo.txt'
   execute 'resize -10'
   execute 'wincmd k'
+  execute 'wincmd h'
   execute 'TabooRename todo'
 endfunction
 
