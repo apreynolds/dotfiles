@@ -215,6 +215,7 @@ prepend_keymap = [
 { on = [ "g", "G" ], run = "cd ~/'My Drive'",      desc = "Goto Google Drive"},
 { on = [ "g", "b" ], run = "cd ~/bin",      desc = "Goto bin"},
 { on = [ "g", "k" ], run = "cd ~/Desktop",      desc = "Goto Desktop"},
+{ on = [ "g", "t" ], run = "cd ~/apr-docs/computer/mytips", desc = "Goto ~/apr-docs/computer/mytips"},
 { on = [ "g", "v" ], run = "cd ~/.vim",      desc = "Goto vim"},
 { on = [ "g", "y" ], run = "cd ~/.config/yazi",      desc = "Goto yazi"},
 { on = [ "g", "." ], run = "cd ~/dotfiles",      desc = "Goto dotfiles"},

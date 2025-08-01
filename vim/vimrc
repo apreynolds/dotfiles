@@ -235,6 +235,8 @@ nnoremap <leader>bb :Buffers<cr>
 nnoremap <leader>ff :FilesTextOnly<cr>
 nnoremap <leader>fa :FilesAll<cr>
 nnoremap <leader>fh :FilesAllHidden<cr>
+nnoremap <F1> :FilesAll ~/apr-docs/computer/mytips/<cr>
+"nnoremap <F5> :$tabe /Users/preynol1/apr-docs/computer/mytips-
 
 "run Files in $HOME:
 nnoremap <leader>f<leader>f :FilesTextOnly ~<cr>
@@ -468,9 +470,9 @@ nnoremap <leader>do :diffoff<CR>
 "-----------------------------------------
 "{{{ Mappings: Inserting date/time
 "Enter current date (see help i^R and search =):
-inoremap <F1> <C-R>=strftime("%F")<CR>
+inoremap <F2> <C-R>=strftime("%F")<CR>
 "First enter insert mode, then date, then esc back to normal:
-nnoremap <F1> i<C-R>=strftime("%F")<CR><ESC>
+nnoremap <F2> i<C-R>=strftime("%F")<CR><ESC>
 "}}} end Inserting date/time
 "-----------------------------------------
 "{{{ MISC: launching external scripts
@@ -567,7 +569,7 @@ endfunction
 "-----------------------------------------
 "{{{ Setting up the wikis
 "-----------------------------------------
-let $myrx_todo = '\C\<\%(TODO\|\|DONE\|\|NOTE\|UPDATE\|HEADSUP\|\)\>'
+let $myrx_todo = '\C\<\%(TODO\|\|DONE\|\|NOTE\|UPDATE\|ISSUE\|HOWTO\|\)\>'
 
 let docs = {}
 let docs.path = '~/apr-docs/'
@@ -762,6 +764,7 @@ augroup end
 "-----------------------------------------
 "{{{ MY CUSTOM HELP FILES
 "-----------------------------------------
+
 augroup CUSTOMHELP
   autocmd!
   autocmd BufNewFile,BufRead *.help.txt setlocal filetype=help foldmethod=marker modifiable noreadonly
@@ -778,7 +781,7 @@ nnoremap <leader>hb :help mybash-
 
 "EDIT MY HELP FILES:
 nnoremap <F4> :call OpenMyVimQuicknotes()<CR>
-nnoremap <F5> :call OpenMyLatexQuicknotes()<CR>
+"nnoremap <F5> :call OpenMyLatexQuicknotes()<CR>
 nnoremap <F6> :call OpenMyBashQuicknotes()<CR>
 
 function! OpenMyVimQuicknotes()

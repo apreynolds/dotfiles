@@ -45,12 +45,8 @@ alias fd='fd --no-ignore'
 
 #vim
 alias rs='rm -rf ~/.vim/swap/*'
-alias vs='vim -S ~/.vim/session/'
-alias vv='vim -S ~/.vim/session/0mainsession.vim'
-alias vc='vim -S ~/.vim/session/3computerwikisession.vim'
-alias v1='vim -S ~/.vim/session/1teachingwikisession.vim'
-alias v2='vim -S ~/.vim/session/2workwikisession.vim'
-alias v4='vim -S ~/.vim/session/4musicwikisession.vim'
-alias ev='vim ~/.vim/vimrc'
-alias 3503='vd /Users/preynol1/1teaching/math3503_online/students_m3503online.csv'
-alias mathmajors='vd /Users/preynol1/2work/_SCIENCE-MATH_/advising/_current-students.csv'
+alias vs='vim -S ~/.vim/sessions/'
+
+#mytips alias (mt for short); <space> will display files in the mytips/ directory.
+alias mytips='bat ~/apr-docs/computer/mytips/'
+alias mt='bat ~/apr-docs/computer/mytips/'
