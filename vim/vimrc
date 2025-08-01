@@ -567,8 +567,7 @@ endfunction
 "-----------------------------------------
 "{{{ Setting up the wikis
 "-----------------------------------------
-let $myrx_todo = '\C\<\%(TODO\|\|DONE\|\|STARTED\|\|FIXME\|\|FIXED\|\|XXX\|\|NOTE\|\)\>'
-"default: '\C\<\%(TODO\|DONE\|STARTED\|FIXME\|FIXED\|XXX\)\>'
+let $myrx_todo = '\C\<\%(TODO\|\|DONE\|\|NOTE\|UPDATE\|HEADSUP\|\)\>'
 
 let docs = {}
 let docs.path = '~/apr-docs/'
