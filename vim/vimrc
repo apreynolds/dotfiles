@@ -103,6 +103,7 @@ augroup GENERAL
   "The following will reload a buffer on BufEnter (useful for my AddTo... functions):
   autocmd BufNewFile,BufRead *rc setlocal foldmethod=marker
   autocmd BufNewFile,BufRead *.toml setlocal foldmethod=marker
+  "autocmd BufNewFile,BufRead *.sh setlocal foldmethod=marker
   autocmd BufNewFile,BufRead *ign-except-text setlocal filetype=gitignore
   autocmd BufNewFile,BufRead *dircolors setlocal foldmethod=marker
   autocmd BufEnter *todo.txt e
@@ -829,7 +830,7 @@ nnoremap <leader>cp :let @" = expand("%:p")<CR>
 
 "VIMRC:
 nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>ev :$tabe $HOME/dotfiles/vimrc<cr>
+nnoremap <leader>ev :$tabe $HOME/dotfiles/vim/vimrc<cr>
 
 "PASSWORD:
 "nnoremap <leader>ep :$tabe ~/7personal/pwd/pwd.txt<CR>
