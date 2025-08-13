@@ -235,7 +235,7 @@ nnoremap <leader>bb :Buffers<cr>
 nnoremap <leader>ff :FilesTextOnly<cr>
 nnoremap <leader>fa :FilesAll<cr>
 nnoremap <leader>fh :FilesAllHidden<cr>
-nnoremap <F1> :FilesAll ~/apr-docs/computer/mytips/<cr>
+nnoremap <leader><F1> :FilesAll ~/apr-docs/computer/mytips/<cr>
 "nnoremap <F5> :$tabe /Users/preynol1/apr-docs/computer/mytips-
 
 "run Files in $HOME:
@@ -519,6 +519,10 @@ nnoremap <localleader>vv :VimwikiVSplitLink<CR>
 nnoremap <localleader>vk :VimwikiDiaryNextDay<CR>
 nnoremap <localleader>vj :VimwikiDiaryPrevDay<CR>
 
+"Insert mode vimwiki table mappings:
+inoremap <leader><leader>c <Plug>VimwikiTableNextCell
+inoremap <leader><leader>p <Plug>VimwikiTableNextCell
+
 "-----------------------------------------
 "}}} end GENERAL
 "-----------------------------------------
@@ -781,7 +785,7 @@ nnoremap <leader>hv :help myvim-
 nnoremap <leader>hl :$tabe ~/apr-docs/computer/mytips/latex.tex<cr>
 
 "EDIT MY HELP FILES:
-nnoremap <F4> :call OpenMyVimQuicknotes()<CR>
+nnoremap <F1> :call OpenMyVimQuicknotes()<CR>
 
 function! OpenMyVimQuicknotes()
   execute 'help myvim-quicknotes'
