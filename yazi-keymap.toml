@@ -207,19 +207,19 @@ prepend_keymap = [
 #─────────────────────────── 
 # {{{ CUSTOM GO-TOs
 #─────────────────────────── 
-{ on = [ "g", "0" ], run = "cd ~/apr-docs",           desc = "Goto ~/apr-docs"},
-{ on = [ "g", "1" ], run = "cd ~/apr-docs/computer", desc = "Goto ~/apr-docs/computer"},
-{ on = [ "g", "2" ], run = "cd ~/apr-docs/teaching", desc = "Goto ~/apr-docs/teaching"},
-{ on = [ "g", "3" ], run = "cd ~/apr-docs/work",     desc = "Goto ~/apr-docs/work"},
-{ on = [ "g", "4" ], run = "cd ~/apr-music",         desc = "Goto ~/apr-music"},
-{ on = [ "g", "G" ], run = "cd ~/'My Drive'",      desc = "Goto Google Drive"},
-{ on = [ "g", "b" ], run = "cd ~/bin",      desc = "Goto bin"},
-{ on = [ "g", "k" ], run = "cd ~/Desktop",      desc = "Goto Desktop"},
-{ on = [ "g", "t" ], run = "cd ~/apr-docs/computer/mytips", desc = "Goto ~/apr-docs/computer/mytips"},
-{ on = [ "g", "v" ], run = "cd ~/.vim",      desc = "Goto vim"},
-{ on = [ "g", "y" ], run = "cd ~/.config/yazi",      desc = "Goto yazi"},
-{ on = [ "g", "." ], run = "cd ~/dotfiles",      desc = "Goto dotfiles"},
-{ on = [ "g", "U" ], run = "cd ~/Library/CloudStorage/OneDrive-UniversityofNewBrunswick",      desc = "Goto UNB OneDrive"},
+{ on = [ "g", "1" ], run = "cd ~/1teaching",        desc = "Goto ~/1teaching"},
+{ on = [ "g", "2" ], run = "cd ~/2work",            desc = "Goto ~/2work"},
+{ on = [ "g", "3" ], run = "cd ~/3computer",        desc = "Goto ~/3computer"},
+{ on = [ "g", "4" ], run = "cd ~/4music",           desc = "Goto ~/4music"},
+{ on = [ "g", "x" ], run = "cd ~/tech",             desc = "Goto ~/tech"},
+{ on = [ "g", "." ], run = "cd ~/tech/dotfiles",    desc = "Goto dotfiles"},
+{ on = [ "g", "b" ], run = "cd ~/tech/bin",         desc = "Goto bin"},
+{ on = [ "g", "k" ], run = "cd ~/Desktop",          desc = "Goto Desktop"},
+{ on = [ "g", "t" ], run = "cd ~/3computer/mytips", desc = "Goto ~/3computer/mytips"},
+{ on = [ "g", "v" ], run = "cd ~/.vim",             desc = "Goto vim"},
+{ on = [ "g", "y" ], run = "cd ~/.config/yazi",     desc = "Goto yazi"},
+{ on = [ "g", "G" ], run = "cd ~/'My Drive'",       desc = "Goto Google Drive"},
+{ on = [ "g", "U" ], run = "cd ~/Library/CloudStorage/OneDrive-UniversityofNewBrunswick", desc = "Goto UNB OneDrive"},
 #─────────────────────────── 
 # end CUSTOM GO-TOs }}}
 #─────────────────────────── 
