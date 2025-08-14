@@ -57,3 +57,9 @@ alias mto='open ~//3omputer/mytips/'
 alias vo='vd-other'
 #vd-advising script:
 alias va='vd-advising'
+
+alias goog='web_search google'
+alias cgpt='web_search chatgpt'
+alias redd='web_search reddit'
+alias yt='web_search youtube'
+
