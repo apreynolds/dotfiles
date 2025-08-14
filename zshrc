@@ -5,19 +5,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-#2025-07-30 Disable creation of a .lesshst file:
-export LESSHISTFILE=-
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-export PATH=$HOME/bin:$PATH
+# Include ~/tech/bin, and .local/bin, in $PATH:
+export PATH=$HOME/tech/bin:$HOME/.local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-export BAT_THEME="gruvbox-dark"
 
-#https://stackoverflow.com/questions/62931101/i-have-multiple-files-of-zcompdump-why-do-i-have-multiple-files-of-these
+# Store compdump files in cache and not in $HOME (see https://stackoverflow.com/questions/62931101/i-have-multiple-files-of-zcompdump-why-do-i-have-multiple-files-of-these):
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # Set name of the theme to load --- if set to "random", it will
@@ -26,10 +21,6 @@ export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="robbyrussell"
 ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# MYEDIT 2024-11-05 use gnu dircolors
-#if [ -x "$(command -v gdircolors)" ]; then alias dircolors='gdircolors'; fi
-eval `gdircolors -b ~/dotfiles/dircolors`
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -107,8 +98,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -118,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='nvim'
 # fi
+export EDITOR=vim
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
@@ -137,12 +127,10 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit $ZSH/.p10k.zsh.
 [[ ! -f $ZSH/.p10k.zsh ]] || source $ZSH/.p10k.zsh
 
-#MYEDIT OBSOLETE (now that I'm using zoxide): for Named Directories (hash) see
-# .zshenv
-
+# Necessary for zoxide
 eval "$(zoxide init zsh)"
 
-#YAZI
+# YAZI
 function y() {
 	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
 	yazi "$@" --cwd-file="$tmp"
@@ -152,15 +140,23 @@ function y() {
 	rm -f -- "$tmp"
 }
 
-#unset LS_COLORS
+# EZA
 export EZA_CONFIG_DIR=$HOME/.config/eza/
 export EZA_ICONS_AUTO=1
 
-export EDITOR=vim
-
-#2025-06-25 https://github.com/pyenv/pyenv?tab=readme-ov-file#installation
+# PYTHON (see https://github.com/pyenv/pyenv?tab=readme-ov-file#installation,
+# https://pipenv.pypa.io/en/latest/installation.html)
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - zsh)"
-#2025-06-25 https://pipenv.pypa.io/en/latest/installation.html 
-export PATH="$HOME/.local/bin:$PATH"
+
+# Disable creation of a .lesshst file:
+export LESSHISTFILE=-
+
+# BAT colors
+export BAT_THEME="gruvbox-dark"
+
+# Ensure dircolors is aliased to gdircolors if possible:
+#if [ -x "$(command -v gdircolors)" ]; then alias dircolors='gdircolors'; fi
+# Run dircolors:
+eval `gdircolors -b ~/tech/dotfiles/dircolors`
