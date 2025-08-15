@@ -11,12 +11,14 @@
 !*.song
 !*.csv
 !*.mw
+!*.py
 !*.sh
 !*.css
-#Don't ingore contents of dotfiles...:
-!dotfiles/*
-#...but DO ingore .git files in dotfiles:
-dotfiles/*.git*
+!*.toml
+!*.vim
+!*.zsh
+!*.conf
+!*.yml
 
 #Ignore everything in the following:
 Applications/*

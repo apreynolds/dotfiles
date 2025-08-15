@@ -231,20 +231,27 @@ let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95 } }
 
 nnoremap <leader>bb :Buffers<cr>
 
-"run Files in cwd (default)
+"run Files:
 nnoremap <leader>ff :FilesTextOnly<cr>
 nnoremap <leader>fa :FilesAll<cr>
 nnoremap <leader>fh :FilesAllHidden<cr>
-nnoremap <leader><F1> :FilesAll ~/apr-docs/computer/mytips/<cr>
-"nnoremap <F5> :$tabe /Users/preynol1/apr-docs/computer/mytips-
+nnoremap <leader>1ff :FilesTextOnly ~/1teaching<cr>
+nnoremap <leader>1fa :FilesAll ~/1teaching<cr>
+nnoremap <leader>1fh :FilesAllHidden ~/1teaching<cr>
+nnoremap <leader>2ff :FilesTextOnly ~/2work<cr>
+nnoremap <leader>2fa :FilesAll ~/2work<cr>
+nnoremap <leader>2fh :FilesAllHidden ~/2work<cr>
+nnoremap <leader>3ff :FilesTextOnly ~/3computer<cr>
+nnoremap <leader>3fa :FilesAll ~/3computer<cr>
+nnoremap <leader>3fh :FilesAllHidden ~/3computer<cr>
+nnoremap <leader>hff :FilesTextOnly ~<cr>
+nnoremap <leader>hfa :FilesAll ~<cr>
+nnoremap <leader>hfh :FilesAllHidden ~<cr>
+nnoremap <leader>cff :FilesTextOnly %:p:h<cr>
+nnoremap <leader>cfa :FilesAll %:p:h<cr>
+nnoremap <leader>cfh :FilesAllHidden %:p:h<cr>
 
-"run Files in $HOME:
-nnoremap <leader>f<leader>f :FilesTextOnly ~<cr>
-nnoremap <leader>f<leader>a :FilesAll ~<cr>
-nnoremap <leader>f<leader>h :FilesAllHidden ~<cr>
-
-"run Files in directory of current buffer:
-"nnoremap <leader>fb :FilesIncludeVCS %:p:h<cr>
+nnoremap <leader><F1> :FilesAll ~/3computer/mytips/<cr>
 
 "run Files, DO ignore .gitignore files, AND run only on specific text files
 command! -bang -nargs=? -complete=dir FilesTextOnly call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'fd --follow --ignore-file ~/.config/fd/ign-except-text'}), <bang>0)
@@ -255,28 +262,23 @@ command! -bang -nargs=? -complete=dir FilesAllHidden call fzf#vim#files(<q-args>
 
 "run Rg in cwd (default)
 nnoremap <leader>rr :RgTextOnly <cr>
-nnoremap <leader>rd :RgDiary <cr>
 nnoremap <leader>rg :Rg <cr>
 nnoremap <leader>rh :RgTextOnlyIncludeHidden <cr>
-"run Rg in $HOME:
-nnoremap <leader>r<leader>g :RgHome <cr>
-nnoremap <leader>r<leader>t :RgTextOnlyHome <cr>
-nnoremap <leader>r<leader>h :RgTextOnlyIncludeHiddenHome <cr>
+"run Rg in wiki diaries (default)
+nnoremap <leader>rd :RgDiary <cr>
+nnoremap <leader>1rd :RgTeachingDiary <cr>
+nnoremap <leader>2rd :RgWorkDiary <cr>
+nnoremap <leader>3rd :RgComputerDiary <cr>
 
 "run Rg in cwd only on specific text files (and follow symlinks):
-command! -bang -nargs=* RgTextOnly call fzf#vim#grep("rg --follow --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
-  "run Rg in diary of current wiki, only on specific text files:
-command! -bang -nargs=* RgDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/apr-docs/diary'}), <bang>0)',
-  "run Rg in cwd, only on specific text files, include zz-* directories
-command! -bang -nargs=* RgTextOnlyIncludeHidden call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)',
-
-  "(MAYBE NOT THAT USEFUL????)
-  "run Rg in $HOME:
-command! -bang -nargs=* RgHome call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~'}), <bang>0)',
-  "run Rg in $HOME only on specific text files:
-command! -bang -nargs=* RgTextOnlyHome call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~'}), <bang>0)',
-  "run Rg in $HOME, only on specific text files, include zz-* directories
-command! -bang -nargs=* RgTextOnlyIncludeHiddenHome call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~'}), <bang>0)',
+command! -bang -nargs=* RgTextOnly call fzf#vim#grep("rg --follow --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)
+"run Rg in cwd, only on specific text files, include zz-* directories
+command! -bang -nargs=* RgTextOnlyIncludeHidden call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)
+"run Rg in diary of wikis, only on specific text files:
+command! -bang -nargs=* RgDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': 'diary'}), <bang>0)
+command! -bang -nargs=* RgTeachingDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/1teaching/diary'}), <bang>0)
+command! -bang -nargs=* RgWorkDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/2work/diary'}), <bang>0)
+command! -bang -nargs=* RgComputerDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/3computer/diary'}), <bang>0)
 
   "}}}
 "-----------------------------------------
@@ -573,29 +575,57 @@ endfunction
 "-----------------------------------------
 "{{{ Setting up the wikis
 "-----------------------------------------
-let $myrx_todo = '\C\<\%(TODO\|\|DONE\|\|NOTE\|UPDATE\|ISSUE\|RESOLVED\|HOWTO\|\)\>'
+let $myrx_todo = '\C\<\%(CONCERN\|DONE\|INFO\|FIXED\|HOWTO\|NOTE\|QUESTION\|RESOURCE\|SUMMARY\|TODO\|UPDATE\|ZTEMP\|\)\>'
 
-let docs = {}
-let docs.path = '~/apr-docs/'
-let docs.path_html = '~/apr-docs/'
-let docs.diary_rel_path = 'diary/'
-let docs.index = 'docs'
-let docs.css_name = '.wikiconfig/style_www/style.css'
-let docs.template_path = '~/apr-docs/.wikiconfig/'
-let docs.rx_todo = $myrx_todo
-let docs.template_default = 'def_template'
-let docs.template_ext = '.thtml'
-let docs.auto_tags = 1
-let docs.auto_export = 1
-let docs.auto_diary_index = 1
+let teaching = {}
+let teaching.path = '~/1teaching/'
+let teaching.path_html = '~/1teaching/'
+let teaching.diary_rel_path = 'diary/'
+let teaching.index = 'teaching-index'
+let teaching.css_name = '.wikiconfig/style_www/style.css'
+let teaching.template_path = '~/1teaching/.wikiconfig/'
+let teaching.rx_todo = $myrx_todo
+let teaching.template_default = 'def_template'
+let teaching.template_ext = '.thtml'
+let teaching.auto_tags = 1
+let teaching.auto_export = 1
+let teaching.auto_diary_index = 1
+
+let work = {}
+let work.path = '~/2work/'
+let work.path_html = '~/2work/'
+let work.diary_rel_path = 'diary/'
+let work.index = 'work-index'
+let work.css_name = '.wikiconfig/style_www/style.css'
+let work.template_path = '~/2work/.wikiconfig/'
+let work.rx_todo = $myrx_todo
+let work.template_default = 'def_template'
+let work.template_ext = '.thtml'
+let work.auto_tags = 1
+let work.auto_export = 1
+let work.auto_diary_index = 1
+
+let computer = {}
+let computer.path = '~/3computer/'
+let computer.path_html = '~/3computer/'
+let computer.diary_rel_path = 'diary/'
+let computer.index = 'computer-index'
+let computer.css_name = '.wikiconfig/style_www/style.css'
+let computer.template_path = '~/3computer/.wikiconfig/'
+let computer.rx_todo = $myrx_todo
+let computer.template_default = 'def_template'
+let computer.template_ext = '.thtml'
+let computer.auto_tags = 1
+let computer.auto_export = 1
+let computer.auto_diary_index = 1
 
 let music = {}
-let music.path = '~/apr-music/'
-let music.path_html = '~/apr-music/'
+let music.path = '~/4music/'
+let music.path_html = '~/4music/'
 let music.diary_rel_path = 'diary/'
-let music.index = 'music'
+let music.index = 'music-index'
 let music.css_name = '.wikiconfig/style_www/style.css'
-let music.template_path = '~/apr-music/.wikiconfig/'
+let music.template_path = '~/4music/.wikiconfig/'
 let music.template_default = 'def_template'
 let music.rx_todo = $myrx_todo
 let music.template_ext = '.thtml'
@@ -604,24 +634,24 @@ let music.auto_export = 0
 let music.auto_diary_index = 1
 
 let music_web= {}
-let music_web.path = '~/apr-web/music-web/'
-let music_web.path_html = '~/apr-web/music-web/'
+let music_web.path = '~/5music-website/'
+let music_web.path_html = '~/5music-website/'
 let music_web.css_name = 'style_www/style.css'
-let music_web.template_path = '~/apr-web/music-web/wikiconfig/'
+let music_web.template_path = '~/5music-website/wikiconfig/'
 let music_web.template_default = 'def_template'
 let music_web.template_ext = '.thtml'
 let music_web.auto_export = 1
 
 let work_web = {}
-let work_web.path = '~/apr-web/work-web/'
-let work_web.path_html = '~/apr-web/work-web/'
+let work_web.path = '~/6work-website/'
+let work_web.path_html = '~/6work-website/'
 let work_web.css_name = 'style_www/style.css'
-let work_web.template_path = '~/apr-web/work-web/wikiconfig/'
+let work_web.template_path = '~/6work-website/wikiconfig/'
 let work_web.template_default = 'def_template'
 let work_web.template_ext = '.thtml'
 let work_web.auto_export = 1
 
-let g:vimwiki_list = [ docs, music, music_web, work_web ]
+let g:vimwiki_list = [ teaching, work, computer, music, music_web, work_web ]
 
 "-----------------------------------------
 "}}} end Setting up the wikis
@@ -663,47 +693,60 @@ endfunction
 
 "}}}
 "-----------------------------------------
-"{{{ DIARY
+"{{{ DIARY (obsolete: will stick with vimwiki's defaults)
 "-----------------------------------------
 
-nnoremap <leader>w<leader>t :call MyTabMakeDiaryNote()<cr>
+"2025-08-14 I recently experimented with customized commands for diary
+"entries, that would automatically add %nohtml, jump to the end of the file, add a section. 
+"But vimwiki provides nice keymaps [count]<leader>... which allows to specify
+"which wiki you want to create/open a diary entry for, and I don't think it's
+"worth the effort to try to incorporate that level of sophistication into my
+"custom functions, so I will abandon (which may be for the best in other,
+"KISS-principle ways).
 
-function! MyTabMakeDiaryNote()
-  execute 'VimwikiTabMakeDiaryNote'
-  execute 'tabmove $'
-  execute '$'
-  call append(line('$'),'%nohtml')
-  call append(line('$'),'= untagged =')
-  call append(line('$'),':[untagged]: %%+(use dt snippet here)+%%')
-  call append(line('$'),'')
-  call append(line('$'),'')
-  execute '$'
-  execute 'startinsert'
-endfunction
+"nnoremap <leader>w<leader>t :call MyTabMakeDiaryNote()<cr>
 
-nnoremap <leader>w<leader>w :call MyMakeDiaryNote()<cr>
+"function! MyTabMakeDiaryNote()
+  "execute 'VimwikiTabMakeDiaryNote'
+  "execute 'tabmove $'
+  "execute '$'
+  "call append(line('$'),'%nohtml')
+  "call append(line('$'),'= untagged =')
+  "call append(line('$'),':[untagged]: %%+(use dt snippet here)+%%')
+  "call append(line('$'),'')
+  "call append(line('$'),'')
+  "execute '$'
+  "execute 'startinsert'
+"endfunction
 
-function! MyMakeDiaryNote()
-  execute 'VimwikiMakeDiaryNote'
-  execute '$'
-  call append(line('$'),'%nohtml')
-  call append(line('$'),'= untagged =')
-  call append(line('$'),':[untagged]: %%+(use dt snippet here)+%%')
-  call append(line('$'),'')
-  call append(line('$'),'')
-  execute '$'
-  execute 'startinsert'
-endfunction
+"nnoremap <leader>w<leader>w :call MyMakeDiaryNote()<cr>
 
-function! MyUpdateTags()
-  "replace colons with semicolons in tags:
-  execute 'vs diary.wiki'
-  execute 'write'
-  execute 'q'
-  execute 'vs TAGS.wiki'
-  execute 'write'
-  execute 'q'
-endfunction
+"function! MyMakeDiaryNote()
+  "execute 'VimwikiMakeDiaryNote'
+  "execute '$'
+  "call append(line('$'),'%nohtml')
+  "call append(line('$'),'= untagged =')
+  "call append(line('$'),':[untagged]: %%+(use dt snippet here)+%%')
+  "call append(line('$'),'')
+  "call append(line('$'),'')
+  "execute '$'
+  "execute 'startinsert'
+"endfunction
+
+"function! MyUpdateTags()
+  "execute 'vs diary.wiki'
+  "execute 'write'
+  "execute 'q'
+  "execute 'vs TAGS.wiki'
+  "execute 'write'
+  "execute 'q'
+"endfunction
+
+"-----------------------------------------
+"}}} end DIARY (obsolete)
+"-----------------------------------------
+"{{{ DIARY archive
+"-----------------------------------------
 
 nnoremap <localleader>ut :call UnTag() <cr>
 function! UnTag()
@@ -725,11 +768,11 @@ function! ArchiveDiaryEntry(filename) range
   "move html file if it exists:
   let l:htmlfile = fnamemodify( a:filename, ':r' ) . ".html"
   if filereadable(l:htmlfile)
-    let movehtml = 'mv ' . l:htmlfile . ' .zz-diary/'
+    let movehtml = 'mv ' . l:htmlfile . ' diary/.zz-diary/'
     call system(movehtml)
   endif
   "Now move wiki file to ../zz-diary/
-  execute 'Move! .zz-diary/'
+  execute 'Move! diary/.zz-diary/'
   sleep 1
   "Navigate back to original directory and open diary.wiki in a split:
   execute 'sp ' . l:cwd . '/diary/diary.wiki'
@@ -737,10 +780,10 @@ function! ArchiveDiaryEntry(filename) range
   "write the diary (also updates it):
   execute 'w'
   sleep 1
-  "buffer containing archived entry will still be open, so move to it and quit it:
+  "buffer containing archived entry will still be open, so move to it and delete it:
   execute 'wincmd k'
   sleep 1
-  execute 'q'
+  execute 'bd'
 endfunction
 
 "-----------------------------------------
@@ -754,6 +797,9 @@ augroup WIKI
   autocmd BufWrite *diary.wiki  VimwikiDiaryGenerateLinks
   " Automatically call MyTags upon writing TAGS.wiki
   autocmd BufWrite *TAGS.wiki  call MyVimwikiGenerateTags()
+  autocmd BufWrite teaching-index.wiki  call MyVimwikiGenerateTags()
+  autocmd BufWrite work-index.wiki  call MyVimwikiGenerateTags()
+  autocmd BufWrite computer-index.wiki  call MyVimwikiGenerateTags()
   "HTML FILETYPE: for thtml (template) files
   autocmd BufNewFile,BufRead *.thtml setlocal filetype=html
   "The following will reload a buffer on BufEnter (useful for my AddTo... functions)
@@ -766,10 +812,8 @@ augroup end
 "-----------------------------------------
 "}}} end PLUGIN vimwiki
 "-----------------------------------------
-"{{{ MY CUSTOM HELP FILES (In progress)
+"{{{ MY CUSTOM HELP FILES 
 "-----------------------------------------
-
-"TODO this can all be deleted once I transfer my vim notes to a .md file in computer/mytips, but I'll keep it for now
 
 augroup CUSTOMHELP
   autocmd!
@@ -782,7 +826,7 @@ nnoremap <leader>md :set modifiable<cr>
 
 "USE MY HELP FILES:
 nnoremap <leader>hv :help myvim-
-nnoremap <leader>hl :$tabe ~/apr-docs/computer/mytips/latex.tex<cr>
+nnoremap <leader>hl :$tabe ~/3computer/mytips/latex.tex<cr>
 
 "EDIT MY HELP FILES:
 nnoremap <F1> :call OpenMyVimQuicknotes()<CR>
@@ -820,22 +864,16 @@ noremap <leader>go :Open <cfile><cr>
 
 "CHANGES LOCAL DIR TO THAT OF CURRENT BUFFER:
 nnoremap <leader>cd :lcd %:p:h <cr> 
+nnoremap <leader>c1 :lcd ~/1teaching <cr> 
+nnoremap <leader>c2 :lcd ~/2work <cr> 
+nnoremap <leader>c3 :lcd ~/3computer <cr> 
 
 " COPY FILENAME WITH PATH TO UNNAMED REGISTER:
 nnoremap <leader>cp :let @" = expand("%:p")<CR>
 
 "VIMRC:
 nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>ev :$tabe $HOME/dotfiles/vim/vimrc<cr>
-
-"PASSWORD:
-"nnoremap <leader>ep :$tabe ~/7personal/pwd/pwd.txt<CR>
-
-"ZSH ALIASES:
-nnoremap <leader>eza :$tabe /Users/preynol1/dotfiles/aliases.zsh<CR>
-
-"YAZI KEYMAP:
-nnoremap <leader>ek :$tabe /Users/preynol1/dotfiles/yazi-keymap.toml<CR>
+nnoremap <leader>ev :$tabe $HOME/tech/dotfiles/vim/vimrc<cr>
 
 "OLDER EXPERIMENTS:
 "nnoremap <leader>bc :BeginCenter <CR>
@@ -960,11 +998,6 @@ endfunction
 "-----------------------------------------
 "}}} end COMPLETTION
 "-----------------------------------------
-"{{{ plugin: NERDTree
-nnoremap <leader>nn :NERDTreeToggle<CR>
-nnoremap <leader>nc :NERDTreeCWD<CR>
-"}}} end NERDTree 
-"-----------------------------------------
 "{{{ plugin: vim-cool
 let g:cool_total_matches = 1
 "}}} end 
@@ -977,6 +1010,29 @@ let g:cool_total_matches = 1
 "current buffer. 
 "(Remember to delete line afterwards, as it's not relevant to current file!)
 
+nnoremap <leader>att :call AddToTodoTeaching()<CR>
+function! AddToTodoTeaching()
+  let l:line = getline('.')
+  call writefile([strftime("%F") . ': ' . l:line], $HOME . "/Documents/todo/teaching.todo.txt", "a")
+endfunction
+
+nnoremap <leader>atw :call AddToTodoWork()<CR>
+function! AddToTodoWork()
+  let l:line = getline('.')
+  call writefile([strftime("%F") . ': ' . l:line], $HOME . "/Documents/todo/work.todo.txt", "a")
+endfunction
+
+nnoremap <leader>atc :call AddToTodoComputer()<CR>
+function! AddToTodoComputer()
+  let l:line = getline('.')
+  call writefile([strftime("%F") . ': ' . l:line], $HOME . "/Documents/todo/computer.todo.txt", "a")
+endfunction
+
+nnoremap <leader>atd :call AddToTodo()<CR>
+function! AddToTodo()
+  let l:line = getline('.')
+  call writefile([strftime("%F") . ': ' . l:line], $HOME . "/Documents/todo/todo.txt", "a")
+endfunction
 
 "2025-07-17 Found the following function at https://stackoverflow.com/questions/1533565/how-to-get-visually-selected-text-in-vimscript
 function! Get_visual_selection()
@@ -992,31 +1048,7 @@ function! Get_visual_selection()
   return lines
 endfunction
 
-nnoremap <leader>att :call AddToTodoTeaching()<CR>
-function! AddToTodoTeaching()
-  let l:line = getline('.')
-  call writefile([strftime("%F") . ': ' . l:line], $HOME . "/Documents/todo/teaching.todo.txt", "a")
-endfunction
-
-nnoremap <leader>atw :call AddToTodoWork()<CR>
-function! AddToTodoWork()
-  let l:line = getline('.')
-  call writefile([strftime("%F") . ': ' . l:line], $HOME . "/Documents/todo/work.todo.txt", "a")
-endfunction
-
-nnoremap <leader>atd :call AddToTodo()<CR>
-function! AddToTodo()
-  let l:line = getline('.')
-  call writefile([strftime("%F") . ': ' . l:line], $HOME . "/Documents/todo/todo.txt", "a")
-endfunction
-
-nnoremap <leader>aa :call AddToDocsQuicknotes()<CR>
-function! AddToDocsQuicknotes()
-  let l:line = getline('.')
-  call writefile(['- ' . strftime("%F") . ': ' . l:line], $HOME . "/apr-docs/docs.wiki", "a")
-endfunction
-
-command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(), $HOME . "/apr-docs/computer/latex/latex-mytips.tex", "a")
+command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(), $HOME . "/3computer/latex/latex-mytips.tex", "a")
 "-----------------------------------------
 "}}} 
 "-----------------------------------------
@@ -1025,6 +1057,7 @@ command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(),
 nnoremap <leader>kk :Bufferize call MyKeymaps()<CR>
 
 function! MyKeymaps()
+  set fdm=marker
   echo ",kk: Bufferize call MyKeymaps() -- OPEN THESE IN BUFFER "
   echo "{{{ GIT, FUGITIVE "
   echo ",gc: Git commit -m  -- and enter message"
@@ -1073,36 +1106,33 @@ function! MyKeymaps()
   echo "{{{ MY CUSTOM HELP "
   echo ",md: set modifiable"
   echo ",hv: help myvim-"
-  echo ",hl: $tabe ~/apr-docs/computer/latex/latex-mytips.tex"
-  echo ",hb: help mybash-"
-  echo "<F4>: call OpenMyVimQuicknotes()"
-  echo "<F5>: call OpenMyLatexQuicknotes()"
-  echo "<F6>: call OpenMyBashQuicknotes()"
+  echo ",hl: $tabe ~/3computer/latex/latex-mytips.tex"
+  echo "<F1>: call OpenMyVimQuicknotes()"
   echo "}}}"
   echo "{{{ MY ADD-TO-OTHER-FILES "
   echo ",att: AddToTodoTeaching"
   echo ",atw: AddToTodoWork"
+  echo ",atc: AddToTodoComputer"
   echo ",atd: AddToTodo"
   echo ",aa: AddToDocsQuicknotes"
   echo "(no keymap): AddToLatexMyTips -- appends visual selection to latex-mytips.tex"
   echo "}}}"
   echo "{{{ FZF, RG "
   echo ",bb: Buffers"
-  echo "MOST USEFUL:"
   echo ",ff: FilesTextOnly -- run Files in cwd only on files specified in ign-except-text; exclude .gitignore files"
   echo ",fa: FilesAll -- run Files in cwd; include .gitignore files so I can open e.g. pdfs"
   echo ",fh: FilesAllHidden ~ -- run Files in cwd, include .gitignore AND hidden"
+  echo ",[count]ff: FilesTextOnly -- run Files in cwd only... in specified wiki"
+  echo "(similarly, [count]fa, [count]fh)"
+  echo ",hff: FilesTextOnly -- run Files in cwd only... in HOME"
+  echo "(similarly ,hfa ,hfh)"
+  echo ",cff: FilesTextOnly -- run Files in cwd only... in dir of CURRENT BUFFER"
+  echo "(similarly ,cfa ,cfh)"
   echo ",rr: RgTextOnly -- run Rg in cwd only on textfiles, follow symlinks"
-  echo ",rd: RgDiary -- run Rg in apr-docs/diary"
-  echo "LESS USEFUL??"
   echo ",rg: Rg -- run Rg in cwd (default)"
   echo ",rh :RgTextOnlyIncludeHidden -- run Rg in cwd, only on specific text files, include hidden files/dirs"
-  echo ",r,g: RgHome -- run Rg in $HOME"
-  echo ",r,t: RgTextOnly -- run Rg in $HOME only on text files specified in .config/fd/ign-except-text"
-  echo ",r,h: RgTextOnlyIncludeHidden -- run Rg in $HOME, include hidden "
-  echo ",f,f: FilesTextOnly -- run Files in $HOME only on files specified in ign-except-text; exclude .gitignore files"
-  echo ",f,a: FilesAll -- run Files in $HOME; include .gitignore files so I can open e.g. pdfs"
-  echo ",f,h: FilesAllHidden ~ -- run Files in $HOME, include .gitignore AND hidden"
+  echo ",rd: RgDiary -- run Rg in /diary of current directory"
+  echo ",[count]rd: RgDiary -- run Rg in /diary of current directory"
   echo "}}}"
   echo "{{{ VIMWIKI "
   echo ",vc: VimwikiTOC"
@@ -1111,9 +1141,10 @@ function! MyKeymaps()
   echo ",vk: VimwikiDiaryNextDay"
   echo ",vj: VimwikiDiaryPrevDay"
   echo ",iw: InitializeWikis"
-  echo ",w,t: MyMakeDiaryNote"
+  echo "[count],w,w: MakeDiaryNote"
+  echo "[count],w,t: MakeTabDiaryNote"
   echo ",ut: Untag -- for untagging diary entries"
-  echo ",arc: ArchiveDiaryEntry -- perform Untag first"
+  echo ",arc: ArchiveDiaryEntry -- perform Untag first, must be run from wikis home directory"
   echo ",hh: :Start! open %:r.html"
   echo "}}}"
   echo "{{{ MARKDOWN "
@@ -1151,10 +1182,6 @@ function! MyKeymaps()
   echo ",tr: TabooRename"
   echo ",tn: new (last) tab"
   echo ",tm: tabm -- e.g. tabm3 will move to 3"
-  echo "}}}"
-  echo "{{{ NERDTREE "
-  echo ",nn: NERDTreeToggle"
-  echo ",nc: NERDTreeCWD -- current working directory"
   echo "}}}"
 endfunction
 

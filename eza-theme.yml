@@ -322,6 +322,7 @@ extensions:
    doc: {icon: {glyph: }}
    gdoc: {icon: {glyph: }}
    docx: {icon: {glyph: }}
+   odt: {icon: {glyph: }}
    mw: {icon: {glyph: }}
    mpl: {icon: {glyph: }}
    pptx: {icon: {glyph: }}
@@ -420,7 +421,6 @@ extensions:
    doc: {icon: {glyph: 󰈬}}
    Dockerfile: {icon: {glyph: 󰡨}}
    dockerignore: {icon: {glyph: 󰡨}}
-   docx: {icon: {glyph: 󰈬}}
    dot: {icon: {glyph: 󱁉}}
    download: {icon: {glyph: }}
    drl: {icon: {glyph: }}
@@ -615,7 +615,7 @@ extensions:
    odin: {icon: {glyph: 󰟢}}
    odp: {icon: {glyph: }}
    ods: {icon: {glyph: }}
-   odt: {icon: {glyph: }}
+   #odt: {icon: {glyph: }}
    oga: {icon: {glyph: }}
    ogg: {icon: {glyph: }}
    ogv: {icon: {glyph: }}
