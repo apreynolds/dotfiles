@@ -483,6 +483,11 @@ nnoremap <leader>sy :Start! sync2onedrive
 "-----------------------------------------
 "}}} end MISC
 "-----------------------------------------
+"{{{ plugin: vim-markdown
+"-----------------------------------------
+let g:vim_markdown_new_list_item_indent = 2
+"}}} end vim-markdown
+"-----------------------------------------
 "{{{ plugin: Vimwiki
 "-----------------------------------------
 
@@ -588,7 +593,7 @@ let teaching.rx_todo = $myrx_todo
 let teaching.template_default = 'def_template'
 let teaching.template_ext = '.thtml'
 let teaching.auto_tags = 1
-let teaching.auto_export = 1
+let teaching.auto_export = 0
 let teaching.auto_diary_index = 1
 
 let work = {}
@@ -602,7 +607,7 @@ let work.rx_todo = $myrx_todo
 let work.template_default = 'def_template'
 let work.template_ext = '.thtml'
 let work.auto_tags = 1
-let work.auto_export = 1
+let work.auto_export = 0
 let work.auto_diary_index = 1
 
 let computer = {}
@@ -616,7 +621,7 @@ let computer.rx_todo = $myrx_todo
 let computer.template_default = 'def_template'
 let computer.template_ext = '.thtml'
 let computer.auto_tags = 1
-let computer.auto_export = 1
+let computer.auto_export = 0
 let computer.auto_diary_index = 1
 
 let music = {}
