@@ -1,6 +1,6 @@
-"2023-06-08 Key command to open corresponding html page (relies on dispatch plugins Start command)
-map <leader>hh :Start! open %:r.html<CR>
-map <leader>hp :Start! open %:r.pdf<CR>
+"2023-06-08 Key command to open corresponding pdf page (relies on dispatch plugins Start command)
+map <leader>vp :Start! open %:r.pdf<CR>
+map <leader>vd :Start! open %:r.docx<CR>
 
 map <F9> :Pandoc
 map <leader>pp :PandocPDF<CR>
