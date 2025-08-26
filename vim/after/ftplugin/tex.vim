@@ -7,14 +7,13 @@ map <leader>vh :Start! open %:r.html<CR>
 
 map <F10> :VimtexCompile
 map <F12> :Compile
-map <leader>LL :CompileLectures
-map <leader>LI :CompileInstructor<CR>
-map <leader>LA :CompileAllSolutions<CR>
-map <leader>LB :CompileBothMarkerSolutions<CR>
-map <leader>LC :CompileCoverMarkerSolutions<CR>
-map <leader>LF :CompileCover<CR>
-map <leader>LX :CompileXelatex<CR>
-map <leader>LE :CompileEscape<CR>
+map <leader>LL :call CompileLectures()
+map <leader>LI :call CompileInstructor()<CR>
+map <leader>LA :call CompileAllSolutions()<CR>
+map <leader>LB :call CompileBothMarkerSolutions()<CR>
+map <leader>LC :call CompileCoverMarkerSolutions()<CR>
+map <leader>LF :call CompileCover()<CR>
+map <leader>LE :call CompileEscape()<CR>
 
 command! -nargs=0 GenerateBasic
       \ Start! latexmk -pdf -pdflatex="pdflatex --shell-escape \%O \%S" %  
@@ -36,15 +35,11 @@ command! -nargs=0 GenerateCover
       \ Start! latexmk -pdf -jobname=%:r-coverpage -pdflatex="pdflatex --shell-escape \%O '\def\FirstPageOnly{1} \input{\%S}'" % 
       \ && latexmk -c -jobname=%:r-coverpage %
 
-command! -nargs=0 CompileXelatex write | Start! latexmk -xelatex %  && latexmk -c % 
-
 command! -nargs=0 CompileEscape write | Start! latexmk -pdf -pdflatex="pdflatex --shell-escape \%O \%S" % && latexmk -c % 
-
-command! -nargs=0 CompileLectures call CompileLecturesFn()
 
 command! -nargs=1 MoveLectures call MoveLecturesFn( <q-args> )
 
-function! CompileLecturesFn()
+function! CompileLectures()
   let l:cwd = getcwd()
   lcd %:h
 
@@ -78,9 +73,7 @@ function! MoveLecturesFn(number)
 
 endfunction
 
-command! -nargs=0 CompileInstructor call CompileInstructorFn()
-
-function! CompileInstructorFn()
+function! CompileInstructor()
   let l:cwd = getcwd()
   lcd %:h
 
@@ -91,9 +84,7 @@ function! CompileInstructorFn()
 
 endfunction
 
-command! -nargs=0 CompileAllSolutions call CompileAllSolutionsFn()
-
-function! CompileAllSolutionsFn()
+function! CompileAllSolutions()
   let l:cwd = getcwd()
   lcd %:h
 
@@ -104,9 +95,7 @@ function! CompileAllSolutionsFn()
 
 endfunction
 
-command! -nargs=0 CompileBothMarkerSolutions call CompileBothMarkerSolutionsFn()
-
-function! CompileBothMarkerSolutionsFn()
+function! CompileBothMarkerSolutions()
   let l:cwd = getcwd()
   lcd %:h
 
@@ -118,9 +107,7 @@ function! CompileBothMarkerSolutionsFn()
 
 endfunction
 
-command! -nargs=0 CompileCoverMarkerSolutions call CompileCoverMarkerSolutionsFn()
-
-function! CompileCoverMarkerSolutionsFn()
+function! CompileCoverMarkerSolutions()
   let l:cwd = getcwd()
   lcd %:h
 
@@ -133,9 +120,7 @@ function! CompileCoverMarkerSolutionsFn()
 
 endfunction
 
-command! -nargs=0 CompileCover call CompileCoverFn()
-
-function! CompileCoverFn()
+function! CompileCover()
   let l:cwd = getcwd()
   lcd %:h
 
