@@ -1061,6 +1061,7 @@ command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(),
 "-----------------------------------------
 nnoremap <leader>kk :Bufferize call MyKeymaps()<CR>
 
+"Hi there!
 function! MyKeymaps()
   set fdm=marker
   echo ",kk: Bufferize call MyKeymaps() -- OPEN THESE IN BUFFER "
