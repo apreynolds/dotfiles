@@ -7,7 +7,7 @@ map <leader>vh :Start! open %:r.html<CR>
 
 map <F10> :VimtexCompile
 map <F12> :Compile
-map <leader>LL :call CompileBasic()
+map <leader>LL :call CompileBasic()<CR>
 map <leader>LI :call CompileInstructor()<CR>
 map <leader>LA :call CompileAllSolutions()<CR>
 map <leader>LB :call CompileBothMarkerSolutions()<CR>
