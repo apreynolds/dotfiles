@@ -9,10 +9,10 @@ map <F10> :VimtexCompile
 map <F12> :Compile
 map <leader>LL :call CompileBasic()<CR>
 map <leader>LI :call CompileInstructor()<CR>
-map <leader>LA :call CompileAllSolutions()<CR>
-map <leader>LB :call CompileBothMarkerSolutions()<CR>
-map <leader>LC :call CompileCoverMarkerSolutions()<CR>
-map <leader>LF :call CompileCover()<CR>
+map <leader>LS :call CompileSolutions()<CR>
+map <leader>LM :call CompileMarkerSolutions()<CR>
+map <leader>LC :call CompileCover()<CR>
+map <leader>LK :call CompileLectures()<CR>
 map <leader>LE :call CompileEscape()<CR>
 
 command! -nargs=0 GenerateBasic
@@ -22,6 +22,10 @@ command! -nargs=0 GenerateBasic
 command! -nargs=0 GenerateInstructor
       \ Start! latexmk -silent -pdf -jobname=%:r-instructor -pdflatex="pdflatex --shell-escape \%O '\def\MyComments{1} \def\Solutions{1} \input{\%S}'" %:r 
       \ && latexmk -c -jobname=%:r-instructor %:r 
+
+command! -nargs=0 GenerateStudentCopy
+      \ Start! latexmk -silent -pdf -jobname=%:r-student -pdflatex="pdflatex --shell-escape \%O '\def\StudentCopy{1} \input{\%S}'" %:r 
+      \ && latexmk -c -jobname=%:r-student %:r 
 
 command! -nargs=0 GenerateSolutions
       \ Start! latexmk -pdf -jobname=%:r-solutions -pdflatex="pdflatex --shell-escape \%O '\def\Solutions{1} \input{\%S}'" % 
@@ -83,7 +87,19 @@ function! CompileInstructor()
 
 endfunction
 
-function! CompileAllSolutions()
+function! CompileLectures()
+  let l:cwd = getcwd()
+  lcd %:h
+
+  execute 'write'
+  execute 'GenerateBasic'
+  execute 'GenerateInstructor'
+  execute 'GenerateStudentCopy'
+  execute "lcd " . l:cwd
+
+endfunction
+
+function! CompileSolutions()
   let l:cwd = getcwd()
   lcd %:h
 
@@ -94,7 +110,7 @@ function! CompileAllSolutions()
 
 endfunction
 
-function! CompileBothMarkerSolutions()
+function! CompileMarkerSolutions()
   let l:cwd = getcwd()
   lcd %:h
 
@@ -102,19 +118,6 @@ function! CompileBothMarkerSolutions()
   execute 'GenerateBasic'
   execute 'GenerateSolutions'
   execute 'GenerateMarker'
-  execute "lcd " . l:cwd
-
-endfunction
-
-function! CompileCoverMarkerSolutions()
-  let l:cwd = getcwd()
-  lcd %:h
-
-  execute 'write'
-  execute 'GenerateBasic'
-  execute 'GenerateSolutions'
-  execute 'GenerateMarker'
-  execute 'GenerateCover'
   execute "lcd " . l:cwd
 
 endfunction
