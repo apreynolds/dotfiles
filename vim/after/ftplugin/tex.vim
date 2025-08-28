@@ -7,7 +7,7 @@ map <leader>vh :Start! open %:r.html<CR>
 
 map <F10> :VimtexCompile
 map <F12> :Compile
-map <leader>LL :call CompileLectures()
+map <leader>LL :call CompileBasic()
 map <leader>LI :call CompileInstructor()<CR>
 map <leader>LA :call CompileAllSolutions()<CR>
 map <leader>LB :call CompileBothMarkerSolutions()<CR>
@@ -61,13 +61,12 @@ function! MoveLecturesFn(number)
 
 endfunction
 
-function! CompileLectures()
+function! CompileBasic()
   let l:cwd = getcwd()
   lcd %:h
 
   execute 'write'
   execute 'GenerateBasic'
-  execute 'GenerateInstructor'
       
   execute "lcd " . l:cwd
 
