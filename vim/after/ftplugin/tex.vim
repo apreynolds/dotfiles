@@ -39,18 +39,6 @@ command! -nargs=0 CompileEscape write | Start! latexmk -pdf -pdflatex="pdflatex 
 
 command! -nargs=1 MoveLectures call MoveLecturesFn( <q-args> )
 
-function! CompileLectures()
-  let l:cwd = getcwd()
-  lcd %:h
-
-  execute 'write'
-  execute 'GenerateBasic'
-  execute 'GenerateInstructor'
-      
-  execute "lcd " . l:cwd
-
-endfunction
-
 function! MoveLecturesFn(number)
   let l:cwd = getcwd()
   lcd %:h
@@ -69,6 +57,18 @@ function! MoveLecturesFn(number)
     call system(tempcommandtwo)
   endif
 
+  execute "lcd " . l:cwd
+
+endfunction
+
+function! CompileLectures()
+  let l:cwd = getcwd()
+  lcd %:h
+
+  execute 'write'
+  execute 'GenerateBasic'
+  execute 'GenerateInstructor'
+      
   execute "lcd " . l:cwd
 
 endfunction
