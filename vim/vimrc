@@ -183,6 +183,7 @@ nnoremap <leader>gb :Git branch
 nnoremap <leader>gk :Git checkout 
 nnoremap <leader>gt :Git tag 
 nnoremap <leader>gm :Git merge  
+nnoremap <leader>gr :Git rebase  
 "}}}
 "-----------------------------------------
 "{{{ plugin: EasyAlign
@@ -479,7 +480,7 @@ nnoremap <F2> i<C-R>=strftime("%F")<CR><ESC>
 "-----------------------------------------
 "{{{ MISC: launching external scripts
 "-----------------------------------------
-nnoremap <leader>sy :Start! sync2onedrive
+nnoremap <leader>sy :Start! sync2onedrive<cr>
 "-----------------------------------------
 "}}} end MISC
 "-----------------------------------------
@@ -1007,19 +1008,13 @@ endfunction
 let g:cool_total_matches = 1
 "}}} end 
 "-----------------------------------------
-"{{{ functions: add quick note
+"{{{ functions: add quick notes
 "-----------------------------------------
 "2025-06-11 These functions allow me to write a line of text and append it to
 "a particular file of my choosing. Very useful for adding to todo lists, work
 "wiki, teaching wiki, computer wiki, without having to navigate away from my
 "current buffer. 
 "(Remember to delete line afterwards, as it's not relevant to current file!)
-
-nnoremap <leader>att :call AddToTodoTeaching()<CR>
-function! AddToTodoTeaching()
-  let l:line = getline('.')
-  call writefile([strftime("%F") . ': ' . l:line], $HOME . "/Documents/todo/teaching.todo.txt", "a")
-endfunction
 
 nnoremap <leader>atw :call AddToTodoWork()<CR>
 function! AddToTodoWork()
@@ -1072,6 +1067,7 @@ function! MyKeymaps()
   echo ",gb: Git checkout branch"
   echo ",gt: Git tag"
   echo ",gm: Git merge"
+  echo ",gr: Git rebase -- (generally I rebase BRANCH onto main)"
   echo "}}}"
   echo "{{{ OPEN/CLOSE/VIEW ETC "
   echo ",,e: e %:h -- open file in same directory as current buffer"
@@ -1116,11 +1112,9 @@ function! MyKeymaps()
   echo "<F1>: call OpenMyVimQuicknotes()"
   echo "}}}"
   echo "{{{ MY ADD-TO-OTHER-FILES "
-  echo ",att: AddToTodoTeaching"
   echo ",atw: AddToTodoWork"
   echo ",atc: AddToTodoComputer"
   echo ",atd: AddToTodo"
-  echo ",aa: AddToDocsQuicknotes"
   echo "(no keymap): AddToLatexMyTips -- appends visual selection to latex-mytips.tex"
   echo "}}}"
   echo "{{{ FZF, RG "
@@ -1166,13 +1160,12 @@ function! MyKeymaps()
   echo ",vc: Start! open %:r-coverpage.pdf "
   echo ",vp: Start! open %:r-pf.pdf "
   echo ",vh: Start! open %:r.html"
-  echo ",LL: CompileLectures"
+  echo ",LL: CompileBasic"
   echo ",LI: CompileInstructor"
   echo ",LA: CompileAllSolutions"
   echo ",LB: CompileBothMarkerSolutions"
   echo ",LC: CompileCoverMarkerSolutions"
   echo ",LF: CompileCover"
-  echo ",LX: CompileXelatex"
   echo ",LE: CompileEscape"
   echo "<F10>: VimtexCompile"
   echo "<F12>: Compile"
