@@ -876,6 +876,7 @@ nnoremap <leader>c3 :lcd ~/3computer <cr>
 
 " COPY FILENAME WITH PATH TO UNNAMED REGISTER:
 nnoremap <leader>cp :let @" = expand("%:p")<CR>
+nnoremap <leader>cP :let @+ = expand("%:p")<CR>
 
 "VIMRC:
 nnoremap <leader>sv :source $MYVIMRC<CR>
