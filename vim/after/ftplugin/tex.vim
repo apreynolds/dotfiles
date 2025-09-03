@@ -42,22 +42,24 @@ command! -nargs=0 GenerateCover
 command! -nargs=0 CompileEscape write | Start! latexmk -pdf -pdflatex="pdflatex --shell-escape \%O \%S" % && latexmk -c % 
 
 command! -nargs=1 MoveLectures call MoveLecturesFn( <q-args> )
+map <leader>mm1 :call MoveLecturesFn("math1003-2025f-lectures")<cr>
+map <leader>mm2 :call MoveLecturesFn("math2203-2025f-lectures")<cr>
 
-function! MoveLecturesFn(number)
+function! MoveLecturesFn(coursedir)
   let l:cwd = getcwd()
   lcd %:h
 
-  let l:outputdir="/Users/preynol1/PDFExpert/Documents/"
+  let l:outputdir="/Users/preynol1/pdfexpert/"
   let l:pdfbasic = expand( '%:r' ) . ".pdf"
   let l:pdfinstructor = expand( '%:r' ) . "-instructor.pdf"
 
   if filereadable(l:pdfbasic)
-    let tempcommand = 'rsync ' . l:pdfbasic . ' ' . l:outputdir . a:number . '/'
+    let tempcommand = 'rsync ' . l:pdfbasic . ' ' . l:outputdir . a:coursedir. '/'
     call system(tempcommand)
   endif
 
   if filereadable(l:pdfinstructor)
-    let tempcommandtwo = 'rsync ' . l:pdfinstructor . ' ' . l:outputdir . a:number . '/'
+    let tempcommandtwo = 'rsync ' . l:pdfinstructor . ' ' . l:outputdir . a:coursedir. '/'
     call system(tempcommandtwo)
   endif
 

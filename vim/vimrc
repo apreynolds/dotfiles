@@ -1,3 +1,4 @@
+"TODO add mm2 to keymap echos
 "-----------------------------------------
 "{{{ SEE ALSO:
 
@@ -236,15 +237,15 @@ nnoremap <leader>bb :Buffers<cr>
 nnoremap <leader>ff :FilesTextOnly<cr>
 nnoremap <leader>fa :FilesAll<cr>
 nnoremap <leader>fh :FilesAllHidden<cr>
-nnoremap <leader>1ff :FilesTextOnly ~/1teaching<cr>
-nnoremap <leader>1fa :FilesAll ~/1teaching<cr>
-nnoremap <leader>1fh :FilesAllHidden ~/1teaching<cr>
-nnoremap <leader>2ff :FilesTextOnly ~/2work<cr>
-nnoremap <leader>2fa :FilesAll ~/2work<cr>
-nnoremap <leader>2fh :FilesAllHidden ~/2work<cr>
-nnoremap <leader>3ff :FilesTextOnly ~/3computer<cr>
-nnoremap <leader>3fa :FilesAll ~/3computer<cr>
-nnoremap <leader>3fh :FilesAllHidden ~/3computer<cr>
+nnoremap <leader>1ff :FilesTextOnly ~/Documents/1teaching<cr>
+nnoremap <leader>1fa :FilesAll ~/Documents/1teaching<cr>
+nnoremap <leader>1fh :FilesAllHidden ~/Documents/1teaching<cr>
+nnoremap <leader>2ff :FilesTextOnly ~/Documents/2work<cr>
+nnoremap <leader>2fa :FilesAll ~/Documents/2work<cr>
+nnoremap <leader>2fh :FilesAllHidden ~/Documents/2work<cr>
+nnoremap <leader>3ff :FilesTextOnly ~/Documents/3computer<cr>
+nnoremap <leader>3fa :FilesAll ~/Documents/3computer<cr>
+nnoremap <leader>3fh :FilesAllHidden ~/Documents/3computer<cr>
 nnoremap <leader>hff :FilesTextOnly ~<cr>
 nnoremap <leader>hfa :FilesAll ~<cr>
 nnoremap <leader>hfh :FilesAllHidden ~<cr>
@@ -252,7 +253,7 @@ nnoremap <leader>cff :FilesTextOnly %:p:h<cr>
 nnoremap <leader>cfa :FilesAll %:p:h<cr>
 nnoremap <leader>cfh :FilesAllHidden %:p:h<cr>
 
-nnoremap <leader><F1> :FilesAll ~/3computer/mytips/<cr>
+nnoremap <leader><F1> :FilesAll ~/Documents/3computer/mytips/<cr>
 
 "run Files, DO ignore .gitignore files, AND run only on specific text files
 command! -bang -nargs=? -complete=dir FilesTextOnly call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'fd --follow --ignore-file ~/.config/fd/ign-except-text'}), <bang>0)
@@ -277,9 +278,9 @@ command! -bang -nargs=* RgTextOnly call fzf#vim#grep("rg --follow --column --lin
 command! -bang -nargs=* RgTextOnlyIncludeHidden call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --hidden --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview(), <bang>0)
 "run Rg in diary of wikis, only on specific text files:
 command! -bang -nargs=* RgDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': 'diary'}), <bang>0)
-command! -bang -nargs=* RgTeachingDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/1teaching/diary'}), <bang>0)
-command! -bang -nargs=* RgWorkDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/2work/diary'}), <bang>0)
-command! -bang -nargs=* RgComputerDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/3computer/diary'}), <bang>0)
+command! -bang -nargs=* RgTeachingDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/Documents/1teaching/diary'}), <bang>0)
+command! -bang -nargs=* RgWorkDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/Documents/2work/diary'}), <bang>0)
+command! -bang -nargs=* RgComputerDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/Documents/3computer/diary'}), <bang>0)
 
   "}}}
 "-----------------------------------------
@@ -584,12 +585,12 @@ endfunction
 let $myrx_todo = '\C\<\%(CONCERN\|DONE\|INFO\|FIXED\|HOWTO\|NOTE\|QUESTION\|RESOURCE\|SUMMARY\|TODO\|UPDATE\|ZTEMP\|\)\>'
 
 let teaching = {}
-let teaching.path = '~/1teaching/'
-let teaching.path_html = '~/1teaching/'
+let teaching.path = '~/Documents/1teaching/'
+let teaching.path_html = '~/Documents/1teaching/'
 let teaching.diary_rel_path = 'diary/'
 let teaching.index = 'teaching-index'
 let teaching.css_name = '.wikiconfig/style_www/style.css'
-let teaching.template_path = '~/1teaching/.wikiconfig/'
+let teaching.template_path = '~/Documents/1teaching/.wikiconfig/'
 let teaching.rx_todo = $myrx_todo
 let teaching.template_default = 'def_template'
 let teaching.template_ext = '.thtml'
@@ -598,12 +599,12 @@ let teaching.auto_export = 0
 let teaching.auto_diary_index = 1
 
 let work = {}
-let work.path = '~/2work/'
-let work.path_html = '~/2work/'
+let work.path = '~/Documents/2work/'
+let work.path_html = '~/Documents/2work/'
 let work.diary_rel_path = 'diary/'
 let work.index = 'work-index'
 let work.css_name = '.wikiconfig/style_www/style.css'
-let work.template_path = '~/2work/.wikiconfig/'
+let work.template_path = '~/Documents/2work/.wikiconfig/'
 let work.rx_todo = $myrx_todo
 let work.template_default = 'def_template'
 let work.template_ext = '.thtml'
@@ -612,12 +613,12 @@ let work.auto_export = 0
 let work.auto_diary_index = 1
 
 let computer = {}
-let computer.path = '~/3computer/'
-let computer.path_html = '~/3computer/'
+let computer.path = '~/Documents/3computer/'
+let computer.path_html = '~/Documents/3computer/'
 let computer.diary_rel_path = 'diary/'
 let computer.index = 'computer-index'
 let computer.css_name = '.wikiconfig/style_www/style.css'
-let computer.template_path = '~/3computer/.wikiconfig/'
+let computer.template_path = '~/Documents/3computer/.wikiconfig/'
 let computer.rx_todo = $myrx_todo
 let computer.template_default = 'def_template'
 let computer.template_ext = '.thtml'
@@ -626,12 +627,12 @@ let computer.auto_export = 0
 let computer.auto_diary_index = 1
 
 let music = {}
-let music.path = '~/4music/'
-let music.path_html = '~/4music/'
+let music.path = '~/Documents/4music/'
+let music.path_html = '~/Documents/4music/'
 let music.diary_rel_path = 'diary/'
 let music.index = 'music-index'
 let music.css_name = '.wikiconfig/style_www/style.css'
-let music.template_path = '~/4music/.wikiconfig/'
+let music.template_path = '~/Documents/4music/.wikiconfig/'
 let music.template_default = 'def_template'
 let music.rx_todo = $myrx_todo
 let music.template_ext = '.thtml'
@@ -640,19 +641,19 @@ let music.auto_export = 0
 let music.auto_diary_index = 1
 
 let music_web= {}
-let music_web.path = '~/5music-website/'
-let music_web.path_html = '~/5music-website/'
+let music_web.path = '~/Documents/5music-website/'
+let music_web.path_html = '~/Documents/5music-website/'
 let music_web.css_name = 'style_www/style.css'
-let music_web.template_path = '~/5music-website/wikiconfig/'
+let music_web.template_path = '~/Documents/5music-website/wikiconfig/'
 let music_web.template_default = 'def_template'
 let music_web.template_ext = '.thtml'
 let music_web.auto_export = 1
 
 let work_web = {}
-let work_web.path = '~/6work-website/'
-let work_web.path_html = '~/6work-website/'
+let work_web.path = '~/Documents/6work-website/'
+let work_web.path_html = '~/Documents/6work-website/'
 let work_web.css_name = 'style_www/style.css'
-let work_web.template_path = '~/6work-website/wikiconfig/'
+let work_web.template_path = '~/Documents/6work-website/wikiconfig/'
 let work_web.template_default = 'def_template'
 let work_web.template_ext = '.thtml'
 let work_web.auto_export = 1
@@ -832,7 +833,7 @@ nnoremap <leader>md :set modifiable<cr>
 
 "USE MY HELP FILES:
 nnoremap <leader>hv :help myvim-
-nnoremap <leader>hl :$tabe ~/3computer/mytips/latex.tex<cr>
+nnoremap <leader>hl :$tabe ~/Documents/3computer/mytips/latex.tex<cr>
 
 "EDIT MY HELP FILES:
 nnoremap <F1> :call OpenMyVimQuicknotes()<CR>
@@ -870,9 +871,9 @@ noremap <leader>go :Open <cfile><cr>
 
 "CHANGES LOCAL DIR TO THAT OF CURRENT BUFFER:
 nnoremap <leader>cd :lcd %:p:h <cr> 
-nnoremap <leader>c1 :lcd ~/1teaching <cr> 
-nnoremap <leader>c2 :lcd ~/2work <cr> 
-nnoremap <leader>c3 :lcd ~/3computer <cr> 
+nnoremap <leader>c1 :lcd ~/Documents/1teaching <cr> 
+nnoremap <leader>c2 :lcd ~/Documents/2work <cr> 
+nnoremap <leader>c3 :lcd ~/Documents/3computer <cr> 
 
 " COPY FILENAME WITH PATH TO UNNAMED REGISTER:
 nnoremap <leader>cp :let @" = expand("%:p")<CR>
@@ -1049,7 +1050,7 @@ function! Get_visual_selection()
   return lines
 endfunction
 
-command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(), $HOME . "/3computer/latex/latex-mytips.tex", "a")
+command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(), $HOME . "/Documents/3computer/latex/latex-mytips.tex", "a")
 "-----------------------------------------
 "}}} 
 "-----------------------------------------
@@ -1111,7 +1112,7 @@ function! MyKeymaps()
   echo "{{{ MY CUSTOM HELP "
   echo ",md: set modifiable"
   echo ",hv: help myvim-"
-  echo ",hl: $tabe ~/3computer/latex/latex-mytips.tex"
+  echo ",hl: $tabe ~/Documents/3computer/latex/latex-mytips.tex"
   echo "<F1>: call OpenMyVimQuicknotes()"
   echo "}}}"
   echo "{{{ MY ADD-TO-OTHER-FILES "
