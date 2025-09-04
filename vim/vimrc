@@ -99,8 +99,8 @@ augroup GENERAL
   autocmd BufNewFile,BufRead *.cls setlocal filetype=tex
   " 2024-10-07 Started using ".song" filetype for music songsheets, as it's better for custom snippets and compilation commands. Note that ft=song.tex set filetype to both song and tex, and syntax to tex
   autocmd BufNewFile,BufRead *.song setlocal filetype=song.tex
-  autocmd BufNewFile,BufRead *tex.snippets setlocal foldmarker=<<<,>>>
-  autocmd BufNewFile,BufRead *tex.snippets setlocal foldmethod=marker
+  autocmd BufEnter tex.snippets setlocal foldmarker=<<<,>>>
+  autocmd BufEnter tex.snippets setlocal foldmethod=marker
   "The following will reload a buffer on BufEnter (useful for my AddTo... functions):
   autocmd BufNewFile,BufRead *rc setlocal foldmethod=marker
   autocmd BufNewFile,BufRead *.toml setlocal foldmethod=marker
@@ -282,7 +282,7 @@ command! -bang -nargs=* RgTeachingDiary call fzf#vim#grep("rg --column --line-nu
 command! -bang -nargs=* RgWorkDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/Documents/2work/diary'}), <bang>0)
 command! -bang -nargs=* RgComputerDiary call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case --ignore-file ~/.config/fd/ign-except-text -- ".fzf#shellescape(<q-args>), fzf#vim#with_preview({'dir': '~/Documents/3computer/diary'}), <bang>0)
 
-  "}}}
+"}}}
 "-----------------------------------------
 "{{{ plugin: Airline
 let g:airline#extensions#whitespace#enabled = 0
@@ -404,6 +404,13 @@ let g:vimtex_syntax_custom_cmds = [
       \ {'name': 'texttt', 'conceal': 1, 'argstyle': 'under'},
       \ {'name': 'lstinline', 'conceal': 1, 'argstyle': 'italunder'},
       \]
+
+let g:vimtex_indent_delims = {
+      \ 'open' : ['{'],
+      \ 'close' : ['}'],
+      \ 'close_indented' : 0,
+      \ 'include_modified_math' : 0,
+      \}
 "-----------------------------------------
 "}}}
 "-----------------------------------------
@@ -714,39 +721,39 @@ endfunction
 "nnoremap <leader>w<leader>t :call MyTabMakeDiaryNote()<cr>
 
 "function! MyTabMakeDiaryNote()
-  "execute 'VimwikiTabMakeDiaryNote'
-  "execute 'tabmove $'
-  "execute '$'
-  "call append(line('$'),'%nohtml')
-  "call append(line('$'),'= untagged =')
-  "call append(line('$'),':[untagged]: %%+(use dt snippet here)+%%')
-  "call append(line('$'),'')
-  "call append(line('$'),'')
-  "execute '$'
-  "execute 'startinsert'
+"execute 'VimwikiTabMakeDiaryNote'
+"execute 'tabmove $'
+"execute '$'
+"call append(line('$'),'%nohtml')
+"call append(line('$'),'= untagged =')
+"call append(line('$'),':[untagged]: %%+(use dt snippet here)+%%')
+"call append(line('$'),'')
+"call append(line('$'),'')
+"execute '$'
+"execute 'startinsert'
 "endfunction
 
 "nnoremap <leader>w<leader>w :call MyMakeDiaryNote()<cr>
 
 "function! MyMakeDiaryNote()
-  "execute 'VimwikiMakeDiaryNote'
-  "execute '$'
-  "call append(line('$'),'%nohtml')
-  "call append(line('$'),'= untagged =')
-  "call append(line('$'),':[untagged]: %%+(use dt snippet here)+%%')
-  "call append(line('$'),'')
-  "call append(line('$'),'')
-  "execute '$'
-  "execute 'startinsert'
+"execute 'VimwikiMakeDiaryNote'
+"execute '$'
+"call append(line('$'),'%nohtml')
+"call append(line('$'),'= untagged =')
+"call append(line('$'),':[untagged]: %%+(use dt snippet here)+%%')
+"call append(line('$'),'')
+"call append(line('$'),'')
+"execute '$'
+"execute 'startinsert'
 "endfunction
 
 "function! MyUpdateTags()
-  "execute 'vs diary.wiki'
-  "execute 'write'
-  "execute 'q'
-  "execute 'vs TAGS.wiki'
-  "execute 'write'
-  "execute 'q'
+"execute 'vs diary.wiki'
+"execute 'write'
+"execute 'q'
+"execute 'vs TAGS.wiki'
+"execute 'write'
+"execute 'q'
 "endfunction
 
 "-----------------------------------------

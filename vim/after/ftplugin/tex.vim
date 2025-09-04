@@ -20,7 +20,7 @@ command! -nargs=0 GenerateBasic
       \ && latexmk -c % && 
 
 command! -nargs=0 GenerateInstructor
-      \ Start! latexmk -silent -pdf -jobname=%:r-instructor -pdflatex="pdflatex --shell-escape \%O '\def\MyComments{1} \def\Solutions{1} \input{\%S}'" %:r 
+      \ Start! latexmk -silent -pdf -jobname=%:r-instructor -pdflatex="pdflatex --shell-escape \%O '\def\InstructorNotes{1} \def\Solutions{1} \input{\%S}'" %:r 
       \ && latexmk -c -jobname=%:r-instructor %:r 
 
 command! -nargs=0 GenerateStudentCopy
