@@ -24,7 +24,7 @@ command! -nargs=0 GenerateInstructor
       \ && latexmk -c -jobname=%:r-INSTRUCTOR %:r 
 
 command! -nargs=0 GenerateComments
-      \ Start! latexmk -pdf -jobname=%:r-COMMENTS -pdflatex="pdflatex --shell-escape \%O '\def\COMMENTS{1} \input{\%S}'" % 
+      \ Start! latexmk -pdf -jobname=%:r-COMMENTS -pdflatex="pdflatex --shell-escape \%O '\def\Comments{1} \input{\%S}'" % 
       \ && latexmk -c -jobname=%:r-COMMENTS % 
 
 command! -nargs=0 GenerateStudentCopy
