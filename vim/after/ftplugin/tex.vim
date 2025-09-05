@@ -1,18 +1,17 @@
-map <leader>vs :Start! open %:r-solutions.pdf <CR>
-map <leader>vm :Start! open %:r-marker.pdf <CR>
-map <leader>vi :Start! open %:r-instructor.pdf <CR>
-map <leader>vc :Start! open %:r-coverpage.pdf <CR>
-map <leader>vp :Start! open %:r-pf.pdf <CR>
+map <leader>vs :Start! open %:r-SOLUTIONS.pdf <CR>
+map <leader>vm :Start! open %:r-MARKER.pdf <CR>
+map <leader>vc :Start! open %:r-COMMENTS.pdf <CR>
+map <leader>vi :Start! open %:r-INSTRUCTOR.pdf <CR>
+map <leader>vf :Start! open %:r-FIRSTPAGE.pdf <CR>
 map <leader>vh :Start! open %:r.html<CR>
 
 map <F10> :VimtexCompile
-map <F12> :Compile
 map <leader>LL :call CompileBasic()<CR>
-map <leader>LI :call CompileInstructor()<CR>
+map <leader>LK :call CompileLectures()<CR>
+map <leader>LC :call CompileComments()<CR>
 map <leader>LS :call CompileSolutions()<CR>
 map <leader>LM :call CompileMarkerSolutions()<CR>
-map <leader>LC :call CompileCover()<CR>
-map <leader>LK :call CompileLectures()<CR>
+map <leader>LF :call CompileFirstPage()<CR>
 map <leader>LE :call CompileEscape()<CR>
 
 command! -nargs=0 GenerateBasic
@@ -20,24 +19,28 @@ command! -nargs=0 GenerateBasic
       \ && latexmk -c % && 
 
 command! -nargs=0 GenerateInstructor
-      \ Start! latexmk -silent -pdf -jobname=%:r-instructor -pdflatex="pdflatex --shell-escape \%O '\def\InstructorNotes{1} \def\Solutions{1} \input{\%S}'" %:r 
-      \ && latexmk -c -jobname=%:r-instructor %:r 
+      \ Start! latexmk -silent -pdf -jobname=%:r-INSTRUCTOR -pdflatex="pdflatex --shell-escape \%O '\def\InstructorNotes{1} \def\Solutions{1} \input{\%S}'" %:r 
+      \ && latexmk -c -jobname=%:r-INSTRUCTOR %:r 
+
+command! -nargs=0 GenerateComments
+      \ Start! latexmk -pdf -jobname=%:r-COMMENTS -pdflatex="pdflatex --shell-escape \%O '\def\COMMENTS{1} \input{\%S}'" % 
+      \ && latexmk -c -jobname=%:r-COMMENTS % 
 
 command! -nargs=0 GenerateStudentCopy
-      \ Start! latexmk -silent -pdf -jobname=%:r-student -pdflatex="pdflatex --shell-escape \%O '\def\StudentCopy{1} \input{\%S}'" %:r 
-      \ && latexmk -c -jobname=%:r-student %:r 
+      \ Start! latexmk -silent -pdf -jobname=%:r-STUDENT -pdflatex="pdflatex --shell-escape \%O '\def\StudentCopy{1} \input{\%S}'" %:r 
+      \ && latexmk -c -jobname=%:r-STUDENT %:r 
 
 command! -nargs=0 GenerateSolutions
-      \ Start! latexmk -pdf -jobname=%:r-solutions -pdflatex="pdflatex --shell-escape \%O '\def\Solutions{1} \input{\%S}'" % 
-      \ && latexmk -c -jobname=%:r-solutions % 
+      \ Start! latexmk -pdf -jobname=%:r-SOLUTIONS -pdflatex="pdflatex --shell-escape \%O '\def\Solutions{1} \input{\%S}'" % 
+      \ && latexmk -c -jobname=%:r-SOLUTIONS % 
 
 command! -nargs=0 GenerateMarker
-      \ Start! latexmk -pdf -jobname=%:r-marker -pdflatex="pdflatex --shell-escape \%O '\def\Solutions{1} \def\MyComments{1} \input{\%S}'" % 
-      \ && latexmk -c -jobname=%:r-marker % 
+      \ Start! latexmk -pdf -jobname=%:r-MARKER -pdflatex="pdflatex --shell-escape \%O '\def\Solutions{1} \def\MyComments{1} \input{\%S}'" % 
+      \ && latexmk -c -jobname=%:r-MARKER % 
 
-command! -nargs=0 GenerateCover
-      \ Start! latexmk -pdf -jobname=%:r-coverpage -pdflatex="pdflatex --shell-escape \%O '\def\FirstPageOnly{1} \input{\%S}'" % 
-      \ && latexmk -c -jobname=%:r-coverpage %
+command! -nargs=0 GenerateFirstPage
+      \ Start! latexmk -pdf -jobname=%:r-FIRSTPAGE -pdflatex="pdflatex --shell-escape \%O '\def\FirstPageOnly{1} \input{\%S}'" % 
+      \ && latexmk -c -jobname=%:r-FIRSTPAGE %
 
 command! -nargs=0 CompileEscape write | Start! latexmk -pdf -pdflatex="pdflatex --shell-escape \%O \%S" % && latexmk -c % 
 
@@ -74,6 +77,17 @@ function! CompileBasic()
   execute 'write'
   execute 'GenerateBasic'
       
+  execute "lcd " . l:cwd
+
+endfunction
+
+function! CompileComments()
+  let l:cwd = getcwd()
+  lcd %:h
+
+  execute 'write'
+  execute 'GenerateBasic'
+  execute 'GenerateComments'
   execute "lcd " . l:cwd
 
 endfunction
@@ -124,12 +138,12 @@ function! CompileMarkerSolutions()
 
 endfunction
 
-function! CompileCover()
+function! CompileFirstPage()
   let l:cwd = getcwd()
   lcd %:h
 
   execute 'write'
-  execute 'GenerateCover'
+  execute 'GenerateFirstPage'
   execute "lcd " . l:cwd
 
 endfunction
