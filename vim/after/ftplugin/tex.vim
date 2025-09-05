@@ -1,7 +1,8 @@
-map <leader>vs :Start! open %:r-SOLUTIONS.pdf <CR>
-map <leader>vm :Start! open %:r-MARKER.pdf <CR>
 map <leader>vc :Start! open %:r-COMMENTS.pdf <CR>
 map <leader>vi :Start! open %:r-INSTRUCTOR.pdf <CR>
+map <leader>vS :Start! open %:r-STUDENT.pdf <CR>
+map <leader>vs :Start! open %:r-SOLUTIONS.pdf <CR>
+map <leader>vm :Start! open %:r-MARKER.pdf <CR>
 map <leader>vf :Start! open %:r-FIRSTPAGE.pdf <CR>
 map <leader>vh :Start! open %:r.html<CR>
 
