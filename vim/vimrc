@@ -1057,7 +1057,7 @@ function! Get_visual_selection()
   return lines
 endfunction
 
-command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(), $HOME . "/Documents/3computer/latex/latex-mytips.tex", "a")
+command! -range -nargs=0 AddToLatexMyTips call writefile(Get_visual_selection(), $HOME . "/Documents/3computer/mytips/latex.tex", "a")
 "-----------------------------------------
 "}}} 
 "-----------------------------------------
@@ -1119,14 +1119,14 @@ function! MyKeymaps()
   echo "{{{ MY CUSTOM HELP "
   echo ",md: set modifiable"
   echo ",hv: help myvim-"
-  echo ",hl: $tabe ~/Documents/3computer/latex/latex-mytips.tex"
+  echo ",hl: $tabe ~/Documents/3computer/latex/latex.tex"
   echo "<F1>: call OpenMyVimQuicknotes()"
   echo "}}}"
   echo "{{{ MY ADD-TO-OTHER-FILES "
   echo ",atw: AddToTodoWork"
   echo ",atc: AddToTodoComputer"
   echo ",atd: AddToTodo"
-  echo "(no keymap): AddToLatexMyTips -- appends visual selection to latex-mytips.tex"
+  echo "(no keymap): AddToLatexMyTips -- appends visual selection to latex.tex"
   echo "}}}"
   echo "{{{ FZF, RG "
   echo ",bb: Buffers"
