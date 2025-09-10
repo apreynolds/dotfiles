@@ -1016,6 +1016,11 @@ endfunction
 let g:cool_total_matches = 1
 "}}} end 
 "-----------------------------------------
+"{{{ plugin: NERDTree
+nnoremap <leader>nn :NERDTreeToggle<CR>
+nnoremap <leader>nc :NERDTreeCWD<CR>
+"}}} end NERDTree 
+"-----------------------------------------
 "{{{ functions: add quick notes
 "-----------------------------------------
 "2025-06-11 These functions allow me to write a line of text and append it to
@@ -1194,6 +1199,10 @@ function! MyKeymaps()
   echo ",tr: TabooRename"
   echo ",tn: new (last) tab"
   echo ",tm: tabm -- e.g. tabm3 will move to 3"
+  echo "}}}"
+  echo "{{{ NERDTREE "
+  echo ",nn: NERDTreeToggle"
+  echo ",nc: NERDTreeCWD -- current working directory"
   echo "}}}"
 endfunction
 
