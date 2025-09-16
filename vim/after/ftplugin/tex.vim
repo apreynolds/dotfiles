@@ -79,6 +79,7 @@ function! CompileInstructor()
 endfunction
 
 function! CompileLectures()
+  "TODO: generate ANNOTATED but only if it doesn't exist yet.
   let l:cwd = getcwd()
   lcd %:h
 
