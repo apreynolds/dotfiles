@@ -23,6 +23,10 @@ command! -nargs=0 GenerateInstructor
       \ Start! latexmk -silent -pdf -jobname=%:r-INSTRUCTOR -pdflatex="pdflatex --shell-escape \%O '\def\InstructorNotes{1} \def\Solutions{1} \input{\%S}'" %:r 
       \ && latexmk -c -jobname=%:r-INSTRUCTOR %:r 
 
+command! -nargs=0 GenerateAnnotated
+      \ Start! latexmk -silent -pdf -jobname=%:r-ANNOTATED -pdflatex="pdflatex --shell-escape \%O \%S" %:r 
+      \ && latexmk -c -jobname=%:r-ANNOTATED %:r 
+
 command! -nargs=0 GenerateComments
       \ Start! latexmk -pdf -jobname=%:r-COMMENTS -pdflatex="pdflatex --shell-escape \%O '\def\Comments{1} \input{\%S}'" % 
       \ && latexmk -c -jobname=%:r-COMMENTS % 
@@ -79,14 +83,20 @@ function! CompileInstructor()
 endfunction
 
 function! CompileLectures()
-  "TODO: generate ANNOTATED but only if it doesn't exist yet.
   let l:cwd = getcwd()
   lcd %:h
+  let l:pdfannotated = expand( '%:r' ) . "-ANNOTATED.pdf"
 
   execute 'write'
   execute 'GenerateBasic'
   execute 'GenerateInstructor'
   execute 'GenerateStudentCopy'
+
+  "If filename-ANNOTATED.pdf doesn't exist, generate it:
+  if !filereadable(l:pdfannotated)
+    execute 'GenerateAnnotated'
+  endif
+
   execute "lcd " . l:cwd
 
 endfunction
