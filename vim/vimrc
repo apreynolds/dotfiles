@@ -227,7 +227,7 @@ let g:fzf_action = {
       \ 'ctrl-t': '$tab split',
       \ 'ctrl-x': 'split',
       \ 'ctrl-v': 'vsplit',
-      \ 'ctrl-o': 'Start! open' }
+      \ 'ctrl-o': 'Start! open', }
 let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95 } }
 
 nnoremap <leader>bb :Buffers<cr>
@@ -245,6 +245,9 @@ nnoremap <leader>2fh :FilesAllHidden ~/Documents/2work<cr>
 nnoremap <leader>3ff :FilesTextOnly ~/Documents/3computer<cr>
 nnoremap <leader>3fa :FilesAll ~/Documents/3computer<cr>
 nnoremap <leader>3fh :FilesAllHidden ~/Documents/3computer<cr>
+nnoremap <leader>dff :FilesTextOnly ~/Documents/<cr>
+nnoremap <leader>dfa :FilesAll ~/Documents/<cr>
+nnoremap <leader>dfh :FilesAllHidden ~/Documents/<cr>
 nnoremap <leader>hff :FilesTextOnly ~<cr>
 nnoremap <leader>hfa :FilesAll ~<cr>
 nnoremap <leader>hfh :FilesAllHidden ~<cr>
@@ -1139,6 +1142,8 @@ function! MyKeymaps()
   echo ",fh: FilesAllHidden ~ -- run Files in cwd, include .gitignore AND hidden"
   echo ",[count]ff: FilesTextOnly -- run Files in cwd only... in specified wiki"
   echo "(similarly, [count]fa, [count]fh)"
+  echo ",dff: FilesTextOnly -- run Files in cwd only... in Documents"
+  echo "(similarly ,dfa ,dfh)"
   echo ",hff: FilesTextOnly -- run Files in cwd only... in HOME"
   echo "(similarly ,hfa ,hfh)"
   echo ",cff: FilesTextOnly -- run Files in cwd only... in dir of CURRENT BUFFER"

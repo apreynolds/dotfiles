@@ -4,6 +4,7 @@ Applications
 Library/*
 !Library/texmf
 Pictures/
+DO-I-NEED-THESE/
 
 #*.pdf
 #*.PDF

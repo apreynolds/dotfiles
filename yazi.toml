@@ -81,6 +81,8 @@ rules = [
 	# csv
 	{ name = "*.csv", use = [ "vd", "reveal" ] },
 	# html
+	{ name = "*.snagx", use = [ "open", "reveal" ] },
+	# html
 	{ name = "*.html", use = [ "open", "reveal" ] },
 	# Text
 	{ mime = "text/*", use = [ "edit", "reveal" ] },
