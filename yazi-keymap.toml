@@ -207,7 +207,7 @@ prepend_keymap = [
 #─────────────────────────── 
 # {{{ CUSTOM GO-TOs
 #─────────────────────────── 
-{ on = [ "g", "0" ], run = "cd ~/Documents/0current",         desc = "Goto ~/0current"},
+{ on = [ "g", "0" ], run = "cd ~/Documents/0desktopia",       desc = "Goto ~/0desktopia"},
 { on = [ "g", "1" ], run = "cd ~/Documents/1teaching",        desc = "Goto ~/1teaching"},
 { on = [ "g", "2" ], run = "cd ~/Documents/2work",            desc = "Goto ~/2work"},
 { on = [ "g", "3" ], run = "cd ~/Documents/3computer",        desc = "Goto ~/3computer"},
