@@ -1,26 +1,27 @@
-map <leader>vc :Start! open %:r-COMMENTS.pdf <CR>
-map <leader>vi :Start! open %:r-INSTRUCTOR.pdf <CR>
-map <leader>vS :Start! open %:r-STUDENT.pdf <CR>
-map <leader>vs :Start! open %:r-SOLUTIONS.pdf <CR>
-map <leader>vm :Start! open %:r-MARKER.pdf <CR>
-map <leader>vf :Start! open %:r-FIRSTPAGE.pdf <CR>
-map <leader>vh :Start! open %:r.html<CR>
+map <localleader>vc :Start! open %:r-COMMENTS.pdf <CR>
+map <localleader>vi :Start! open %:r-INSTRUCTOR.pdf <CR>
+map <localleader>vS :Start! open %:r-STUDENT.pdf <CR>
+map <localleader>vs :Start! open %:r-SOLUTIONS.pdf <CR>
+map <localleader>vm :Start! open %:r-MARKER.pdf <CR>
+map <localleader>vf :Start! open %:r-FIRSTPAGE.pdf <CR>
+map <localleader>vh :Start! open %:r.html<CR>
 
 map <F10> :VimtexCompile
-map <leader>LL :call CompileBasic()<CR>
-map <leader>LK :call CompileLectures()<CR>
-map <leader>LC :call CompileComments()<CR>
-map <leader>LS :call CompileSolutions()<CR>
-map <leader>LM :call CompileMarkerSolutions()<CR>
-map <leader>LF :call CompileFirstPage()<CR>
-map <leader>LE :call CompileEscape()<CR>
+map <localleader>LL :call CompileBasic()<CR>
+map <localleader>LK :call CompileLectures()<CR>
+map <localleader>LC :call CompileComments()<CR>
+map <localleader>LS :call CompileSolutions()<CR>
+map <localleader>LM :call CompileMarkerSolutions()<CR>
+map <localleader>LF :call CompileFirstPage()<CR>
+map <localleader>LE :call CompileEscape()<CR>
 
 command! -nargs=0 GenerateBasic
       \ Start! latexmk -pdf -pdflatex="pdflatex --shell-escape \%O \%S" %  
       \ && latexmk -c % && 
 
 command! -nargs=0 GenerateInstructor
-      \ Start! latexmk -silent -pdf -jobname=%:r-INSTRUCTOR -pdflatex="pdflatex --shell-escape \%O '\def\InstructorNotes{1} \def\Solutions{1} \input{\%S}'" %:r 
+      "\ Start! latexmk -silent -pdf -jobname=%:r-INSTRUCTOR -pdflatex="pdflatex --shell-escape \%O '\def\InstructorNotes{1} \def\Solutions{1} \input{\%S}'" %:r 
+      \ Start! latexmk -silent -pdf -jobname=%:r-INSTRUCTOR -pdflatex="pdflatex --shell-escape \%O \%S" %:r 
       \ && latexmk -c -jobname=%:r-INSTRUCTOR %:r 
 
 command! -nargs=0 GenerateAnnotated
@@ -86,11 +87,16 @@ function! CompileLectures()
   let l:cwd = getcwd()
   lcd %:h
   let l:pdfannotated = expand( '%:r' ) . "-ANNOTATED.pdf"
+  let l:pdfinstructor = expand( '%:r' ) . "-INSTRUCTOR.pdf"
 
   execute 'write'
   execute 'GenerateBasic'
-  execute 'GenerateInstructor'
   execute 'GenerateStudentCopy'
+
+  "If filename-INSTRUCTOR.pdf doesn't exist, generate it:
+  if !filereadable(l:pdfinstructor)
+  execute 'GenerateInstructor'
+  endif
 
   "If filename-ANNOTATED.pdf doesn't exist, generate it:
   if !filereadable(l:pdfannotated)
