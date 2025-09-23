@@ -5,6 +5,7 @@
 
 "AFTER: for custom filetype-specific commands
 " ~/.vim/after/ftplugin/tex.vim
+" ~/.vim/after/ftplugin/todo.txt.vim
 " ~/.vim/after/ftplugin/markdown.vim
 " ~/.vim/after/ftplugin/song.vim
 " ~/.vim/after/ftplugin/vimwiki.vim
@@ -94,19 +95,20 @@ let maplocalleader = "," "same
 "-----------------------------------------
 "{{{ AUGROUP
 augroup GENERAL
+  autocmd!
   autocmd BufNewFile,BufRead *.txt setlocal tw=80
   autocmd BufNewFile,BufRead *.cls setlocal filetype=tex
   " 2024-10-07 Started using ".song" filetype for music songsheets, as it's better for custom snippets and compilation commands. Note that ft=song.tex set filetype to both song and tex, and syntax to tex
   autocmd BufNewFile,BufRead *.song setlocal filetype=song.tex
-  autocmd BufEnter tex.snippets setlocal foldmarker=<<<,>>>
-  autocmd BufEnter tex.snippets setlocal foldmethod=marker
-  "The following will reload a buffer on BufEnter (useful for my AddTo... functions):
+  autocmd BufEnter,BufRead tex.snippets setlocal foldmethod=marker foldmarker=<<<,>>> 
+  "autocmd BufEnter tex.snippets setlocal foldmethod=marker
   autocmd BufNewFile,BufRead *rc setlocal foldmethod=marker
   autocmd BufNewFile,BufRead *.toml setlocal foldmethod=marker
-  "autocmd BufNewFile,BufRead *.sh setlocal foldmethod=marker
   autocmd BufNewFile,BufRead *ign-except-text setlocal filetype=gitignore
   autocmd BufNewFile,BufRead *dircolors setlocal foldmethod=marker
+  "The following will reload a buffer on BufEnter (useful for my AddTo... functions):
   autocmd BufEnter *todo.txt e
+  autocmd BufEnter *todo.txt setlocal foldmethod=manual
 augroup end
 "}}} end AUGROUP
 " -----------------------------------------
@@ -167,11 +169,22 @@ colorscheme gruvbox
 let g:dispatch_no_maps = 1
 "}}}
 "-----------------------------------------
-"{{{ plugin: Foldsearch
+"{{{ plugin: Foldsearch, todo.txt
 "DISABLE MAPPINGS: (I only use one)
 let g:foldsearch_disable_mappings = 1
 "ENABLE FW:
 nnoremap <leader>fw :Fw<cr>
+
+augroup TODO
+  autocmd!
+  autocmd BufEnter *todo.txt e
+  autocmd BufEnter *todo.txt setlocal foldmethod=manual
+  autocmd FileType todo nnoremap <leader><leader>1 :Fp 1teach\\|2work\\|(A)<cr>
+  autocmd FileType todo noremap <leader><leader>a :Fp (A)<cr>
+  autocmd FileType todo noremap <leader><leader>b :Fp (A)\\|(B)<cr>
+  autocmd FileType todo noremap <leader><leader>c :Fp (A)\\|(B)\\|(C)<cr>
+augroup end
+" -----------------------------------------
 "}}}
 "-----------------------------------------
 "{{{ plugin: Fugitive
@@ -233,27 +246,35 @@ let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95 } }
 nnoremap <leader>bb :Buffers<cr>
 
 "run Files:
+nnoremap <leader>fuu :FilesTextOnly ../../<cr>
+nnoremap <leader>fauu :FilesAll ../../<cr>
+nnoremap <leader>fhuu :FilesAllHidden ../../<cr>
+nnoremap <leader>fu :FilesTextOnly ../<cr>
+nnoremap <leader>fau :FilesAll ../<cr>
+nnoremap <leader>fhu :FilesAllHidden ../<cr>
 nnoremap <leader>ff :FilesTextOnly<cr>
 nnoremap <leader>fa :FilesAll<cr>
 nnoremap <leader>fh :FilesAllHidden<cr>
-nnoremap <leader>1ff :FilesTextOnly ~/Documents/1teaching<cr>
-nnoremap <leader>1fa :FilesAll ~/Documents/1teaching<cr>
-nnoremap <leader>1fh :FilesAllHidden ~/Documents/1teaching<cr>
-nnoremap <leader>2ff :FilesTextOnly ~/Documents/2work<cr>
-nnoremap <leader>2fa :FilesAll ~/Documents/2work<cr>
-nnoremap <leader>2fh :FilesAllHidden ~/Documents/2work<cr>
-nnoremap <leader>3ff :FilesTextOnly ~/Documents/3computer<cr>
-nnoremap <leader>3fa :FilesAll ~/Documents/3computer<cr>
-nnoremap <leader>3fh :FilesAllHidden ~/Documents/3computer<cr>
-nnoremap <leader>dff :FilesTextOnly ~/Documents/<cr>
-nnoremap <leader>dfa :FilesAll ~/Documents/<cr>
-nnoremap <leader>dfh :FilesAllHidden ~/Documents/<cr>
-nnoremap <leader>hff :FilesTextOnly ~<cr>
-nnoremap <leader>hfa :FilesAll ~<cr>
-nnoremap <leader>hfh :FilesAllHidden ~<cr>
-nnoremap <leader>cff :FilesTextOnly %:p:h<cr>
-nnoremap <leader>cfa :FilesAll %:p:h<cr>
-nnoremap <leader>cfh :FilesAllHidden %:p:h<cr>
+nnoremap <leader>f0 :FilesTextOnly ~/Desktop<cr>
+nnoremap <leader>fa0 :FilesAll ~/Desktop<cr>
+nnoremap <leader>f1 :FilesTextOnly ~/Documents/1teaching<cr>
+nnoremap <leader>fa1 :FilesAll ~/Documents/1teaching<cr>
+nnoremap <leader>fh1 :FilesAllHidden ~/Documents/1teaching<cr>
+nnoremap <leader>f2 :FilesTextOnly ~/Documents/2work<cr>
+nnoremap <leader>fa2 :FilesAll ~/Documents/2work<cr>
+nnoremap <leader>fh2 :FilesAllHidden ~/Documents/2work<cr>
+nnoremap <leader>f3 :FilesTextOnly ~/Documents/3computer<cr>
+nnoremap <leader>fa3 :FilesAll ~/Documents/3computer<cr>
+nnoremap <leader>fh3 :FilesAllHidden ~/Documents/3computer<cr>
+nnoremap <leader>fd :FilesTextOnly ~/Documents/<cr>
+nnoremap <leader>fad :FilesAll ~/Documents/<cr>
+nnoremap <leader>fhd :FilesAllHidden ~/Documents/<cr>
+nnoremap <leader>fH :FilesTextOnly ~<cr>
+nnoremap <leader>faH :FilesAll ~<cr>
+nnoremap <leader>fhH :FilesAllHidden ~<cr>
+nnoremap <leader>fc :FilesTextOnly %:p:h<cr>
+nnoremap <leader>fac :FilesAll %:p:h<cr>
+nnoremap <leader>fhc :FilesAllHidden %:p:h<cr>
 
 nnoremap <leader><F1> :FilesAll ~/Documents/3computer/mytips/<cr>
 
@@ -892,6 +913,9 @@ nnoremap <leader>cP :let @+ = expand("%:p")<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <leader>ev :$tabe $HOME/tech/dotfiles/vim/vimrc<cr>
 
+"YAZI:
+nnoremap <leader>ey :$tabe $HOME/tech/dotfiles/yazi-keymap.toml<cr> 
+
 "OLDER EXPERIMENTS:
 "nnoremap <leader>bc :BeginCenter <CR>
 "command! BeginCenter :vnew  | wincmd h | leftabove vnew | wincmd l
@@ -1074,7 +1098,7 @@ nnoremap <leader>kk :Bufferize call MyKeymaps()<CR>
 
 "Hi there!
 function! MyKeymaps()
-  set fdm=marker
+  set foldmethod=marker
   echo ",kk: Bufferize call MyKeymaps() -- OPEN THESE IN BUFFER "
   echo "{{{ GIT, FUGITIVE "
   echo ",gc: Git commit -m  -- and enter message"
