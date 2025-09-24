@@ -14,18 +14,16 @@ prepend_keymap = [
 { on = [ "g", "d", "k" ], run = "cd ~/Desktop",   desc = "Goto Desktop"},
 { on = [ "g", "d", "l" ], run = "cd ~/Downloads", desc = "Goto Downloads"},
 
-{ on = [ "g", "1", "0" ], run = "cd ~/Documents/1teaching/",              desc = "Goto 1teaching"},
-{ on = [ "g", "1", "1" ], run = "cd ~/Documents/1teaching/math1003",      desc = "Goto math1003"},
-{ on = [ "g", "1", "2" ], run = "cd ~/Documents/1teaching/math2203",      desc = "Goto math2203"},
-{ on = [ "g", "2", "0" ], run = "cd ~/Documents/2work",                   desc = "Goto ~/2work"},
-{ on = [ "g", "2", "d" ], run = "cd ~/Documents/2work/_DEPARTMENT_",      desc = "Goto _DEPARTMENT_"},
-{ on = [ "g", "2", "s" ], run = "cd ~/Documents/2work/_SCIENCE-FACULTY_", desc = "Goto _SCIENCE-FACULTY_"},
-{ on = [ "g", "2", "u" ], run = "cd ~/Documents/2work/_UNIVERSITY_",      desc = "Goto _UNIVERSITY_"},
-#{ on = [ "g", "2", "1" ], run = "cd ~/'Documents/2work//Library/CloudStorage/OneDrive-UniversityofNewBrunswick/Dean's Office - SCI 1001 2025'",      desc = "Goto sci1001"},
+{ on = [ "g", "1", "1" ], run = "cd ~/Documents/1teaching/",              desc = "Goto 1teaching"},
+{ on = [ "g", "1", "c" ], run = "cd ~/Documents/1teaching/math1003",      desc = "Goto math1003"},
+{ on = [ "g", "1", "d" ], run = "cd ~/Documents/1teaching/math2203",      desc = "Goto math2203"},
+{ on = [ "g", "2", "2" ], run = "cd ~/Documents/2work",                   desc = "Goto 2work"},
 { on = [ "g", "2", "a" ], run = "cd ~/Documents/2work/ADVISING",          desc = "Goto ADVISING"},
-{ on = [ "g", "3", "0" ], run = "cd ~/Documents/3computer",               desc = "Goto ~/3computer"},
-{ on = [ "g", "3", "t" ], run = "cd ~/Documents/3computer/mytips",        desc = "Goto ~/3computer/mytips"},
-
+{ on = [ "g", "2", "A" ], run = "cd ~/Documents/2work/awards",            desc = "Goto awards"},
+{ on = [ "g", "2", "c" ], run = "cd ~/Documents/2work/math-camp",         desc = "Goto math-camp"},
+{ on = [ "g", "2", "C" ], run = "cd ~/Documents/2work/curriculum",         desc = "Goto curriculum"},
+{ on = [ "g", "3", "3" ], run = "cd ~/Documents/3computer",               desc = "Goto 3computer"},
+{ on = [ "g", "3", "t" ], run = "cd ~/Documents/3computer/mytips",        desc = "Goto 3computer/mytips"},
 
 { on = [ "g", "4" ], run = "cd ~/Documents/4music",     desc = "Goto ~/4music"},
 { on = [ "g", "5" ], run = "cd ~/Documents/5family",    desc = "Goto ~/5family"},
@@ -41,7 +39,9 @@ prepend_keymap = [
 { on = [ "g", "G" ], run = "cd ~/'My Drive'",    desc = "Goto Google Drive"},
 { on = [ "g", "V" ], run = "cd /Volumes",        desc = "Goto Volumes"},
 
-{ on = [ "g", "U" ], run = "cd ~/Library/CloudStorage/OneDrive-UniversityofNewBrunswick", desc = "Goto UNB OneDrive"},
+{ on = [ "g", "u", "u" ], run = "cd ~/Library/CloudStorage/OneDrive-UniversityofNewBrunswick", desc = "Goto UNB OneDrive"},
+{ on = [ "g", "u", "s" ], run = "cd ~/Library/CloudStorage/OneDrive-UniversityofNewBrunswick/SHARED-by-PR", desc = "Goto SHARED-by-PR"},
+{ on = [ "g", "u", "c" ], run = "cd ~/Library/CloudStorage/OneDrive-UniversityofNewBrunswick/SHARED-by-PR/1teaching/math1003", desc = "Goto SHARED math1003"},
 #─────────────────────────── 
 # end CUSTOM GO-TOs }}}
 #─────────────────────────── 
