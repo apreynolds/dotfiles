@@ -34,6 +34,8 @@ set viminfofile=~/.vim/viminfo
 "-----------------------------------------
 "{{{ BASIC functionality:
 
+set autochdir
+
 set nomodeline                   " (I read a thread that suggested modelines could be a security risk; follow up on this later)
 set hidden                       " Possibility to have more than one unsaved buffers.
 set splitright splitbelow        " Open splits below, and to the right
@@ -246,9 +248,9 @@ let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.95 } }
 nnoremap <leader>bb :Buffers<cr>
 
 "run Files:
-nnoremap <leader>fuu :FilesTextOnly ../../<cr>
-nnoremap <leader>fauu :FilesAll ../../<cr>
-nnoremap <leader>fhuu :FilesAllHidden ../../<cr>
+nnoremap <leader>fU :FilesTextOnly ../../<cr>
+nnoremap <leader>faU :FilesAll ../../<cr>
+nnoremap <leader>fhU :FilesAllHidden ../../<cr>
 nnoremap <leader>fu :FilesTextOnly ../<cr>
 nnoremap <leader>fau :FilesAll ../<cr>
 nnoremap <leader>fhu :FilesAllHidden ../<cr>
