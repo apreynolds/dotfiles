@@ -181,7 +181,9 @@ augroup TODO
   autocmd!
   autocmd BufEnter *todo.txt e
   autocmd BufEnter *todo.txt setlocal foldmethod=manual
-  autocmd FileType todo nnoremap <leader><leader>1 :Fp 1teach\\|2work\\|(A)<cr>
+  autocmd FileType todo nnoremap <leader><leader>1 :Fp @\(household\)\@!<cr>
+  autocmd FileType todo nnoremap <leader><leader>p :Fp (\w)<cr>
+  autocmd FileType todo nnoremap <leader><leader>d :Fp due:\d\d\d\d-\d\d-\d\d\( t:\d\d\d\d-\d\d-\d\d\)\@!<cr>
   autocmd FileType todo noremap <leader><leader>a :Fp (A)<cr>
   autocmd FileType todo noremap <leader><leader>b :Fp (A)\\|(B)<cr>
   autocmd FileType todo noremap <leader><leader>c :Fp (A)\\|(B)\\|(C)<cr>
