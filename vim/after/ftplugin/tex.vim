@@ -25,16 +25,16 @@ command! -nargs=0 GenerateInstructor
       \ && latexmk -c -jobname=%:r-INSTRUCTOR %:r 
 
 command! -nargs=0 GenerateAnnotated
-      \ Start! latexmk -silent -pdf -jobname=%:r-ANNOTATED -pdflatex="pdflatex --shell-escape \%O \%S" %:r 
+      \ Start! latexmk -silent -pdf -jobname=%:r-ANNOTATED -pdflatex="pdflatex --shell-escape \%O '\def\LectureCopy{1} \input{\%S}'" %:r 
       \ && latexmk -c -jobname=%:r-ANNOTATED %:r 
 
 command! -nargs=0 GenerateComments
       \ Start! latexmk -pdf -jobname=%:r-COMMENTS -pdflatex="pdflatex --shell-escape \%O '\def\Comments{1} \input{\%S}'" % 
       \ && latexmk -c -jobname=%:r-COMMENTS % 
 
-command! -nargs=0 GenerateStudentCopy
-      \ Start! latexmk -silent -pdf -jobname=%:r-STUDENT -pdflatex="pdflatex --shell-escape \%O '\def\StudentCopy{1} \input{\%S}'" %:r 
-      \ && latexmk -c -jobname=%:r-STUDENT %:r 
+"command! -nargs=0 GenerateStudentCopy
+      "\ Start! latexmk -silent -pdf -jobname=%:r-STUDENT -pdflatex="pdflatex --shell-escape \%O '\def\StudentCopy{1} \input{\%S}'" %:r 
+      "\ && latexmk -c -jobname=%:r-STUDENT %:r 
 
 command! -nargs=0 GenerateSolutions
       \ Start! latexmk -pdf -jobname=%:r-SOLUTIONS -pdflatex="pdflatex --shell-escape \%O '\def\Solutions{1} \input{\%S}'" % 
@@ -91,7 +91,7 @@ function! CompileLectures()
 
   execute 'write'
   execute 'GenerateBasic'
-  execute 'GenerateStudentCopy'
+  "execute 'GenerateStudentCopy'
 
   "If filename-INSTRUCTOR.pdf doesn't exist, generate it:
   if !filereadable(l:pdfinstructor)

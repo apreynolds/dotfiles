@@ -280,12 +280,13 @@ prepend_keymap = [
 #─────────────────────────── 
 
 #─────────────────────────── 
-# {{{ CUSTOM ZOXIDE
+# {{{ CUSTOM: ZOXIDE, Clop, fzf
 #─────────────────────────── 
-{ on = [ "z", "a" ], run = "shell --interactive 'zoxide add $0'",    desc = "Add dir to zoxide"},
-{ on = [ "z", "r" ], run = "shell --interactive 'zoxide remove $0'", desc = "Remove dir from zoxide"},
-{ on = [ "z", "z" ], run = "plugin zoxide",                          desc = "Jump to a directory via zoxide"},
-{ on = "Z",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
+{ on = [ "z", "a" ], run = 'shell -- zoxide add "$0"',    desc = "Add dir to zoxide"},
+{ on = [ "z", "r" ], run = 'shell -- zoxide remove "$0"', desc = "Remove dir from zoxide"},
+{ on = [ "z", "z" ], run = "plugin zoxide",               desc = "Jump to a directory via zoxide"},
+{ on = [ "c", "o" ], run = 'shell -- clop optimise "$0"', desc = "Clop optimise pdf"},
+{ on = "Z",          run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
 #─────────────────────────── 
 # end CUSTOM ZOXIDE }}}
 #─────────────────────────── 

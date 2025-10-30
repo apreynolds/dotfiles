@@ -3,4 +3,4 @@
 highlight Comment cterm=italic 
 
 "2019-08-23 ADDED 
-setlocal isk+=@-@,+
+setlocal isk+=@-@,+,-
