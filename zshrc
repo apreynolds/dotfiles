@@ -160,3 +160,6 @@ export BAT_THEME="gruvbox-dark"
 #if [ -x "$(command -v gdircolors)" ]; then alias dircolors='gdircolors'; fi
 # Run dircolors:
 eval `gdircolors -b ~/tech/dotfiles/dircolors`
+
+# To customize prompt, run `p10k configure` or edit ~/.oh-my-zsh/.p10k.zsh.
+[[ ! -f ~/.oh-my-zsh/.p10k.zsh ]] || source ~/.oh-my-zsh/.p10k.zsh

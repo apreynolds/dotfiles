@@ -7,8 +7,7 @@ map <localleader>vf :Start! open %:r-FIRSTPAGE.pdf <CR>
 map <localleader>vh :Start! open %:r.html<CR>
 
 map <F10> :VimtexCompile
-map <localleader>LL :call CompileBasic()<CR>
-map <localleader>LK :call CompileLectures()<CR>
+map <localleader>LL :call CompileLectures()<CR>
 map <localleader>LC :call CompileComments()<CR>
 map <localleader>LS :call CompileSolutions()<CR>
 map <localleader>LM :call CompileMarkerSolutions()<CR>
@@ -91,17 +90,18 @@ function! CompileLectures()
 
   execute 'write'
   execute 'GenerateBasic'
-  "execute 'GenerateStudentCopy'
+  execute 'GenerateInstructor'
+  execute 'GenerateAnnotated'
 
   "If filename-INSTRUCTOR.pdf doesn't exist, generate it:
-  if !filereadable(l:pdfinstructor)
-  execute 'GenerateInstructor'
-  endif
+  "if !filereadable(l:pdfinstructor)
+  "execute 'GenerateInstructor'
+  "endif
 
   "If filename-ANNOTATED.pdf doesn't exist, generate it:
-  if !filereadable(l:pdfannotated)
-    execute 'GenerateAnnotated'
-  endif
+  "if !filereadable(l:pdfannotated)
+    "execute 'GenerateAnnotated'
+  "endif
 
   execute "lcd " . l:cwd
 

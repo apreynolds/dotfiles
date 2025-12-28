@@ -19,6 +19,7 @@
 !*.zsh
 !*.conf
 !*.yml
+!*.def
 
 #Ignore everything in the following:
 Applications/*
