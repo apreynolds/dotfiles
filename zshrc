@@ -124,9 +124,6 @@ export EDITOR=vim
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# To customize prompt, run `p10k configure` or edit $ZSH/.p10k.zsh.
-[[ ! -f $ZSH/.p10k.zsh ]] || source $ZSH/.p10k.zsh
-
 # Necessary for zoxide
 eval "$(zoxide init zsh)"
 
@@ -161,5 +158,5 @@ export BAT_THEME="gruvbox-dark"
 # Run dircolors:
 eval `gdircolors -b ~/tech/dotfiles/dircolors`
 
-# To customize prompt, run `p10k configure` or edit ~/.oh-my-zsh/.p10k.zsh.
-[[ ! -f ~/.oh-my-zsh/.p10k.zsh ]] || source ~/.oh-my-zsh/.p10k.zsh
+# To customize prompt, run `p10k configure` or edit $ZSH/.p10k.zsh.
+[[ ! -f $ZSH/.p10k.zsh ]] || source $ZSH/.p10k.zsh
